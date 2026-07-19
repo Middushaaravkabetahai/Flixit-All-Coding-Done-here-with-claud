@@ -8,6 +8,10 @@ Team: Shaarav + Maahit lead, Claude Code assists. Read this file at the start
 of every session — it's the durable plan so no context is lost between
 sessions/environments.
 
+**Before writing any Expo code, also read `AGENTS.md`** — Expo's scaffold
+flags that the SDK has changed recently and the versioned docs at
+docs.expo.dev must be checked before writing code.
+
 ## Features
 
 | # | Feature | Description |
