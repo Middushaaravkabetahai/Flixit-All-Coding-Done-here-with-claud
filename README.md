@@ -1,7 +1,7 @@
 # Flixit
 
 Fashion-tech app for everyday fashion lovers and aspiring designers. See
-`CLAUDE.md` for the full concept, feature list, and roadmap.
+ for the full concept, feature list, and roadmap.
 
 ## Setup
 
@@ -26,4 +26,4 @@ Fashion-tech app for everyday fashion lovers and aspiring designers. See
 - Manual wardrobe upload: photograph an item, tag it (category/color/brand),
   view your closet as a grid
 
-See `CLAUDE.md` for what's next (Phase 2: Flixnder + deals feed).
+See for what's next (Phase 2: Flixnder + deals feed).
