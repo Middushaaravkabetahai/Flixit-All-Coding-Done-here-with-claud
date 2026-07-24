@@ -1,5 +1,6 @@
--- Flixit Phase 1 schema: profiles + manual wardrobe upload.
--- Run this in the Supabase SQL editor for a new project.
+-- Flixit schema. Run this in the Supabase SQL editor for a new project.
+-- Safe to re-run in full (all statements are idempotent) after pulling
+-- later additions, e.g. the Phase 2 swipes table at the bottom.
 
 create table if not exists public.profiles (
   id uuid primary key references auth.users (id) on delete cascade,
@@ -73,3 +74,25 @@ create policy "Users can delete their own wardrobe photos"
     bucket_id = 'wardrobe-photos'
     and (storage.foldername(name))[1] = auth.uid()::text
   );
+
+-- Phase 2: Flixnder swipes, used to rank the FYP feed.
+-- deal_id references the mock deal catalog (src/data/mockDeals.ts) for now;
+-- once real affiliate listings replace it, this can point at a products table.
+create table if not exists public.swipes (
+  id uuid primary key default gen_random_uuid(),
+  user_id uuid not null references auth.users (id) on delete cascade,
+  deal_id text not null,
+  category text not null,
+  direction text not null check (direction in ('like', 'pass')),
+  created_at timestamptz not null default now()
+);
+
+alter table public.swipes enable row level security;
+
+create policy "Users can view their own swipes"
+  on public.swipes for select
+  using (auth.uid() = user_id);
+
+create policy "Users can insert their own swipes"
+  on public.swipes for insert
+  with check (auth.uid() = user_id);

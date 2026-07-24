@@ -8,15 +8,21 @@ import {
   View,
 } from 'react-native';
 import { SwipeCard } from '../../src/components/SwipeCard';
+import { useAuth } from '../../src/contexts/AuthContext';
 import { MOCK_DEALS, type Deal } from '../../src/data/mockDeals';
+import { recordSwipe } from '../../src/lib/swipes';
 
 export default function Flixnder() {
+  const { session } = useAuth();
   const [index, setIndex] = useState(0);
   const [liked, setLiked] = useState<Deal[]>([]);
   const [viewingRetailers, setViewingRetailers] = useState<Deal | null>(null);
 
   const handleSwipe = (direction: 'left' | 'right') => {
     const deal = MOCK_DEALS[index];
+    if (deal && session) {
+      recordSwipe(session.user.id, deal, direction === 'right' ? 'like' : 'pass');
+    }
     if (direction === 'right' && deal) {
       setLiked((prev) => [...prev, deal]);
     }
