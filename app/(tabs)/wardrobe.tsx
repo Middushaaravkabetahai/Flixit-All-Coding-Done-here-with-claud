@@ -17,6 +17,8 @@ import {
   getWardrobeImageUrl,
   listWardrobeItems,
   uploadWardrobeItem,
+  OCCASIONS,
+  type Occasion,
   type WardrobeItem,
 } from '../../src/lib/wardrobe';
 
@@ -29,6 +31,7 @@ export default function Wardrobe() {
   const [loading, setLoading] = useState(true);
   const [pendingUri, setPendingUri] = useState<string | null>(null);
   const [category, setCategory] = useState(CATEGORIES[0]);
+  const [occasion, setOccasion] = useState<Occasion>(OCCASIONS[0]);
   const [color, setColor] = useState('');
   const [brand, setBrand] = useState('');
   const [saving, setSaving] = useState(false);
@@ -81,6 +84,7 @@ export default function Wardrobe() {
         userId: session.user.id,
         localImageUri: pendingUri,
         category,
+        occasion,
         color: color.trim() || undefined,
         brand: brand.trim() || undefined,
       });
@@ -88,6 +92,7 @@ export default function Wardrobe() {
       setColor('');
       setBrand('');
       setCategory(CATEGORIES[0]);
+      setOccasion(OCCASIONS[0]);
       await load();
     } catch (e) {
       setError(e instanceof Error ? e.message : 'Failed to save item');
@@ -162,6 +167,26 @@ export default function Wardrobe() {
                     ]}
                   >
                     {c}
+                  </Text>
+                </Pressable>
+              ))}
+            </View>
+
+            <Text style={styles.label}>Occasion</Text>
+            <View style={styles.chipRow}>
+              {OCCASIONS.map((o) => (
+                <Pressable
+                  key={o}
+                  onPress={() => setOccasion(o)}
+                  style={[styles.chip, occasion === o && styles.chipSelected]}
+                >
+                  <Text
+                    style={[
+                      styles.chipText,
+                      occasion === o && styles.chipTextSelected,
+                    ]}
+                  >
+                    {o}
                   </Text>
                 </Pressable>
               ))}

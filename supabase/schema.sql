@@ -31,8 +31,14 @@ create table if not exists public.wardrobe_items (
   category text not null,
   color text,
   brand text,
+  occasion text not null default 'Casual',
   created_at timestamptz not null default now()
 );
+
+-- Phase 3 addition for existing projects that ran this file before occasion
+-- tagging existed.
+alter table public.wardrobe_items
+  add column if not exists occasion text not null default 'Casual';
 
 alter table public.wardrobe_items enable row level security;
 

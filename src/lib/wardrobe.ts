@@ -1,12 +1,16 @@
 import * as FileSystem from 'expo-file-system';
 import { supabase } from './supabase';
 
+export const OCCASIONS = ['Casual', 'Formal', 'Athletic'] as const;
+export type Occasion = (typeof OCCASIONS)[number];
+
 export type WardrobeItem = {
   id: string;
   image_path: string;
   category: string;
   color: string | null;
   brand: string | null;
+  occasion: Occasion;
   created_at: string;
 };
 
@@ -14,6 +18,7 @@ export type NewWardrobeItem = {
   userId: string;
   localImageUri: string;
   category: string;
+  occasion: Occasion;
   color?: string;
   brand?: string;
 };
@@ -22,6 +27,7 @@ export async function uploadWardrobeItem({
   userId,
   localImageUri,
   category,
+  occasion,
   color,
   brand,
 }: NewWardrobeItem): Promise<WardrobeItem> {
@@ -47,6 +53,7 @@ export async function uploadWardrobeItem({
       user_id: userId,
       image_path: storagePath,
       category,
+      occasion,
       color: color ?? null,
       brand: brand ?? null,
     })
@@ -60,7 +67,7 @@ export async function uploadWardrobeItem({
 export async function listWardrobeItems(userId: string): Promise<WardrobeItem[]> {
   const { data, error } = await supabase
     .from('wardrobe_items')
-    .select('id, image_path, category, color, brand, created_at')
+    .select('id, image_path, category, color, brand, occasion, created_at')
     .eq('user_id', userId)
     .order('created_at', { ascending: false });
   if (error) throw error;
