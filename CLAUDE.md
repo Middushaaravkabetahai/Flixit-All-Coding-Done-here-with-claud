@@ -30,7 +30,7 @@ docs.expo.dev must be checked before writing code.
 - **Phase 4 — Smart Scanning**: computer vision for whole-closet scan and in-store item scan/price-match.
 - **Phase 5 — Local Price Matching**: in-mall/in-store comparison. Needs retailer data partnerships — stretch goal.
 
-**Current status: Phase 1, not yet started (rebuilding after a lost scaffold — see Status below).**
+**Current status: Phases 1–3 built and pushed. See Status below for what's real vs. placeholder.**
 
 ## Tech Stack
 
@@ -39,7 +39,8 @@ docs.expo.dev must be checked before writing code.
 - TypeScript
 - Expo Router (navigation)
 - NativeWind (Tailwind for RN) — optional, not yet wired in
-- Swipe cards: `react-native-deck-swiper` or custom with Reanimated
+- Swipe cards: custom component using core `Animated` + `PanResponder`
+  (no extra native deps, works on web too) — `src/components/SwipeCard.tsx`
 
 **Backend**
 - Supabase (Postgres + auth + storage) for MVP — no custom server needed yet
@@ -56,14 +57,25 @@ docs.expo.dev must be checked before writing code.
 
 ## Status / Known Issues
 
-- A prior session scaffolded Phase 1 (auth screens, profile setup, wardrobe
-  upload screen, Supabase client + schema) but the code was never pushed to
-  GitHub before the session's container was reclaimed — **that work is lost**
-  and needs to be rebuilt from scratch.
-- `git push` over the direct git proxy in this environment has repeatedly
-  returned `403`. Workaround: push via the GitHub MCP tool
-  (`mcp__github__push_files` / `create_or_update_file`) instead of raw
-  `git push` until the underlying permission/proxy issue is resolved.
+- **Phase 1 (Foundation) — built**: email/password auth, profile setup
+  (display name + style tags) on first login, manual wardrobe upload
+  (photograph + tag category/color/brand) backed by Supabase Storage +
+  Postgres.
+- **Phase 2 (Flixnder + Deals Feed) — partially built**: swipe UI, swipe
+  persistence (`swipes` table), and FYP re-ranking by category preference
+  all work end to end. What's still placeholder: the deal catalog itself
+  (`src/data/mockDeals.ts`) is 5 hardcoded items, not live listings — needs
+  real affiliate API keys (ShopStyle/Rakuten/Amazon Associates) from
+  Shaarav/Maahit before it can be swapped in.
+- **Phase 3 (Outfit Planner) — built**: rule-based daily outfit planner
+  (`app/(tabs)/planner.tsx`) groups your wardrobe by category and picks one
+  item per slot, with a "switch it up" re-roll. No AI yet, per plan.
+- **Phase 4/5 — not started.**
+- `git push` over the direct git proxy in this environment returns `403`
+  (GitHub App installed but without write access). Workaround in use: a
+  short-lived personal access token supplied by the user, added as a
+  second git remote (`token-origin`) — push there instead of `origin`
+  until the underlying GitHub App permission issue is fixed properly.
 
 ## Workflow
 
