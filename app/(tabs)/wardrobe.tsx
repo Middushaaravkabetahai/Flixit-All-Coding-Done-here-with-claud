@@ -1,6 +1,6 @@
 import * as ImagePicker from 'expo-image-picker';
 import { useCallback, useState } from 'react';
-import { useFocusEffect } from 'expo-router';
+import { useFocusEffect, useRouter } from 'expo-router';
 import {
   ActivityIndicator,
   FlatList,
@@ -23,6 +23,7 @@ import {
 const CATEGORIES = ['Top', 'Bottom', 'Outerwear', 'Shoes', 'Accessory'];
 
 export default function Wardrobe() {
+  const router = useRouter();
   const { session } = useAuth();
   const [items, setItems] = useState<WardrobeItem[]>([]);
   const [imageUrls, setImageUrls] = useState<Record<string, string>>({});
@@ -100,9 +101,17 @@ export default function Wardrobe() {
     <View style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.title}>My Wardrobe</Text>
-        <Pressable style={styles.addButton} onPress={pickImage}>
-          <Text style={styles.addButtonText}>+ Add item</Text>
-        </Pressable>
+        <View style={styles.headerButtons}>
+          <Pressable
+            style={styles.scanButton}
+            onPress={() => router.push('/scan-closet')}
+          >
+            <Text style={styles.scanButtonText}>Scan Closet</Text>
+          </Pressable>
+          <Pressable style={styles.addButton} onPress={pickImage}>
+            <Text style={styles.addButtonText}>+ Add item</Text>
+          </Pressable>
+        </View>
       </View>
 
       {error && <Text style={styles.error}>{error}</Text>}
@@ -209,8 +218,19 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
+    flexWrap: 'wrap',
+    gap: 8,
   },
   title: { fontSize: 24, fontWeight: '700' },
+  headerButtons: { flexDirection: 'row', gap: 8 },
+  scanButton: {
+    borderWidth: 1,
+    borderColor: '#111',
+    borderRadius: 8,
+    paddingVertical: 8,
+    paddingHorizontal: 14,
+  },
+  scanButtonText: { color: '#111', fontWeight: '600' },
   addButton: {
     backgroundColor: '#111',
     borderRadius: 8,

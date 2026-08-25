@@ -30,7 +30,7 @@ docs.expo.dev must be checked before writing code.
 - **Phase 4 — Smart Scanning**: computer vision for whole-closet scan and in-store item scan/price-match.
 - **Phase 5 — Local Price Matching**: in-mall/in-store comparison. Needs retailer data partnerships — stretch goal.
 
-**Current status: Phases 1–3 built and pushed. See Status below for what's real vs. placeholder.**
+**Current status: Phases 1–4 built and pushed. See Status below for what's real vs. placeholder.**
 
 ## Tech Stack
 
@@ -70,7 +70,26 @@ docs.expo.dev must be checked before writing code.
 - **Phase 3 (Outfit Planner) — built**: rule-based daily outfit planner
   (`app/(tabs)/planner.tsx`) groups your wardrobe by category and picks one
   item per slot, with a "switch it up" re-roll. No AI yet, per plan.
-- **Phase 4/5 — not started.**
+- **Phase 4 (Smart Scanning) — built, needs one manual setup step**:
+  - Whole-closet scan: "Scan Closet" button in Wardrobe (`app/scan-closet.tsx`)
+    takes one photo, Claude vision identifies each item, you review/edit
+    category/color/brand per item, then bulk-save. All detected items from
+    one photo share that source image (no per-item cropping yet).
+  - Scan & Price Match tab (`app/(tabs)/scan.tsx`): photograph a single item,
+    Claude vision identifies it, shows mock online prices (placeholder, same
+    affiliate-API dependency as Phase 2) and mock nearby-store prices
+    (placeholder — real in-store pricing is the Phase 5 stretch goal, no data
+    source exists for it yet at all).
+  - Both scan flows call a Supabase Edge Function
+    (`supabase/functions/identify-clothing-items`) that does the actual
+    Claude vision call server-side, so the API key never ships in the app.
+    **Needs a one-time setup step before scanning works**: deploy the
+    function (`supabase functions deploy identify-clothing-items`) and set
+    `supabase secrets set ANTHROPIC_API_KEY=sk-ant-...` (get a key at
+    console.anthropic.com — separate from the Supabase keys). Until that's
+    done, both scan flows show a clear error instead of crashing.
+- **Phase 5 — not started** (stretch goal per plan, needs retailer
+  partnerships for real in-store inventory/pricing data).
 - `git push` over the direct git proxy in this environment returns `403`
   (GitHub App installed but without write access). Workaround in use: a
   short-lived personal access token supplied by the user, added as a
