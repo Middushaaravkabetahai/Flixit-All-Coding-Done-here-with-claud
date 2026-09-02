@@ -14,6 +14,7 @@ import {
 } from 'react-native';
 import { useAuth } from '../../src/contexts/AuthContext';
 import {
+  deleteWardrobeItem,
   getWardrobeImageUrl,
   listWardrobeItems,
   uploadWardrobeItem,
@@ -28,29 +29,37 @@ export default function Wardrobe() {
   const [items, setItems] = useState<WardrobeItem[]>([]);
   const [imageUrls, setImageUrls] = useState<Record<string, string>>({});
   const [loading, setLoading] = useState(true);
+  const [refreshing, setRefreshing] = useState(false);
   const [pendingUri, setPendingUri] = useState<string | null>(null);
   const [category, setCategory] = useState(CATEGORIES[0]);
   const [color, setColor] = useState('');
   const [brand, setBrand] = useState('');
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [pendingDelete, setPendingDelete] = useState<WardrobeItem | null>(null);
+  const [deleting, setDeleting] = useState(false);
 
-  const load = useCallback(async () => {
-    if (!session) return;
-    setLoading(true);
-    try {
-      const data = await listWardrobeItems(session.user.id);
-      setItems(data);
-      const urls = await Promise.all(
-        data.map(async (item) => [item.id, await getWardrobeImageUrl(item.image_path)] as const)
-      );
-      setImageUrls(Object.fromEntries(urls));
-    } catch (e) {
-      setError(e instanceof Error ? e.message : 'Failed to load wardrobe');
-    } finally {
-      setLoading(false);
-    }
-  }, [session]);
+  const load = useCallback(
+    async (isRefresh = false) => {
+      if (!session) return;
+      if (isRefresh) setRefreshing(true);
+      else setLoading(true);
+      try {
+        const data = await listWardrobeItems(session.user.id);
+        setItems(data);
+        const urls = await Promise.all(
+          data.map(async (item) => [item.id, await getWardrobeImageUrl(item.image_path)] as const)
+        );
+        setImageUrls(Object.fromEntries(urls));
+      } catch (e) {
+        setError(e instanceof Error ? e.message : 'Failed to load wardrobe');
+      } finally {
+        setLoading(false);
+        setRefreshing(false);
+      }
+    },
+    [session]
+  );
 
   useFocusEffect(
     useCallback(() => {
@@ -97,6 +106,21 @@ export default function Wardrobe() {
     }
   };
 
+  const handleDelete = async () => {
+    if (!session || !pendingDelete) return;
+    setDeleting(true);
+    setError(null);
+    try {
+      await deleteWardrobeItem(session.user.id, pendingDelete);
+      setPendingDelete(null);
+      await load();
+    } catch (e) {
+      setError(e instanceof Error ? e.message : 'Failed to delete item');
+    } finally {
+      setDeleting(false);
+    }
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -130,8 +154,17 @@ export default function Wardrobe() {
           numColumns={2}
           columnWrapperStyle={{ gap: 12 }}
           contentContainerStyle={{ gap: 12, paddingTop: 12 }}
+          refreshing={refreshing}
+          onRefresh={() => load(true)}
           renderItem={({ item }) => (
             <View style={styles.card}>
+              <Pressable
+                style={styles.deleteButton}
+                onPress={() => setPendingDelete(item)}
+                hitSlop={8}
+              >
+                <Text style={styles.deleteButtonText}>×</Text>
+              </Pressable>
               {imageUrls[item.id] && (
                 <Image
                   source={{ uri: imageUrls[item.id] }}
@@ -208,6 +241,41 @@ export default function Wardrobe() {
           </View>
         </View>
       </Modal>
+
+      <Modal visible={pendingDelete !== null} animationType="fade" transparent>
+        <View style={styles.modalOverlay}>
+          <View style={styles.modalContent}>
+            <Text style={styles.label}>Remove this item?</Text>
+            <Text style={styles.cardMeta}>
+              {pendingDelete
+                ? [pendingDelete.category, pendingDelete.brand, pendingDelete.color]
+                    .filter(Boolean)
+                    .join(' · ')
+                : ''}
+            </Text>
+            <View style={styles.modalActions}>
+              <Pressable
+                style={[styles.button, styles.cancelButton]}
+                onPress={() => setPendingDelete(null)}
+                disabled={deleting}
+              >
+                <Text style={styles.cancelButtonText}>Cancel</Text>
+              </Pressable>
+              <Pressable
+                style={[styles.button, styles.deleteConfirmButton]}
+                onPress={handleDelete}
+                disabled={deleting}
+              >
+                {deleting ? (
+                  <ActivityIndicator color="#fff" />
+                ) : (
+                  <Text style={styles.buttonText}>Remove</Text>
+                )}
+              </Pressable>
+            </View>
+          </View>
+        </View>
+      </Modal>
     </View>
   );
 }
@@ -245,7 +313,21 @@ const styles = StyleSheet.create({
     backgroundColor: '#f5f5f5',
     borderRadius: 12,
     padding: 8,
+    position: 'relative',
   },
+  deleteButton: {
+    position: 'absolute',
+    top: 12,
+    right: 12,
+    zIndex: 1,
+    width: 24,
+    height: 24,
+    borderRadius: 12,
+    backgroundColor: 'rgba(0,0,0,0.6)',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  deleteButtonText: { color: '#fff', fontSize: 16, lineHeight: 18, fontWeight: '700' },
   cardImage: {
     width: '100%',
     aspectRatio: 1,
@@ -304,4 +386,5 @@ const styles = StyleSheet.create({
   buttonText: { color: '#fff', fontWeight: '600' },
   cancelButton: { backgroundColor: '#eee' },
   cancelButtonText: { color: '#111', fontWeight: '600' },
+  deleteConfirmButton: { backgroundColor: '#d33' },
 });

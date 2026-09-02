@@ -67,6 +67,28 @@ export async function listWardrobeItems(userId: string): Promise<WardrobeItem[]>
   return data;
 }
 
+// Deletes the wardrobe row, and the underlying storage photo too — unless
+// another item still points at it (Scan Closet saves several items against
+// one shared source photo, so deleting one shouldn't break the others).
+export async function deleteWardrobeItem(userId: string, item: WardrobeItem): Promise<void> {
+  const { error: deleteError } = await supabase
+    .from('wardrobe_items')
+    .delete()
+    .eq('id', item.id)
+    .eq('user_id', userId);
+  if (deleteError) throw deleteError;
+
+  const { count } = await supabase
+    .from('wardrobe_items')
+    .select('id', { count: 'exact', head: true })
+    .eq('user_id', userId)
+    .eq('image_path', item.image_path);
+
+  if (!count) {
+    await supabase.storage.from('wardrobe-photos').remove([item.image_path]);
+  }
+}
+
 // The bucket is private, so items need a signed URL rather than a public one.
 export async function getWardrobeImageUrl(storagePath: string): Promise<string> {
   const { data, error } = await supabase.storage
