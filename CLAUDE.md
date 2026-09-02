@@ -53,7 +53,12 @@ docs.expo.dev must be checked before writing code.
 - Outfit planner (Phase 3): rule-based first, then Claude API
 
 **Marketing website**
-- Next.js on Vercel, separate simple project for landing page + email signups
+- Lives in `website/` — a single self-contained `index.html` (no build step,
+  no framework). Target domain `flixitinfo.app`. See `website/README.md` for
+  the buy-domain → host → DNS steps.
+- Was originally planned as Next.js on Vercel; a static page covers the
+  pre-launch site fine, so that's deferred until it needs real signups or
+  more than one page.
 
 ## Branding
 

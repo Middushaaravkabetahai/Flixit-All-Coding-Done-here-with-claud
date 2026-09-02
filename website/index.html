@@ -1,0 +1,808 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="Flixit turns the clothes you already own into daily outfits and finds you better prices on everything else. Launching October 5, 2026 on iOS and Android." />
+<meta name="theme-color" content="#18181b" />
+<link rel="canonical" href="https://flixitinfo.app/" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2212%22%20fill%3D%22%2318181b%22%2F%3E%3Ctext%20x%3D%2232%22%20y%3D%2245%22%20font-family%3D%22Arial%20Black%2CArial%2Csans-serif%22%20font-size%3D%2240%22%20font-weight%3D%22900%22%20fill%3D%22%23f3ede3%22%20text-anchor%3D%22middle%22%3EF%3C%2Ftext%3E%3C%2Fsvg%3E" />
+
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://flixitinfo.app/" />
+<meta property="og:site_name" content="Flixit" />
+<meta property="og:title" content="Flixit — Your closet. Your style. Your next move." />
+<meta property="og:description" content="Scan your closet, get daily outfits from what you already own, and find the best price on what you buy next. Launching October 5, 2026." />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Flixit — Your closet. Your style. Your next move." />
+<meta name="twitter:description" content="Scan your closet, get daily outfits from what you already own, and find the best price on what you buy next. Launching October 5, 2026." />
+
+<title>Flixit — Your closet. Your style. Your next move.</title>
+<style>
+  :root {
+    --ink: #18181b;
+    --ink-soft: #242428;
+    --paper: #f3ede3;
+    --paper-soft: #e8e0d1;
+    --indigo: #3346e0;
+    --indigo-dim: #97a1ef;
+    --brass: #b8863b;
+    --on-ink: #f3ede3;
+    --on-ink-dim: #b3aea3;
+    --on-paper: #18181b;
+    --on-paper-dim: #6b6459;
+    --line-on-ink: rgba(243, 237, 227, 0.16);
+    --line-on-paper: rgba(24, 24, 27, 0.14);
+    --nav-h: 58px;
+  }
+
+  * { box-sizing: border-box; }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+  }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--on-paper);
+    font-family: "Work Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  h1, h2, h3 {
+    font-family: "Archivo", "Arial Black", sans-serif;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: -0.01em;
+    text-wrap: balance;
+    margin: 0;
+  }
+
+  .mono { font-family: "Space Mono", "Courier New", monospace; }
+
+  a { color: inherit; }
+
+  :focus-visible {
+    outline: 2px solid var(--indigo);
+    outline-offset: 3px;
+  }
+
+  img, svg { display: block; max-width: 100%; }
+
+  .wrap {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding-inline: clamp(20px, 5vw, 56px);
+  }
+
+  section { scroll-margin-top: var(--nav-h); }
+
+  /* ---------- nav ---------- */
+
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: var(--ink);
+    color: var(--on-ink);
+    border-bottom: 1px solid var(--line-on-ink);
+  }
+
+  .nav .wrap {
+    height: var(--nav-h);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+  }
+
+  .nav .word {
+    font-family: "Archivo", sans-serif;
+    font-weight: 900;
+    text-transform: uppercase;
+    font-size: 18px;
+    letter-spacing: -0.02em;
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 26px;
+    margin-left: auto;
+    margin-right: 8px;
+  }
+
+  .nav-links a {
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--on-ink-dim);
+    padding-block: 6px;
+    border-bottom: 1px solid transparent;
+    transition: color 0.15s, border-color 0.15s;
+  }
+
+  .nav-links a:hover { color: var(--on-ink); }
+  .nav-links a.active { color: var(--on-ink); border-bottom-color: var(--indigo-dim); }
+
+  .nav-cta {
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    background: var(--indigo);
+    color: #fff;
+    padding: 9px 16px;
+    border-radius: 999px;
+    white-space: nowrap;
+    transition: background 0.15s;
+  }
+
+  .nav-cta:hover { background: #2537c4; }
+
+  /* ---------- hero ---------- */
+
+  .hero {
+    background: var(--ink);
+    color: var(--on-ink);
+    padding-block: clamp(52px, 9vw, 92px) clamp(40px, 6vw, 64px);
+    overflow: hidden;
+  }
+
+  .hero .eyebrow {
+    font-size: 12px;
+    letter-spacing: 0.16em;
+    color: var(--indigo-dim);
+    margin: 0 0 18px;
+    opacity: 0;
+    animation: rise 0.6s ease-out 0.05s forwards;
+  }
+
+  .hero h1 {
+    font-size: clamp(60px, 14vw, 156px);
+    line-height: 0.86;
+    letter-spacing: -0.03em;
+    opacity: 0;
+    animation: rise 0.7s ease-out 0.15s forwards;
+  }
+
+  .hero .tagline {
+    margin: 22px 0 0;
+    font-size: clamp(19px, 2.6vw, 28px);
+    max-width: 20ch;
+    font-weight: 500;
+    opacity: 0;
+    animation: rise 0.7s ease-out 0.3s forwards;
+  }
+
+  .hero .sub {
+    margin: 14px 0 0;
+    max-width: 46ch;
+    color: var(--on-ink-dim);
+    opacity: 0;
+    animation: rise 0.7s ease-out 0.42s forwards;
+  }
+
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(14px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero .eyebrow, .hero h1, .hero .tagline, .hero .sub, .rail-item {
+      animation: none !important;
+      opacity: 1 !important;
+      transform: none !important;
+    }
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 28px;
+    align-items: flex-end;
+    margin-top: clamp(32px, 5vw, 44px);
+  }
+
+  /* store badges */
+
+  .stores { display: flex; gap: 12px; flex-wrap: wrap; }
+
+  .store {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border: 1px solid var(--line-on-ink);
+    border-radius: 10px;
+    padding: 11px 18px 11px 14px;
+    min-width: 178px;
+  }
+
+  .store svg { flex: none; color: var(--on-ink); }
+
+  .store .label { display: flex; flex-direction: column; line-height: 1.25; }
+  .store .label .small { font-size: 10px; letter-spacing: 0.12em; color: var(--indigo-dim); }
+  .store .label .big { font-size: 15px; font-weight: 600; }
+
+  /* countdown */
+
+  .countdown { display: flex; gap: 20px; }
+
+  .count-unit { text-align: left; }
+
+  .count-unit .n {
+    font-family: "Archivo", sans-serif;
+    font-weight: 900;
+    font-size: 34px;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .count-unit .u {
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    color: var(--on-ink-dim);
+    margin-top: 6px;
+  }
+
+  .count-note { font-size: 11px; letter-spacing: 0.12em; color: var(--indigo-dim); margin: 0 0 12px; }
+
+  /* closet rail */
+
+  .rail { margin-top: clamp(40px, 6vw, 68px); }
+  .rail-line { height: 2px; background: var(--line-on-ink); }
+  .rail-items { display: flex; justify-content: space-between; padding-inline: 4%; }
+
+  .rail-item {
+    width: 32px;
+    height: 32px;
+    margin-top: -1px;
+    color: var(--indigo-dim);
+    opacity: 0;
+    animation: rise 0.5s ease-out forwards;
+  }
+
+  .rail-item:nth-child(1) { animation-delay: 0.55s; }
+  .rail-item:nth-child(2) { animation-delay: 0.62s; }
+  .rail-item:nth-child(3) { animation-delay: 0.69s; }
+  .rail-item:nth-child(4) { animation-delay: 0.76s; }
+  .rail-item:nth-child(5) { animation-delay: 0.83s; }
+
+  /* ---------- section shell ---------- */
+
+  .band { padding-block: clamp(56px, 9vw, 92px); }
+  .band-ink { background: var(--ink); color: var(--on-ink); }
+
+  .section-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 24px;
+    margin-bottom: clamp(32px, 5vw, 52px);
+    flex-wrap: wrap;
+  }
+
+  .section-head h2 { font-size: clamp(30px, 4.4vw, 46px); max-width: 15ch; }
+  .section-head .kicker {
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    color: var(--on-paper-dim);
+    max-width: 26ch;
+    text-align: right;
+    margin: 0;
+  }
+
+  .band-ink .section-head .kicker { color: var(--on-ink-dim); }
+
+  /* ---------- hang tags ---------- */
+
+  .tags {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(18px, 3vw, 26px);
+  }
+
+  .tag {
+    position: relative;
+    background: var(--paper-soft);
+    border: 1px solid var(--line-on-paper);
+    border-radius: 14px;
+    padding: 34px 22px 26px;
+  }
+
+  .tag::before {
+    content: "";
+    position: absolute;
+    top: -9px;
+    left: 26px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--paper);
+    border: 2px solid var(--on-paper);
+  }
+
+  .tag .code { font-size: 10px; letter-spacing: 0.14em; color: var(--brass); margin: 0 0 16px; }
+  .tag svg { margin-bottom: 18px; }
+  .tag h3 { font-size: 16px; margin-bottom: 9px; }
+  .tag p { margin: 0; color: var(--on-paper-dim); font-size: 14.5px; }
+
+  /* ---------- steps ---------- */
+
+  .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(20px, 4vw, 40px); }
+
+  .step { border-top: 2px solid var(--indigo); padding-top: 18px; }
+
+  .step .n {
+    font-family: "Space Mono", monospace;
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    color: var(--indigo-dim);
+    margin: 0 0 14px;
+  }
+
+  .step h3 {
+    font-size: 19px;
+    text-transform: none;
+    letter-spacing: 0;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+
+  .step p { margin: 0; font-size: 14.5px; color: var(--on-ink-dim); max-width: 28ch; }
+
+  /* ---------- launch band ---------- */
+
+  .launch-inner {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: clamp(28px, 5vw, 56px);
+    align-items: center;
+  }
+
+  .launch-inner h2 { font-size: clamp(28px, 4vw, 42px); max-width: 13ch; }
+  .launch-inner p { color: var(--on-paper-dim); max-width: 40ch; }
+
+  .launch-dates {
+    border: 1px solid var(--line-on-paper);
+    border-radius: 14px;
+    padding: 24px;
+    background: var(--paper-soft);
+  }
+
+  .launch-dates div { display: flex; justify-content: space-between; padding-block: 11px; gap: 16px; }
+  .launch-dates div + div { border-top: 1px dashed var(--line-on-paper); }
+  .launch-dates dt { font-size: 11px; letter-spacing: 0.13em; color: var(--on-paper-dim); }
+  .launch-dates dd { margin: 0; font-size: 14px; font-weight: 700; font-variant-numeric: tabular-nums; }
+
+  /* ---------- team ---------- */
+
+  .team { display: grid; grid-template-columns: repeat(2, 1fr); gap: clamp(18px, 3vw, 26px); }
+
+  .member {
+    border: 1px solid var(--line-on-ink);
+    border-radius: 14px;
+    padding: 26px 24px;
+  }
+
+  .member .role { font-size: 11px; letter-spacing: 0.14em; color: var(--indigo-dim); margin: 0 0 10px; }
+  .member h3 { font-size: 22px; text-transform: none; letter-spacing: -0.01em; margin-bottom: 8px; }
+  .member a { font-size: 14px; color: var(--on-ink-dim); text-decoration: none; border-bottom: 1px solid var(--line-on-ink); }
+  .member a:hover { color: var(--on-ink); border-color: var(--indigo-dim); }
+
+  /* ---------- faq ---------- */
+
+  .faq { border-top: 1px solid var(--line-on-paper); }
+
+  .faq details { border-bottom: 1px solid var(--line-on-paper); }
+
+  .faq summary {
+    cursor: pointer;
+    list-style: none;
+    padding-block: 20px;
+    font-weight: 600;
+    font-size: 17px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .faq summary::-webkit-details-marker { display: none; }
+
+  .faq summary::after {
+    content: "+";
+    font-family: "Space Mono", monospace;
+    font-size: 20px;
+    color: var(--indigo);
+    flex: none;
+  }
+
+  .faq details[open] summary::after { content: "\2013"; }
+
+  .faq p { margin: 0 0 22px; color: var(--on-paper-dim); max-width: 62ch; }
+
+  /* ---------- footer ---------- */
+
+  .label { background: var(--ink); color: var(--on-ink); padding-block: clamp(44px, 7vw, 72px) 28px; }
+
+  .label-top {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    padding-bottom: clamp(30px, 5vw, 48px);
+    border-bottom: 1px dashed var(--line-on-ink);
+  }
+
+  .label-top dt { font-size: 11px; letter-spacing: 0.14em; color: var(--indigo-dim); margin-bottom: 8px; }
+  .label-top dd { margin: 0; font-size: 15px; }
+  .label-top dd a { text-decoration: none; border-bottom: 1px solid var(--line-on-ink); }
+  .label-top dd a:hover { border-color: var(--indigo-dim); }
+
+  .label-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 22px;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .label-bottom .word {
+    font-family: "Archivo", sans-serif;
+    font-weight: 900;
+    text-transform: uppercase;
+    font-size: 20px;
+    letter-spacing: -0.02em;
+  }
+
+  .label-bottom .note { font-size: 12px; color: var(--on-ink-dim); letter-spacing: 0.06em; }
+
+  @media (max-width: 860px) {
+    .nav-links { display: none; }
+    .tags, .steps, .team { grid-template-columns: 1fr; }
+    .launch-inner { grid-template-columns: 1fr; }
+    .label-top { grid-template-columns: repeat(2, 1fr); }
+    .section-head { align-items: flex-start; }
+    .section-head .kicker { text-align: left; }
+    .hero-actions { gap: 24px; }
+  }
+</style>
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link
+  href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;900&family=Work+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap"
+  rel="stylesheet"
+/>
+</head>
+<body>
+<nav class="nav">
+  <div class="wrap">
+    <a class="word" href="#top">Flixit</a>
+    <div class="nav-links">
+      <a href="#features">Features</a>
+      <a href="#how">How it works</a>
+      <a href="#launch">Launch</a>
+      <a href="#team">Team</a>
+      <a href="#faq">FAQ</a>
+    </div>
+    <a class="nav-cta" href="mailto:shaaravj@gmail.com?subject=Flixit%20early%20access&amp;body=Hey%20Shaarav%20and%20Maahit%20%E2%80%94%20I%27d%20like%20early%20access%20to%20Flixit.">Get early access</a>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <p class="eyebrow mono">WARDROBE INTELLIGENCE, TAGGED &amp; SORTED</p>
+    <h1>Flixit</h1>
+    <p class="tagline">Your closet. Your style. Your next move.</p>
+    <p class="sub">
+      Flixit turns the clothes you already own into daily outfits, and helps you find better
+      prices on everything else — one scan of your closet at a time.
+    </p>
+
+    <div class="hero-actions">
+      <div class="stores">
+        <div class="store">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="6" y="2" width="12" height="20" rx="3" /><path d="M11 18.5h2" />
+          </svg>
+          <span class="label">
+            <span class="small mono">COMING SOON</span>
+            <span class="big">App Store</span>
+          </span>
+        </div>
+        <div class="store">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M5 3.5v17a1 1 0 0 0 1.5.9l13-8.5a1 1 0 0 0 0-1.7l-13-8.6A1 1 0 0 0 5 3.5z" />
+          </svg>
+          <span class="label">
+            <span class="small mono">COMING SOON</span>
+            <span class="big">Google Play</span>
+          </span>
+        </div>
+      </div>
+
+      <div>
+        <p class="count-note mono">UNTIL LAUNCH</p>
+        <div class="countdown" id="countdown">
+          <div class="count-unit"><div class="n" id="cd-d">—</div><div class="u mono">DAYS</div></div>
+          <div class="count-unit"><div class="n" id="cd-h">—</div><div class="u mono">HRS</div></div>
+          <div class="count-unit"><div class="n" id="cd-m">—</div><div class="u mono">MIN</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="rail" aria-hidden="true">
+      <div class="rail-line"></div>
+      <div class="rail-items">
+        <svg class="rail-item" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M24 6a4 4 0 1 0 0.1 0"/><path d="M24 10 8 28h32z"/></svg>
+        <svg class="rail-item" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M24 6a4 4 0 1 0 0.1 0"/><path d="M24 10 8 28h32z"/></svg>
+        <svg class="rail-item" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M24 6a4 4 0 1 0 0.1 0"/><path d="M24 10 8 28h32z"/></svg>
+        <svg class="rail-item" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M24 6a4 4 0 1 0 0.1 0"/><path d="M24 10 8 28h32z"/></svg>
+        <svg class="rail-item" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M24 6a4 4 0 1 0 0.1 0"/><path d="M24 10 8 28h32z"/></svg>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="band" id="features">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Six tags. One closet, sorted.</h2>
+      <p class="kicker mono">EVERYTHING FLIXIT DOES, IN ONE PLACE</p>
+    </div>
+
+    <div class="tags">
+      <article class="tag">
+        <p class="code mono">01 / WARDROBE SCAN</p>
+        <svg width="32" height="32" viewBox="0 0 48 48" fill="none" stroke="#3346e0" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 14V4h10" /><path d="M34 4h10v10" /><path d="M4 34v10h10" /><path d="M44 34v10H34" />
+        </svg>
+        <h3>Scan your closet</h3>
+        <p>Photograph your closet once and Flixit picks out each item, so you're not adding clothes one at a time.</p>
+      </article>
+
+      <article class="tag">
+        <p class="code mono">02 / OUTFIT PLANNER</p>
+        <svg width="32" height="32" viewBox="0 0 48 48" fill="none" stroke="#3346e0" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M24 6a4 4 0 1 0 0.1 0" /><path d="M24 10 8 28h32z" />
+        </svg>
+        <h3>Plan your outfits</h3>
+        <p>Daily outfit recommendations built from your wardrobe, occasion, and color coordination. Don't like it? Switch it up.</p>
+      </article>
+
+      <article class="tag">
+        <p class="code mono">03 / PRICE MATCH</p>
+        <svg width="32" height="32" viewBox="0 0 48 48" fill="none" stroke="#3346e0" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="10" y="10" width="28" height="28" rx="6" transform="rotate(45 24 24)" />
+          <circle cx="24" cy="9.5" r="2.4" transform="rotate(45 24 24)" />
+        </svg>
+        <h3>Find the best price</h3>
+        <p>Scan something in a store and compare it against prices online before you pay full price for it.</p>
+      </article>
+
+      <article class="tag">
+        <p class="code mono">04 / FLIXNDER</p>
+        <svg width="32" height="32" viewBox="0 0 48 48" fill="none" stroke="#3346e0" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="8" y="10" width="24" height="30" rx="4" transform="rotate(-8 24 24)" />
+          <path d="M38 18v14" />
+        </svg>
+        <h3>Swipe on Flixnder</h3>
+        <p>Swipe right on the pieces you like. Every swipe teaches Flixit what your style actually is.</p>
+      </article>
+
+      <article class="tag">
+        <p class="code mono">05 / STYLE FYP</p>
+        <svg width="32" height="32" viewBox="0 0 48 48" fill="none" stroke="#3346e0" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="5" y="5" width="16" height="20" rx="3" /><rect x="27" y="5" width="16" height="12" rx="3" />
+          <rect x="5" y="31" width="16" height="12" rx="3" /><rect x="27" y="23" width="16" height="20" rx="3" />
+        </svg>
+        <h3>Your Style FYP</h3>
+        <p>A feed that reorders itself around what you scan, swipe, and save — not what someone paid to put in front of you.</p>
+      </article>
+
+      <article class="tag">
+        <p class="code mono">06 / IT ALL CONNECTS</p>
+        <svg width="32" height="32" viewBox="0 0 48 48" fill="none" stroke="#3346e0" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="24" cy="24" r="6" /><path d="M24 4v14M24 30v14M4 24h14M30 24h14" />
+        </svg>
+        <h3>Everything feeds the feed</h3>
+        <p>What you own, what you swipe, and what you scan all sharpen the same style profile over time.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="band band-ink" id="how">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>The app that knows your closet better than you do.</h2>
+      <p class="kicker mono">THREE STEPS, START TO OUTFIT</p>
+    </div>
+
+    <div class="steps">
+      <div class="step">
+        <p class="n">STEP 01 — WHAT YOU OWN</p>
+        <h3>Your wardrobe becomes your personal fashion database.</h3>
+        <p>Scan your closet or add pieces one by one. Every item gets tagged by type, color, and brand.</p>
+      </div>
+      <div class="step">
+        <p class="n">STEP 02 — WHAT YOU WEAR</p>
+        <h3>Flixit generates personalized daily outfits.</h3>
+        <p>Built from your own closet first, matched to the occasion and to colors that actually work together.</p>
+      </div>
+      <div class="step">
+        <p class="n">STEP 03 — WHAT YOU WANT</p>
+        <h3>Flixit helps you discover and price-match new pieces.</h3>
+        <p>See what fits your style next, then find where it costs the least before you buy it.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="launch">
+  <div class="wrap">
+    <div class="launch-inner">
+      <div>
+        <h2>Coming to iPhone and Android.</h2>
+        <p>
+          Flixit launches on the App Store and Google Play on October 5, 2026. Want in before
+          everyone else? Email us and we'll add you to the early access list.
+        </p>
+        <p style="margin-top:18px">
+          <a class="nav-cta" style="background:var(--ink);display:inline-block" href="mailto:shaaravj@gmail.com?subject=Flixit%20early%20access&amp;body=Hey%20Shaarav%20and%20Maahit%20%E2%80%94%20I%27d%20like%20early%20access%20to%20Flixit.">Get early access</a>
+        </p>
+      </div>
+
+      <dl class="launch-dates">
+        <div><dt class="mono">FOUNDED</dt><dd class="mono">June 2, 2026</dd></div>
+        <div><dt class="mono">LAUNCH DATE</dt><dd class="mono">October 5, 2026</dd></div>
+        <div><dt class="mono">PLATFORMS</dt><dd>iOS · Android</dd></div>
+        <div><dt class="mono">WEB</dt><dd class="mono">flixitinfo.app</dd></div>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<section class="band band-ink" id="team">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Built by two people who got tired of staring at a full closet.</h2>
+      <p class="kicker mono">FOUNDERS</p>
+    </div>
+
+    <div class="team">
+      <article class="member">
+        <p class="role mono">CO-FOUNDER</p>
+        <h3>Shaarav Jain</h3>
+        <a href="mailto:shaaravj@gmail.com">shaaravj@gmail.com</a>
+      </article>
+      <article class="member">
+        <p class="role mono">CO-FOUNDER</p>
+        <h3>Maahit Anand</h3>
+        <a href="mailto:maahit.anand@gmail.com">maahit.anand@gmail.com</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="faq">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Questions, answered.</h2>
+      <p class="kicker mono">STILL CURIOUS? EMAIL US</p>
+    </div>
+
+    <div class="faq">
+      <details open>
+        <summary>When does Flixit launch?</summary>
+        <p>October 5, 2026, on the App Store and Google Play. Email us before then to get on the early access list.</p>
+      </details>
+      <details>
+        <summary>How does the closet scan work?</summary>
+        <p>You take one photo of your closet or a rack of clothes, and Flixit identifies the individual items in it. You review what it found — fixing the category, color, or brand on anything it got wrong — before it saves to your wardrobe.</p>
+      </details>
+      <details>
+        <summary>Do I have to add every item by hand?</summary>
+        <p>No. Scanning your closet adds several pieces at once. You can still add items one at a time when you want full control, and you can delete anything later.</p>
+      </details>
+      <details>
+        <summary>Who can see my wardrobe photos?</summary>
+        <p>Only you. Wardrobe photos are stored privately against your own account, and Flixit doesn't make them visible to other users.</p>
+      </details>
+      <details>
+        <summary>What will it cost?</summary>
+        <p>Pricing hasn't been finalized. We'll announce it closer to launch — the early access list hears first.</p>
+      </details>
+      <details>
+        <summary>Does it work on both iPhone and Android?</summary>
+        <p>Yes. Flixit is built as a single app for both, so it launches on iOS and Android at the same time.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<footer class="label">
+  <div class="wrap">
+    <dl class="label-top">
+      <div>
+        <dt class="mono">EST.</dt>
+        <dd class="mono">06.02.2026</dd>
+      </div>
+      <div>
+        <dt class="mono">LAUNCHING</dt>
+        <dd class="mono">10.05.2026</dd>
+      </div>
+      <div>
+        <dt class="mono">FOUNDERS</dt>
+        <dd>Shaarav Jain &amp; Maahit Anand</dd>
+      </div>
+      <div>
+        <dt class="mono">CONTACT</dt>
+        <dd><a href="mailto:shaaravj@gmail.com">shaaravj@gmail.com</a><br /><a href="mailto:maahit.anand@gmail.com">maahit.anand@gmail.com</a></dd>
+      </div>
+    </dl>
+
+    <div class="label-bottom">
+      <span class="word">Flixit</span>
+      <span class="note mono">MADE FOR EVERY CLOSET · FLIXITINFO.APP</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    var LAUNCH = new Date("2026-10-05T00:00:00");
+    var d = document.getElementById("cd-d");
+    var h = document.getElementById("cd-h");
+    var m = document.getElementById("cd-m");
+
+    function pad(n) { return n < 10 ? "0" + n : String(n); }
+
+    function tick() {
+      var ms = LAUNCH - new Date();
+      if (ms <= 0) {
+        d.textContent = "00"; h.textContent = "00"; m.textContent = "00";
+        document.querySelector(".count-note").textContent = "LAUNCH DAY";
+        return;
+      }
+      var mins = Math.floor(ms / 60000);
+      d.textContent = pad(Math.floor(mins / 1440));
+      h.textContent = pad(Math.floor(mins / 60) % 24);
+      m.textContent = pad(mins % 60);
+    }
+
+    tick();
+    setInterval(tick, 30000);
+
+    var links = Array.prototype.slice.call(document.querySelectorAll(".nav-links a"));
+    var sections = links
+      .map(function (a) { return document.querySelector(a.getAttribute("href")); })
+      .filter(Boolean);
+
+    if ("IntersectionObserver" in window) {
+      var obs = new IntersectionObserver(
+        function (entries) {
+          entries.forEach(function (e) {
+            if (!e.isIntersecting) return;
+            links.forEach(function (a) {
+              a.classList.toggle("active", a.getAttribute("href") === "#" + e.target.id);
+            });
+          });
+        },
+        { rootMargin: "-50% 0px -45% 0px" }
+      );
+      sections.forEach(function (s) { obs.observe(s); });
+    }
+  })();
+</script>
+</body>
+</html>
