@@ -58,9 +58,14 @@ docs.expo.dev must be checked before writing code.
 ## Branding
 
 - Domain: `flixit.com` is already taken (registered since 2003, unrelated
-  business) — not available. Candidates to check: `flixit.app`,
-  `getflixit.com`, `useflixit.com`. Pick one and match it across the
-  website, Instagram, and TikTok handles for consistency.
+  business) — not available. Decided split: **`flixit.app`** for the app
+  itself / app stores, **`flixitinfo.app`** for the marketing/info site.
+  Neither is registered yet — both still need to be bought.
+- Tagline (from the flyer): "Your closet. Your style. Your next move."
+  Hashtag candidates: `#YourNextMove` (recommended — the flyer's own
+  payoff line, covers owning + wearing + buying), `#YourStyleYourCall`,
+  `#FlixYourFit`. Avoid "closet"-only phrasings — they undersell the
+  Flixnder/FYP/price-match half of the product.
 - Note: there's an unrelated existing company also called "Flixit"
   (interactive/visual tech studio, Mumbai, founded 2013) — different
   industry, but worth a trademark sanity-check before leaning hard into
