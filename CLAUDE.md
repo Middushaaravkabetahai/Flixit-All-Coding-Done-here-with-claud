@@ -55,6 +55,25 @@ docs.expo.dev must be checked before writing code.
 **Marketing website**
 - Next.js on Vercel, separate simple project for landing page + email signups
 
+## Branding
+
+- Domain: `flixit.com` is already taken (registered since 2003, unrelated
+  business) — not available. Candidates to check: `flixit.app`,
+  `getflixit.com`, `useflixit.com`. Pick one and match it across the
+  website, Instagram, and TikTok handles for consistency.
+- Note: there's an unrelated existing company also called "Flixit"
+  (interactive/visual tech studio, Mumbai, founded 2013) — different
+  industry, but worth a trademark sanity-check before leaning hard into
+  the name commercially.
+- Social handles: `flixit` itself is likely squatted — try `getflixit`,
+  `useflixit`, or `flixitapp` on Instagram/TikTok instead.
+- **Sub-branding (future, not started)**: eventually each major feature —
+  Planner, Scan & Price Match ("Scanner"), Flixnder, FYP, Wardrobe Scan —
+  should get its own small logo/icon, the way big apps give sub-features
+  their own mark (e.g. iMessage's individual app icons). Revisit once the
+  main Flixit logo/identity is locked in — sub-marks should clearly read
+  as "part of Flixit," not standalone brands.
+
 ## Status / Known Issues
 
 - **Phase 1 (Foundation) — built**: email/password auth, profile setup
