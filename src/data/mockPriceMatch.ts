@@ -1,19 +1,21 @@
-// Placeholder price-match data, same idea as mockDeals.ts: lets Scan & Price
-// Match be fully testable before real data sources are wired up.
+// SAMPLE online pricing, so Scan & Price Match is testable before the
+// affiliate APIs (ShopStyle / Rakuten / Amazon Associates) are wired up.
 //
-// - "online" prices need the same affiliate APIs as the FYP/Flixnder feed
-//   (ShopStyle/Rakuten/Amazon Associates) — Phase 2 dependency, not yet live.
-// - "nearby" (in-store) prices need retailer inventory partnerships, which
-//   the roadmap calls out as a Phase 5 stretch goal — there's no real data
-//   source for this yet at all, mocked or otherwise.
+// These numbers are generated, not real listings. Anywhere they're shown in
+// the app they must be labelled as sample data — showing invented prices as
+// if they were real retailer quotes misleads users, and placeholder content
+// is an App Store guideline 2.1 rejection risk. Delete this file once the
+// affiliate integration lands.
+//
+// Local/in-store pricing used to live here too. It's gone: there's no data
+// source for it at all yet, so the app now says "coming soon" instead of
+// inventing store names and distances. See src/lib/localPricing.ts.
 export type PriceOption = { retailer: string; price: number };
-export type NearbyOption = { store: string; distanceMiles: number; price: number };
 
 const ONLINE_RETAILERS = ['ASOS', 'Amazon', 'Zara', 'H&M', 'Nordstrom'];
-const NEARBY_STORES = ['Downtown Mall', 'Westfield Outlet', 'Main St. Boutique'];
 
-// Deterministic-ish fake pricing so the same scanned item doesn't reshuffle
-// prices every render — seeded off the item description.
+// Seeded off the item description so the same scanned item doesn't reshuffle
+// its prices on every render.
 function seededRandom(seed: string) {
   let h = 0;
   for (let i = 0; i < seed.length; i++) h = (h * 31 + seed.charCodeAt(i)) >>> 0;
@@ -29,14 +31,4 @@ export function getMockOnlinePrices(description: string): PriceOption[] {
   return ONLINE_RETAILERS.slice(0, 3 + Math.floor(rand() * 2))
     .map((retailer) => ({ retailer, price: Math.round((base + (rand() - 0.5) * 30) * 100) / 100 }))
     .sort((a, b) => a.price - b.price);
-}
-
-export function getMockNearbyPrices(description: string): NearbyOption[] {
-  const rand = seededRandom(description + 'nearby');
-  const base = 25 + rand() * 120;
-  return NEARBY_STORES.map((store) => ({
-    store,
-    distanceMiles: Math.round(rand() * 8 * 10) / 10,
-    price: Math.round((base + (rand() - 0.5) * 40) * 100) / 100,
-  })).sort((a, b) => a.price - b.price);
 }

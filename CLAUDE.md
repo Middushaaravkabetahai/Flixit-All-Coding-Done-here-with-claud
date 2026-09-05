@@ -117,8 +117,22 @@ docs.expo.dev must be checked before writing code.
     `supabase secrets set ANTHROPIC_API_KEY=sk-ant-...` (get a key at
     console.anthropic.com — separate from the Supabase keys). Until that's
     done, both scan flows show a clear error instead of crashing.
-- **Phase 5 — not started** (stretch goal per plan, needs retailer
-  partnerships for real in-store inventory/pricing data).
+- **Phase 5 (Local Price Matching) — blocked on partnerships, seam built**:
+  `src/lib/localPricing.ts` defines the `LocalPricingProvider` interface and
+  exports `provider = null`. The Scan tab reads `isLocalPricingAvailable`
+  and shows an honest "Coming soon" block instead of nearby prices. When a
+  retailer data deal exists, implement the interface, assign `provider`, and
+  the UI lights up with no other changes. Deliberately NOT added yet: device
+  location (asking for location permission for a feature that returns
+  nothing is an App Store review risk — add `expo-location` together with a
+  real provider).
+- **BLOCKS APP STORE SUBMISSION — placeholder content.** `src/data/mockDeals.ts`
+  is 5 invented products with real brand names (Nike/Zara/ASOS/H&M) and made-up
+  prices, and it fills two of the five tabs (FYP + Flixnder). Apple rejects
+  placeholder/demo content under guideline 2.1, and attributing invented
+  prices to real retailers is its own problem. The affiliate API keys
+  (ShopStyle/Rakuten/Amazon Associates) must land before submitting — this
+  is a Phase 2 leftover, not a Phase 5 one.
 - `git push` over the direct git proxy in this environment returns `403`
   (GitHub App installed but without write access). Workaround in use: a
   short-lived personal access token supplied by the user, added as a

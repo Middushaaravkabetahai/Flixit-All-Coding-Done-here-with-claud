@@ -10,7 +10,8 @@ import {
   Text,
   View,
 } from 'react-native';
-import { getMockNearbyPrices, getMockOnlinePrices } from '../../src/data/mockPriceMatch';
+import { getMockOnlinePrices } from '../../src/data/mockPriceMatch';
+import { isLocalPricingAvailable } from '../../src/lib/localPricing';
 import { type DetectedItem, identifySingleItem } from '../../src/lib/scan';
 
 export default function ScanPriceMatch() {
@@ -80,7 +81,6 @@ export default function ScanPriceMatch() {
   }
 
   const online = item ? getMockOnlinePrices(item.description) : [];
-  const nearby = item ? getMockNearbyPrices(item.description) : [];
 
   return (
     <ScrollView style={styles.container} contentContainerStyle={styles.content}>
@@ -103,6 +103,9 @@ export default function ScanPriceMatch() {
           </Text>
 
           <Text style={styles.sectionLabel}>Online — lowest first</Text>
+          <Text style={styles.placeholderNote}>
+            Sample pricing — live retailer listings arrive with the affiliate integration.
+          </Text>
           {online.map((option) => (
             <Pressable
               key={option.retailer}
@@ -121,19 +124,15 @@ export default function ScanPriceMatch() {
           ))}
 
           <Text style={styles.sectionLabel}>Nearby stores</Text>
-          <Text style={styles.placeholderNote}>
-            Placeholder — real in-store pricing needs retailer partnerships (Phase 5, not built
-            yet). Shown for demo purposes only.
-          </Text>
-          {nearby.map((option) => (
-            <View key={option.store} style={styles.priceRow}>
-              <View>
-                <Text style={styles.priceRowLabel}>{option.store}</Text>
-                <Text style={styles.priceRowDistance}>{option.distanceMiles} mi away</Text>
-              </View>
-              <Text style={styles.priceRowPrice}>${option.price.toFixed(2)}</Text>
+          {isLocalPricingAvailable ? null : (
+            <View style={styles.comingSoon}>
+              <Text style={styles.comingSoonTitle}>Coming soon</Text>
+              <Text style={styles.comingSoonBody}>
+                In-store price matching needs live inventory from the stores themselves. We're
+                working on those partnerships — until then, Flixit won't guess at local prices.
+              </Text>
             </View>
-          ))}
+          )}
         </>
       )}
 
@@ -176,6 +175,16 @@ const styles = StyleSheet.create({
   itemTitle: { fontSize: 18, fontWeight: '700', marginTop: 8 },
   itemMeta: { color: '#666' },
   sectionLabel: { fontWeight: '600', marginTop: 12 },
+  comingSoon: {
+    borderWidth: 1,
+    borderColor: '#e0e0e0',
+    borderStyle: 'dashed',
+    borderRadius: 10,
+    padding: 16,
+    gap: 6,
+  },
+  comingSoonTitle: { fontWeight: '700', fontSize: 15 },
+  comingSoonBody: { color: '#666', fontSize: 13.5, lineHeight: 19 },
   placeholderNote: { color: '#999', fontSize: 12, marginTop: -4, marginBottom: 4 },
   priceRow: {
     flexDirection: 'row',
