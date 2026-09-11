@@ -1,0 +1,12 @@
+<!-- Flixit / Flixnder — a card mid-swipe, with the next two in the deck
+     showing as edges behind it. Drawn as edges rather than full rectangles
+     so every stroke stays the same weight and colour: a faded back card
+     would break the family rule and go grey on dark backgrounds. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48" role="img" aria-label="Flixnder">
+  <title>Flixnder</title>
+  <g fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+    <path id="deck-back" d="M11 15v18" />
+    <path id="deck-mid" d="M17 12v24" />
+    <rect id="card-front" x="23" y="9" width="19" height="30" rx="4" transform="rotate(7 32.5 24)" />
+  </g>
+</svg>

@@ -1,0 +1,25 @@
+<!--
+  FLIXIT — wordmark, outlined
+
+  Set in Archivo Black (Google Fonts, Open Font License) at -3% tracking and
+  converted to outlines, so it renders identically everywhere and needs no
+  font installed to edit. Each letter is its own <path> with an id — you can
+  pull one letter out and redraw it without touching the others.
+
+  If you'd rather re-set it live: install Archivo (free, fonts.google.com),
+  type FLIXIT in weight 900, set tracking to -3%, then convert to outlines.
+
+  Source font: Archivo, unitsPerEm 1000. Cap height spans y 0-688
+  in font units; this file has already been flipped and normalised.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3422.0 688.0" width="342" height="69" role="img" aria-label="Flixit">
+  <title>Flixit</title>
+  <g id="flixit-wordmark" fill="#18181b" transform="translate(0 688.0) scale(1 -1)">
+    <path id="letter-f-0" transform="translate(0.0 0)" d="M74 0V688H630V523H295V405H583V247H295V0Z" />
+    <path id="letter-l-1" transform="translate(637.0 0)" d="M74 0V688H295V176H648V0Z" />
+    <path id="letter-i-2" transform="translate(1274.0 0)" d="M74 0V688H295V0Z" />
+    <path id="letter-x-3" transform="translate(1613.0 0)" d="M4 0 250 364 28 688H295L399 512H403L508 688H755L532 363L778 0H510L383 214H379L252 0Z" />
+    <path id="letter-i-4" transform="translate(2361.0 0)" d="M74 0V688H295V0Z" />
+    <path id="letter-t-5" transform="translate(2700.0 0)" d="M249 0V512H23V688H695V512H470V0Z" />
+  </g>
+</svg>

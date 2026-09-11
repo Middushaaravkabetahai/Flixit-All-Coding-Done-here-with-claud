@@ -1,0 +1,29 @@
+<!--
+  FLIXIT — alternate mark A ("Hanger")
+
+  The plainest possible reading of the product: a hanger, reduced to hook +
+  shoulders. Less ownable than the Hook F (any closet app could use a hanger)
+  but instantly legible at 16px and impossible to misread.
+
+  CONSTRUCTION (120 x 120 grid):
+    stroke weight  13
+    hook           semicircle, centre (60, 33), radius 11, opening left
+    apex           (60, 46)
+    shoulders      apex down to (20, 88) and (100, 88), base closed
+    slope          42 rise over 40 run — just past 45 degrees, so the
+                   shoulders read as a hanger rather than a triangle
+
+  If you take this direction, keep the base bar: an open V reads as a chevron.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120" role="img" aria-label="Flixit">
+  <title>Flixit</title>
+  <g id="flixit-mark-hanger"
+     fill="none"
+     stroke="#18181b"
+     stroke-width="13"
+     stroke-linecap="round"
+     stroke-linejoin="round">
+    <path id="hook" d="M60 46 V33 A11 11 0 1 0 49 33" />
+    <path id="shoulders" d="M60 46 L20 88 H100 Z" />
+  </g>
+</svg>

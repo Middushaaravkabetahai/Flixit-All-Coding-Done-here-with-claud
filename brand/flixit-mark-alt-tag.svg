@@ -1,0 +1,26 @@
+<!--
+  FLIXIT — alternate mark B ("Tag")
+
+  A hang tag with the eyelet punched out. Solid rather than stroked, so it
+  holds up as a filled app-icon shape where the line marks would thin out.
+  This is the motif the marketing site already runs on (feature cards are
+  drawn as tags), so it's the most consistent option with what exists today.
+
+  CONSTRUCTION (120 x 120 grid):
+    tag body      60 x 78 rounded rect, corner radius 10, at x 30 / y 24
+    clipped corner top-left, cut at 45 degrees across 22 units
+    eyelet        r = 7, centred (48, 42) — punched via fill-rule evenodd
+    stripe        the diagonal cut runs parallel to the shoulder of the
+                  clipped corner; keep them parallel if you redraw it
+
+  The eyelet is a real hole (evenodd), not a white circle — so the mark drops
+  onto any background without a knockout.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120" role="img" aria-label="Flixit">
+  <title>Flixit</title>
+  <path id="flixit-mark-tag"
+        fill="#18181b"
+        fill-rule="evenodd"
+        d="M52 24 H80 a10 10 0 0 1 10 10 V92 a10 10 0 0 1 -10 10 H40 a10 10 0 0 1 -10 -10 V46 Z
+           M48 35 a7 7 0 1 0 0 14 a7 7 0 1 0 0 -14 Z" />
+</svg>

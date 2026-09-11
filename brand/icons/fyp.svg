@@ -1,0 +1,11 @@
+<!-- Flixit / Style FYP — a masonry feed. Unequal heights are the point:
+     an even 2x2 grid reads as "apps", not "feed". -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48" role="img" aria-label="Style FYP">
+  <title>Style FYP</title>
+  <g fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+    <rect id="tile-tl" x="6" y="6" width="15" height="20" rx="3.5" />
+    <rect id="tile-tr" x="27" y="6" width="15" height="12" rx="3.5" />
+    <rect id="tile-bl" x="6" y="32" width="15" height="10" rx="3.5" />
+    <rect id="tile-br" x="27" y="24" width="15" height="18" rx="3.5" />
+  </g>
+</svg>

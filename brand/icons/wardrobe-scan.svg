@@ -1,0 +1,12 @@
+<!-- Flixit / Wardrobe Scan — a hanger caught inside scan brackets. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48" role="img" aria-label="Wardrobe Scan">
+  <title>Wardrobe Scan</title>
+  <g fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+    <path id="bracket-tl" d="M5 15V5h10" />
+    <path id="bracket-tr" d="M33 5h10v10" />
+    <path id="bracket-bl" d="M5 33v10h10" />
+    <path id="bracket-br" d="M43 33v10H33" />
+    <path id="hanger-hook" d="M24 22v-4a3.5 3.5 0 1 0-3.5 3.5" />
+    <path id="hanger-body" d="M24 22 13 33h22z" />
+  </g>
+</svg>
