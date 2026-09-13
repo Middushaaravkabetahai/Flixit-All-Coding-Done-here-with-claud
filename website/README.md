@@ -49,11 +49,17 @@ Pick one. All are free at this size.
 2. Build command: leave empty. Publish directory: `website`
 3. Domain settings → Add custom domain → follow its DNS instructions
 
-**GitHub Pages** (no third party, one extra setting)
+**GitHub Pages** (no third-party account, but needs a rename first)
+
+GitHub Pages can only serve a branch's **root** or a folder named **`/docs`** —
+it can't serve `/website`. So either rename this folder to `docs/`, or use one
+of the two hosts above, which publish any folder you point them at.
+
+If you do rename it:
 1. Repo → Settings → Pages
-2. Source: Deploy from a branch → `main` → folder `/website` → Save
-3. Add `flixitinfo.app` under Custom domain, then point DNS at GitHub's IPs as
-   its docs instruct
+2. Source: Deploy from a branch → `main` → folder `/docs` → Save
+3. Add your domain under Custom domain, then add the DNS records GitHub shows
+   you at your registrar
 
 ## Step 3 — DNS
 
