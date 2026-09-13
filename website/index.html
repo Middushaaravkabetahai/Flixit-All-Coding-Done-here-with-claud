@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta name="description" content="Flixit turns the clothes you already own into daily outfits and finds you better prices on everything else. Launching October 5, 2026 on iOS and Android." />
+<meta name="description" content="Flixit turns the clothes you already own into daily outfits and finds you better prices on everything else. Launching October 20, 2026 on iOS and Android." />
 <meta name="theme-color" content="#18181b" />
 <link rel="canonical" href="https://flixitinfo.app/" />
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2212%22%20fill%3D%22%2318181b%22%2F%3E%3Ctext%20x%3D%2232%22%20y%3D%2245%22%20font-family%3D%22Arial%20Black%2CArial%2Csans-serif%22%20font-size%3D%2240%22%20font-weight%3D%22900%22%20fill%3D%22%23f3ede3%22%20text-anchor%3D%22middle%22%3EF%3C%2Ftext%3E%3C%2Fsvg%3E" />
@@ -12,10 +12,10 @@
 <meta property="og:url" content="https://flixitinfo.app/" />
 <meta property="og:site_name" content="Flixit" />
 <meta property="og:title" content="Flixit — Your closet. Your style. Your next move." />
-<meta property="og:description" content="Scan your closet, get daily outfits from what you already own, and find the best price on what you buy next. Launching October 5, 2026." />
+<meta property="og:description" content="Scan your closet, get daily outfits from what you already own, and find the best price on what you buy next. Launching October 20, 2026." />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="Flixit — Your closet. Your style. Your next move." />
-<meta name="twitter:description" content="Scan your closet, get daily outfits from what you already own, and find the best price on what you buy next. Launching October 5, 2026." />
+<meta name="twitter:description" content="Scan your closet, get daily outfits from what you already own, and find the best price on what you buy next. Launching October 20, 2026." />
 
 <title>Flixit — Your closet. Your style. Your next move.</title>
 <style>
@@ -288,6 +288,11 @@
   .band { padding-block: clamp(56px, 9vw, 92px); }
   .band-ink { background: var(--ink); color: var(--on-ink); }
 
+  /* A lifted dark panel, so the screenshots sit on their own surface rather
+     than extending the section above into one long dark run. */
+  .band-ink-soft { background: var(--ink-soft); color: var(--on-ink); }
+  .band-ink-soft .section-head .kicker { color: var(--on-ink-dim); }
+
   .section-head {
     display: flex;
     justify-content: space-between;
@@ -365,6 +370,48 @@
   }
 
   .step p { margin: 0; font-size: 14.5px; color: var(--on-ink-dim); max-width: 28ch; }
+
+  /* ---------- screenshots ---------- */
+
+  .screens-scroll {
+    display: flex;
+    gap: clamp(16px, 2.5vw, 26px);
+    overflow-x: auto;
+    padding-bottom: 18px;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .screen {
+    flex: none;
+    width: clamp(190px, 22vw, 236px);
+    scroll-snap-align: start;
+  }
+
+  .screen img {
+    width: 100%;
+    height: auto;
+    border-radius: 20px;
+    border: 1px solid var(--line-on-ink);
+    background: var(--ink-soft);
+    display: block;
+  }
+
+  .screen .cap { margin: 14px 0 0; }
+  .screen .cap b {
+    display: block;
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .screen .cap span { font-size: 13px; color: var(--on-ink-dim); line-height: 1.45; }
+
+  .screens-note {
+    font-size: 12px;
+    color: var(--on-ink-dim);
+    margin: 18px 0 0;
+    max-width: 60ch;
+  }
 
   /* ---------- launch band ---------- */
 
@@ -521,11 +568,12 @@
     <div class="nav-links">
       <a href="#features">Features</a>
       <a href="#how">How it works</a>
+      <a href="#screens">The app</a>
       <a href="#launch">Launch</a>
       <a href="#team">Team</a>
       <a href="#faq">FAQ</a>
     </div>
-    <a class="nav-cta" href="mailto:shaaravj@gmail.com?subject=Flixit%20early%20access&amp;body=Hey%20Shaarav%20and%20Maahit%20%E2%80%94%20I%27d%20like%20early%20access%20to%20Flixit.">Get early access</a>
+    <a class="nav-cta" href="#screens">See the app</a>
   </div>
 </nav>
 
@@ -677,23 +725,57 @@
   </div>
 </section>
 
+<section class="band band-ink-soft" id="screens">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>This is the app, running today.</h2>
+      <p class="kicker mono">SWIPE THROUGH — REAL SCREENS, NOT MOCKUPS</p>
+    </div>
+
+    <div class="screens-scroll">
+      <figure class="screen">
+        <img src="screenshots/wardrobe.png" alt="The Wardrobe tab, showing a grid of tagged clothing items" width="780" height="1600" loading="lazy" />
+        <figcaption class="cap"><b>Wardrobe</b><span>Every piece you own, tagged by type, colour and brand.</span></figcaption>
+      </figure>
+      <figure class="screen">
+        <img src="screenshots/planner.png" alt="The Planner tab, showing a full outfit assembled from the wardrobe" width="780" height="1600" loading="lazy" />
+        <figcaption class="cap"><b>Today's fit</b><span>A full outfit built from your own closet. Re-roll it if you're not feeling it.</span></figcaption>
+      </figure>
+      <figure class="screen">
+        <img src="screenshots/scan-result.png" alt="The Scan tab after identifying an item, showing prices" width="780" height="1600" loading="lazy" />
+        <figcaption class="cap"><b>Scan &amp; price match</b><span>Photograph an item and Flixit identifies it, then lines up the prices.</span></figcaption>
+      </figure>
+      <figure class="screen">
+        <img src="screenshots/flixnder.png" alt="The Flixnder tab, showing a swipeable card" width="780" height="1600" loading="lazy" />
+        <figcaption class="cap"><b>Flixnder</b><span>Swipe right on what you like. Every swipe sharpens your feed.</span></figcaption>
+      </figure>
+      <figure class="screen">
+        <img src="screenshots/fyp.png" alt="The FYP tab, showing a feed of clothing" width="780" height="1600" loading="lazy" />
+        <figcaption class="cap"><b>Style FYP</b><span>A feed that reorders itself around what you actually pick.</span></figcaption>
+      </figure>
+    </div>
+
+    <p class="screens-note">
+      Captured from the real app. The catalogue and pricing shown are sample data until the
+      retailer integrations go live — everything else is exactly what you'll get.
+    </p>
+  </div>
+</section>
+
 <section class="band" id="launch">
   <div class="wrap">
     <div class="launch-inner">
       <div>
         <h2>Coming to iPhone and Android.</h2>
         <p>
-          Flixit launches on the App Store and Google Play on October 5, 2026. Want in before
-          everyone else? Email us and we'll add you to the early access list.
-        </p>
-        <p style="margin-top:18px">
-          <a class="nav-cta" style="background:var(--ink);display:inline-block" href="mailto:shaaravj@gmail.com?subject=Flixit%20early%20access&amp;body=Hey%20Shaarav%20and%20Maahit%20%E2%80%94%20I%27d%20like%20early%20access%20to%20Flixit.">Get early access</a>
+          Flixit launches on the App Store and Google Play on October 20, 2026. The app is built
+          and running — have a look at it above.
         </p>
       </div>
 
       <dl class="launch-dates">
         <div><dt class="mono">FOUNDED</dt><dd class="mono">June 2, 2026</dd></div>
-        <div><dt class="mono">LAUNCH DATE</dt><dd class="mono">October 5, 2026</dd></div>
+        <div><dt class="mono">LAUNCH DATE</dt><dd class="mono">October 20, 2026</dd></div>
         <div><dt class="mono">PLATFORMS</dt><dd>iOS · Android</dd></div>
         <div><dt class="mono">WEB</dt><dd class="mono">flixitinfo.app</dd></div>
       </dl>
@@ -733,7 +815,7 @@
     <div class="faq">
       <details open>
         <summary>When does Flixit launch?</summary>
-        <p>October 5, 2026, on the App Store and Google Play. Email us before then to get on the early access list.</p>
+        <p>October 20, 2026, on the App Store and Google Play, at the same time.</p>
       </details>
       <details>
         <summary>How does the closet scan work?</summary>
@@ -749,7 +831,7 @@
       </details>
       <details>
         <summary>What will it cost?</summary>
-        <p>Pricing hasn't been finalized. We'll announce it closer to launch — the early access list hears first.</p>
+        <p>Pricing hasn't been finalized. We'll announce it closer to launch.</p>
       </details>
       <details>
         <summary>Does it work on both iPhone and Android?</summary>
@@ -768,7 +850,7 @@
       </div>
       <div>
         <dt class="mono">LAUNCHING</dt>
-        <dd class="mono">10.05.2026</dd>
+        <dd class="mono">10.20.2026</dd>
       </div>
       <div>
         <dt class="mono">FOUNDERS</dt>
@@ -789,7 +871,7 @@
 
 <script>
   (function () {
-    var LAUNCH = new Date("2026-10-05T00:00:00");
+    var LAUNCH = new Date("2026-10-20T00:00:00");
     var d = document.getElementById("cd-d");
     var h = document.getElementById("cd-h");
     var m = document.getElementById("cd-m");
