@@ -54,7 +54,7 @@ docs.expo.dev must be checked before writing code.
 
 **Marketing website**
 - Lives in `website/` — a single self-contained `index.html` (no build step,
-  no framework). Target domain `flixitinfo.app`. See `website/README.md` for
+  no framework). Domain: `flixit.info`. See `website/README.md` for
   the buy-domain → host → DNS steps.
 - Was originally planned as Next.js on Vercel; a static page covers the
   pre-launch site fine, so that's deferred until it needs real signups or
@@ -62,10 +62,12 @@ docs.expo.dev must be checked before writing code.
 
 ## Branding
 
-- Domain: `flixit.com` is already taken (registered since 2003, unrelated
-  business) — not available. Decided split: **`flixit.app`** for the app
-  itself / app stores, **`flixitinfo.app`** for the marketing/info site.
-  Neither is registered yet — both still need to be bought.
+- Domain: **`flixit.info` is registered** and is the marketing/info site's
+  home. `flixit.com` was already taken (since 2003, unrelated business).
+  `flixit.app` was the earlier plan for the app itself and is still free, but
+  is not bought — don't assume it exists.
+  Note on `.info`: the TLD carries some spam association, so if the brand ever
+  outgrows it, budget for a move. Nothing about the site depends on the TLD.
 - Tagline (from the flyer): "Your closet. Your style. Your next move."
   Hashtag candidates: `#YourNextMove` (recommended — the flyer's own
   payoff line, covers owning + wearing + buying), `#YourStyleYourCall`,

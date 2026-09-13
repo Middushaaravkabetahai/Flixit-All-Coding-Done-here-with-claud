@@ -2,69 +2,80 @@
 
 The public info site for Flixit — `index.html` is the whole thing. One
 self-contained file: no build step, no dependencies, no framework. Fonts load
-from Google Fonts; everything else (styles, icons, countdown) is inline.
+from Google Fonts; everything else (styles, logo, icons, countdown) is inline.
+Screenshots live in `screenshots/`.
 
-Target domain: **flixitinfo.app** (the app itself gets `flixit.app`).
+**Domain: `flixit.info`** — registered, not yet connected to a host. Follow the
+two steps below to put the site on it.
 
 ## Editing it
 
-Open `index.html`, change it, save, push. That's the whole workflow. If it's
-connected to a host (below), the live site updates on push.
+Open `index.html`, change it, save, push. That's the whole workflow. Once it's
+connected to a host, the live site updates on every push to `main`.
 
 Things that will need updating over time:
 
-- The launch countdown is driven by `LAUNCH` in the `<script>` at the bottom.
-  If the launch date moves, change it there **and** in the three places the
-  date is written out: the launch section, the footer, and the FAQ.
-- The App Store / Google Play badges say "Coming soon" and don't link
-  anywhere yet. Once the apps are live, wrap each `.store` block in an
-  `<a href="...">` pointing at the real listing.
-- "Get early access" opens an email to shaaravj@gmail.com. Swap it for a real
-  signup form once there's somewhere to store signups.
+- **The launch date** appears in five places: `LAUNCH` in the `<script>` at the
+  bottom (which drives the countdown), the launch table, the footer, the FAQ,
+  and the two social-preview `<meta>` tags in the head. Change all five.
+- **The store badges** say "Coming soon" and don't link anywhere. Once the apps
+  are live, wrap each `.store` block in an `<a href="...">` to the real listing.
+- **The logo gradient** is defined once in the `<defs>` block near the top of
+  the body. Change the three `<stop>` colours there to swap variants —
+  see `brand/README.md` for the alternatives.
+- **The screenshots** in `screenshots/` were captured in a sandbox, so the
+  clothing images inside them are empty grey tiles. Replace them with real
+  captures from a phone (same filenames) and the site picks them up.
 
-## Step 1 — buy the domain
+## Step 1 — put it online
 
-Register **flixitinfo.app** at any registrar. Cloudflare Registrar sells at
-cost (no markup) and is worth it if you're also hosting there; Namecheap and
-Porkbun are also fine. Expect roughly $15/year for a `.app`.
+**Netlify** is the path of least resistance, and it publishes the `website/`
+folder directly.
 
-One thing specific to `.app`: Google requires **HTTPS** on every `.app` domain
-(it's HSTS-preloaded), so the site will not load over plain HTTP at all. Every
-host below gives free HTTPS automatically, so this costs you nothing — just
-don't be surprised if a half-configured setup refuses to load.
+1. netlify.com → sign in with GitHub
+2. Add new site → Import an existing project → pick this repo
+3. **Build command:** leave empty. **Publish directory:** `website`
+4. Deploy
 
-## Step 2 — put it online
+You immediately get a working URL like `flixit-abc123.netlify.app`. The site is
+live at that point — the domain is just a nicer label on top.
 
-Pick one. All are free at this size.
+<details>
+<summary>Alternatives</summary>
 
-**Cloudflare Pages** (recommended if you buy the domain at Cloudflare)
-1. Cloudflare dashboard → Workers & Pages → Create → Pages → Connect to Git
-2. Pick this repo
-3. Build command: leave empty. Build output directory: `website`
-4. Deploy, then Custom domains → add `flixitinfo.app` (DNS is automatic when
-   the domain is in the same Cloudflare account)
+**Cloudflare Pages** — same idea, also free, also publishes any folder.
+Dashboard → Workers & Pages → Create → Pages → Connect to Git → build command
+empty, output directory `website`.
 
-**Netlify**
-1. netlify.com → Add new site → Import an existing project → pick this repo
-2. Build command: leave empty. Publish directory: `website`
-3. Domain settings → Add custom domain → follow its DNS instructions
+**GitHub Pages** — no third-party account, but it can only serve a branch's
+**root** or a folder named **`/docs`**. It cannot serve `/website`, so you'd
+have to rename this folder to `docs/` first.
+</details>
 
-**GitHub Pages** (no third-party account, but needs a rename first)
+## Step 2 — connect flixit.info
 
-GitHub Pages can only serve a branch's **root** or a folder named **`/docs`** —
-it can't serve `/website`. So either rename this folder to `docs/`, or use one
-of the two hosts above, which publish any folder you point them at.
+In Netlify: **Domain settings → Add custom domain** → enter `flixit.info`.
+Netlify then shows the exact DNS records to create.
 
-If you do rename it:
-1. Repo → Settings → Pages
-2. Source: Deploy from a branch → `main` → folder `/docs` → Save
-3. Add your domain under Custom domain, then add the DNS records GitHub shows
-   you at your registrar
+At whichever registrar you bought the domain from, find **DNS** /
+**DNS Management** and add those records — usually one `CNAME`, sometimes a
+couple of `A` records. Delete any placeholder "parking" record the registrar
+added, or it will fight yours.
 
-## Step 3 — DNS
+Propagation is usually minutes, occasionally a few hours. **HTTPS is issued
+automatically and free** once DNS resolves — don't buy an SSL certificate from
+a registrar upsell, you don't need one.
 
-Whichever host you choose tells you exactly which records to add — usually
-either a `CNAME` pointing at their subdomain, or a few `A` records. Add them at
-your registrar. Propagation is usually minutes, occasionally a few hours.
+## Notes on `.info`
 
-Once it resolves, HTTPS is issued automatically by all three hosts.
+`.info` behaves like any ordinary TLD — no special requirements. Two things
+worth knowing:
+
+- **Renewal price.** `.info` is usually sold cheap for year one and renews
+  higher. Check what year two costs so it isn't a surprise, and consider
+  turning off auto-renew if you might move the brand to another domain.
+- **Reputation.** `.info` has historically been popular with spam, so a small
+  number of strict email filters treat it with suspicion. It costs nothing for
+  a marketing site, but if Flixit ever sends email from this domain, watch
+  deliverability. Nothing in the site depends on the TLD — moving later is a
+  DNS change and a search-and-replace.
