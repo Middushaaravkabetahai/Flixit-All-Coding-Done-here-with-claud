@@ -1,0 +1,32 @@
+<!--
+  FLIXIT — social avatar, dark (Instagram / TikTok profile picture)
+
+  1080 x 1080. Instagram and TikTok crop profile pictures to a CIRCLE, so the
+  mark is sized to sit well inside the inscribed circle: at 6.6x it is 51% of
+  the canvas height, leaving the corners expendable.
+
+  It's deliberately larger than the app icon's proportion — a profile picture
+  renders at roughly 40px in a feed, so the mark has to carry at that size.
+
+  Export at 1080 for upload; Instagram downsamples from there.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1080" width="1080" height="1080" role="img" aria-label="Flixit">
+  <title>Flixit</title>
+  <defs>
+    <!-- Coordinates are in the MARK's own 120-grid space, not the 1080
+         canvas: userSpaceOnUse resolves inside the transformed group below,
+         so canvas-space numbers would put both stops off the artwork and the
+         gradient would flatten to a single colour. -->
+    <linearGradient id="g" gradientUnits="userSpaceOnUse" x1="26" y1="20" x2="96" y2="104">
+      <stop offset="0" stop-color="#2d3bd6" />
+      <stop offset="0.55" stop-color="#c2379b" />
+      <stop offset="1" stop-color="#eda13f" />
+    </linearGradient>
+  </defs>
+  <rect width="1080" height="1080" fill="#18181b" />
+  <g transform="translate(540 540) scale(6.6) translate(-60.5 -62)"
+     fill="none" stroke="url(#g)" stroke-width="12"
+     stroke-linecap="round" stroke-linejoin="round">
+    <path d="M52 42 V32 A10 10 0 1 0 32 32" /><path d="M52 42 V98" /><path d="M52 42 H90" /><path d="M52 70 H78" />
+  </g>
+</svg>

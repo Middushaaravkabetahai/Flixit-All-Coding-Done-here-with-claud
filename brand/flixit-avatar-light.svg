@@ -1,0 +1,14 @@
+<!--
+  FLIXIT — social avatar, light. Same geometry as flixit-avatar-dark.svg on
+  the brand cream, with the flat ink mark. Use where a dark circle would
+  disappear against a dark page.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1080" width="1080" height="1080" role="img" aria-label="Flixit">
+  <title>Flixit</title>
+  <rect width="1080" height="1080" fill="#f3ede3" />
+  <g transform="translate(540 540) scale(6.6) translate(-60.5 -62)"
+     fill="none" stroke="#18181b" stroke-width="12"
+     stroke-linecap="round" stroke-linejoin="round">
+    <path d="M52 42 V32 A10 10 0 1 0 32 32" /><path d="M52 42 V98" /><path d="M52 42 H90" /><path d="M52 70 H78" />
+  </g>
+</svg>
