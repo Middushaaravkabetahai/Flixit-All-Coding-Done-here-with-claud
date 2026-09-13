@@ -9,7 +9,10 @@ you redraw it.
 
 | File | What it's for |
 |---|---|
-| `flixit-mark.svg` | **Primary mark.** The "Hook F". Use anywhere you need Flixit in one shape. |
+| `flixit-mark.svg` | **Primary mark, flat.** The "Hook F". The fallback whenever a gradient can't be used. |
+| `flixit-mark-gradient.svg` | Primary mark in **Electric** — tight indigo ramp. Premium, safest at small sizes. |
+| `flixit-mark-gradient-sunset.svg` | Primary mark in **Sunset** — indigo → magenta → amber. **Currently used on the website.** |
+| `flixit-mark-gradient-chrome.svg` | Primary mark in **Chrome** — metallic, dark grounds only. |
 | `flixit-wordmark.svg` | FLIXIT set in Archivo Black, converted to outlines. No font needed to edit. |
 | `flixit-lockup.svg` | Mark + wordmark locked at fixed proportions. The default for the website header, decks, letterheads. |
 | `flixit-app-icon.svg` | 1024×1024 App Store / Play Store icon. |
@@ -55,8 +58,28 @@ Both alternates are finished, not sketches — take one if you prefer it.
 The neutrals are deliberately warm — `#18181b` over pure black, `#f3ede3` over
 pure white. Pure black/white on a fashion brand reads cheap and screen-default.
 
-**Never** render the mark in a gradient, add a drop shadow, or set it in any
-colour outside this table.
+## Gradients
+
+The mark ships in three gradient variants plus the flat original. **Sunset is
+the current default**, used on the website.
+
+| Variant | Ramp | Use it for |
+|---|---|---|
+| **Sunset** | `#2d3bd6` → `#c2379b` → `#eda13f` | The default. Boldest, most fashion-forward. The amber end is pulled toward the brand brass so it stays inside the palette. |
+| **Electric** | `#6675ff` → `#2618a0` | One hue, light to dark — reads as lighting on a solid object. Best when the mark must stay legible very small. |
+| **Chrome** | 5-stop steel with a blue cast | Streetwear/Y2K. **Dark grounds only** — the light stops vanish on cream. |
+
+All three use `gradientUnits="userSpaceOnUse"` mapped to the mark's optical
+bbox, so the ramp stays locked to the artwork at any scale.
+
+**Keep the flat mark for:** anything under 24px, embroidery and screen
+printing, single-colour documents, and busy photographic backgrounds. A
+gradient at 16px just reads as a muddy smear — the flat version is not a
+downgrade, it's the right tool there.
+
+To change the website's gradient, edit the three `<stop>` colours in the
+`<defs>` block near the top of `website/index.html`. Nothing else references
+them.
 
 ## Clear space and minimum sizes
 

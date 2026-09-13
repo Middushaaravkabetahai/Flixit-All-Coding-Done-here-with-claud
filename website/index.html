@@ -110,7 +110,14 @@
     font-size: 18px;
     letter-spacing: -0.02em;
     text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 9px;
   }
+
+  .nav .word svg { width: 21px; height: 21px; flex: none; }
+
+  .hero-mark { width: clamp(56px, 9vw, 78px); height: auto; margin-bottom: 20px; }
 
   .nav-links {
     display: flex;
@@ -484,9 +491,33 @@
 />
 </head>
 <body>
+<!--
+  The Flixit mark, defined once and reused via <use> wherever it appears.
+  Gradient: "Sunset" (see brand/flixit-mark-gradient-sunset.svg). To swap
+  variants, change the three stop-colors below — nothing else references them.
+-->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <linearGradient id="flixitGrad" gradientUnits="userSpaceOnUse" x1="26" y1="20" x2="96" y2="104">
+      <stop offset="0" stop-color="#2d3bd6" />
+      <stop offset="0.55" stop-color="#c2379b" />
+      <stop offset="1" stop-color="#eda13f" />
+    </linearGradient>
+    <g id="flixitMark" fill="none" stroke="url(#flixitGrad)" stroke-width="12" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M52 42 V32 A10 10 0 1 0 32 32" />
+      <path d="M52 42 V98" />
+      <path d="M52 42 H90" />
+      <path d="M52 70 H78" />
+    </g>
+  </defs>
+</svg>
+
 <nav class="nav">
   <div class="wrap">
-    <a class="word" href="#top">Flixit</a>
+    <a class="word" href="#top">
+      <svg viewBox="0 0 120 120" aria-hidden="true"><use href="#flixitMark" /></svg>
+      Flixit
+    </a>
     <div class="nav-links">
       <a href="#features">Features</a>
       <a href="#how">How it works</a>
@@ -501,6 +532,7 @@
 <header class="hero" id="top">
   <div class="wrap">
     <p class="eyebrow mono">WARDROBE INTELLIGENCE, TAGGED &amp; SORTED</p>
+    <svg class="hero-mark" viewBox="0 0 120 120" role="img" aria-label="Flixit"><use href="#flixitMark" /></svg>
     <h1>Flixit</h1>
     <p class="tagline">Your closet. Your style. Your next move.</p>
     <p class="sub">
@@ -563,8 +595,8 @@
     <div class="tags">
       <article class="tag">
         <p class="code mono">01 / WARDROBE SCAN</p>
-        <svg width="32" height="32" viewBox="0 0 48 48" fill="none" stroke="#3346e0" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M4 14V4h10" /><path d="M34 4h10v10" /><path d="M4 34v10h10" /><path d="M44 34v10H34" />
+        <svg width="32" height="32" viewBox="0 0 48 48" fill="none" stroke="#3346e0" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 15V5h10" /><path d="M33 5h10v10" /><path d="M5 33v10h10" /><path d="M43 33v10H33" /><path d="M24 22v-4a3.5 3.5 0 1 0-3.5 3.5" /><path d="M24 22 13 33h22z" />
         </svg>
         <h3>Scan your closet</h3>
         <p>Photograph your closet once and Flixit picks out each item, so you're not adding clothes one at a time.</p>
@@ -572,8 +604,8 @@
 
       <article class="tag">
         <p class="code mono">02 / OUTFIT PLANNER</p>
-        <svg width="32" height="32" viewBox="0 0 48 48" fill="none" stroke="#3346e0" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M24 6a4 4 0 1 0 0.1 0" /><path d="M24 10 8 28h32z" />
+        <svg width="32" height="32" viewBox="0 0 48 48" fill="none" stroke="#3346e0" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="6" y="11" width="36" height="32" rx="5" /><path d="M6 21h36" /><path d="M16 6v8" /><path d="M32 6v8" /><path d="M18 31.5l4.5 4.5 8-8" />
         </svg>
         <h3>Plan your outfits</h3>
         <p>Daily outfit recommendations built from your wardrobe, occasion, and color coordination. Don't like it? Switch it up.</p>
@@ -581,9 +613,8 @@
 
       <article class="tag">
         <p class="code mono">03 / PRICE MATCH</p>
-        <svg width="32" height="32" viewBox="0 0 48 48" fill="none" stroke="#3346e0" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-          <rect x="10" y="10" width="28" height="28" rx="6" transform="rotate(45 24 24)" />
-          <circle cx="24" cy="9.5" r="2.4" transform="rotate(45 24 24)" />
+        <svg width="32" height="32" viewBox="0 0 48 48" fill="none" stroke="#3346e0" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 12V5h7" /><path d="M36 5h7v7" /><path d="M5 36v7h7" /><path d="M43 36v7h-7" /><path d="M26 13h6a3 3 0 0 1 3 3v6L22 35a2.5 2.5 0 0 1-3.5 0l-5.5-5.5a2.5 2.5 0 0 1 0-3.5z" /><circle cx="28.5" cy="19.5" r="1.75" />
         </svg>
         <h3>Find the best price</h3>
         <p>Scan something in a store and compare it against prices online before you pay full price for it.</p>
@@ -591,9 +622,8 @@
 
       <article class="tag">
         <p class="code mono">04 / FLIXNDER</p>
-        <svg width="32" height="32" viewBox="0 0 48 48" fill="none" stroke="#3346e0" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-          <rect x="8" y="10" width="24" height="30" rx="4" transform="rotate(-8 24 24)" />
-          <path d="M38 18v14" />
+        <svg width="32" height="32" viewBox="0 0 48 48" fill="none" stroke="#3346e0" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M11 15v18" /><path d="M17 12v24" /><rect x="23" y="9" width="19" height="30" rx="4" transform="rotate(7 32.5 24)" />
         </svg>
         <h3>Swipe on Flixnder</h3>
         <p>Swipe right on the pieces you like. Every swipe teaches Flixit what your style actually is.</p>
@@ -601,9 +631,8 @@
 
       <article class="tag">
         <p class="code mono">05 / STYLE FYP</p>
-        <svg width="32" height="32" viewBox="0 0 48 48" fill="none" stroke="#3346e0" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-          <rect x="5" y="5" width="16" height="20" rx="3" /><rect x="27" y="5" width="16" height="12" rx="3" />
-          <rect x="5" y="31" width="16" height="12" rx="3" /><rect x="27" y="23" width="16" height="20" rx="3" />
+        <svg width="32" height="32" viewBox="0 0 48 48" fill="none" stroke="#3346e0" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="6" y="6" width="15" height="20" rx="3.5" /><rect x="27" y="6" width="15" height="12" rx="3.5" /><rect x="6" y="32" width="15" height="10" rx="3.5" /><rect x="27" y="24" width="15" height="18" rx="3.5" />
         </svg>
         <h3>Your Style FYP</h3>
         <p>A feed that reorders itself around what you scan, swipe, and save — not what someone paid to put in front of you.</p>
