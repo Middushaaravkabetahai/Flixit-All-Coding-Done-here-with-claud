@@ -406,6 +406,18 @@
   }
   .screen .cap span { font-size: 13px; color: var(--on-ink-dim); line-height: 1.45; }
 
+  /* The lead paragraph follows the heading directly, so the head's usual
+     generous gap would read as a disconnect between the two. */
+  #screens .section-head { margin-bottom: clamp(18px, 2.2vw, 26px); }
+
+  .screens-lead {
+    max-width: 62ch;
+    margin: 0 0 clamp(28px, 4vw, 40px);
+    font-size: clamp(16px, 1.7vw, 18px);
+    line-height: 1.55;
+    color: var(--on-ink);
+  }
+
   .screens-note {
     font-size: 12px;
     color: var(--on-ink-dim);
@@ -732,6 +744,11 @@
       <p class="kicker mono">SWIPE THROUGH — REAL SCREENS, NOT MOCKUPS</p>
     </div>
 
+    <p class="screens-lead">
+      The build is feature-complete and running end to end. What's left between now and launch is
+      refinement — polish, small adjustments, and testing — rather than anything still to be built.
+    </p>
+
     <div class="screens-scroll">
       <figure class="screen">
         <img src="screenshots/wardrobe.png" alt="The Wardrobe tab, showing a grid of tagged clothing items" width="780" height="1600" loading="lazy" />
@@ -768,8 +785,7 @@
       <div>
         <h2>Coming to iPhone and Android.</h2>
         <p>
-          Flixit launches on the App Store and Google Play on October 20, 2026. The app is built
-          and running — have a look at it above.
+          Flixit launches on the App Store and Google Play on October 20, 2026.
         </p>
       </div>
 
