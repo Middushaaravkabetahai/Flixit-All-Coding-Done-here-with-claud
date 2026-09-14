@@ -173,6 +173,30 @@ docs.expo.dev must be checked before writing code.
   with a personal access token remote. That has since resolved — pushing to
   `origin` works normally now.
 
+## Dates, team, and outside interest
+
+- **Build complete: Oct 5–10 2026.** **Launch: Oct 20 2026 or later.** Oct 5 is
+  NOT launch day — it's the start of the finish-the-build window, deliberately
+  ahead of launch to leave room for review and fixes. The launch date can move
+  if needed; as of Sep 2026 it isn't expected to.
+- Founders are in **Fremont, CA** (Alameda County, East Bay). Relevant because
+  the free mentoring networks there — SCORE San Francisco & East Bay, SCORE
+  Silicon Valley — are staffed by actual tech operators, not just retired local
+  retailers.
+- **An agency found through personal connections has expressed interest** in
+  buying and/or scaling the app internationally, conditional on judging it
+  worth it. Nothing agreed, no terms seen. Standing guidance recorded here so
+  no session loses it:
+  - **Both founders are minors.** In California a contract with a minor is
+    generally voidable, so any real deal needs a parent/guardian involved. No
+    signing anything without one.
+  - **Do not hand over repo, Supabase, or domain access before written terms.**
+    Those accounts *are* the company right now.
+  - Establish which of these is actually on the table — acquisition,
+    investment, or a paid/equity build partnership. They are very different.
+  - Launching first raises the price: pre-launch with zero users is the weakest
+    possible negotiating position, so the Oct 20 date serves this too.
+
 ## Workflow
 
 - Branch: `claude/flixit-features-overview-mxin9i` (or whatever the active
