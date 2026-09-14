@@ -179,6 +179,11 @@ docs.expo.dev must be checked before writing code.
   NOT launch day — it's the start of the finish-the-build window, deliberately
   ahead of launch to leave room for review and fixes. The launch date can move
   if needed; as of Sep 2026 it isn't expected to.
+- Founders are both **16** as of Sep 2026 (Maahit turns 17 first). Two
+  consequences: every youth competition worth entering caps at 18, so they're
+  eligible for the Jan/Feb 2027 round *and* the 2028 one — this year isn't
+  all-or-nothing. And they are minors, which is why the contract caution below
+  matters rather than being boilerplate.
 - Founders are in **Fremont, CA** (Alameda County, East Bay). Relevant because
   the free mentoring networks there — SCORE San Francisco & East Bay, SCORE
   Silicon Valley — are staffed by actual tech operators, not just retired local
