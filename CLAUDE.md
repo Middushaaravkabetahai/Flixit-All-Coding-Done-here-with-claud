@@ -192,9 +192,15 @@ docs.expo.dev must be checked before writing code.
   buying and/or scaling the app internationally, conditional on judging it
   worth it. Nothing agreed, no terms seen. Standing guidance recorded here so
   no session loses it:
-  - **Both founders are minors.** In California a contract with a minor is
-    generally voidable, so any real deal needs a parent/guardian involved. No
-    signing anything without one.
+  - **Both fathers are involved in the conversation** — the signatory problem is
+    handled. Both founders are 16 and a contract with a minor is generally
+    voidable in California, so parent involvement is what makes any agreement
+    enforceable rather than theoretical. Nothing gets signed, NDA included,
+    without them reading it.
+  - Parents cover "can we sign / are we protected". They don't automatically
+    cover "is this a good number" — if a written offer appears, budget an hour
+    with a startup/IP attorney and a second read from a SCORE mentor who has
+    sold a company.
   - **Do not hand over repo, Supabase, or domain access before written terms.**
     Those accounts *are* the company right now.
   - Establish which of these is actually on the table — acquisition,
