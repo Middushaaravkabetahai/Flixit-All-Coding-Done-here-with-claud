@@ -6,7 +6,8 @@
 <meta name="description" content="Flixit turns the clothes you already own into daily outfits and finds you better prices on everything else. Launching October 20, 2026 on iOS and Android." />
 <meta name="theme-color" content="#18181b" />
 <link rel="canonical" href="https://flixit.info/" />
-<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2212%22%20fill%3D%22%2318181b%22%2F%3E%3Ctext%20x%3D%2232%22%20y%3D%2245%22%20font-family%3D%22Arial%20Black%2CArial%2Csans-serif%22%20font-size%3D%2240%22%20font-weight%3D%22900%22%20fill%3D%22%23f3ede3%22%20text-anchor%3D%22middle%22%3EF%3C%2Ftext%3E%3C%2Fsvg%3E" />
+<!-- Favicon: the real Hook F mark, not a letter set in Arial Black. -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2212%22%20fill%3D%22%2318181b%22%2F%3E%3Csvg%20x%3D%2210%22%20y%3D%226%22%20width%3D%2244%22%20height%3D%2252%22%20viewBox%3D%2222%2016%2078%2092%22%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%23f3ede3%22%20stroke-width%3D%2212%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M52%2042%20V32%20A10%2010%200%201%200%2032%2032%22%2F%3E%3Cpath%20d%3D%22M52%2042%20V98%22%2F%3E%3Cpath%20d%3D%22M52%2042%20H90%22%2F%3E%3Cpath%20d%3D%22M52%2070%20H78%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E%3C%2Fsvg%3E" />
 
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://flixit.info/" />
@@ -552,17 +553,16 @@
 <body>
 <!--
   The Flixit mark, defined once and reused via <use> wherever it appears.
-  Gradient: "Sunset" (see brand/flixit-mark-gradient-sunset.svg). To swap
-  variants, change the three stop-colors below — nothing else references them.
+
+  Single flat colour, no gradient — `currentColor` means the mark inherits the
+  text colour of whatever section it sits in, so it is cream on the ink nav and
+  hero, and would come out ink on a cream section without any change here. One
+  definition, correct on either ground. The gradient version still exists for
+  the app icon (brand/flixit-app-icon.svg); it just isn't used on the site.
 -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
   <defs>
-    <linearGradient id="flixitGrad" gradientUnits="userSpaceOnUse" x1="26" y1="20" x2="96" y2="104">
-      <stop offset="0" stop-color="#2d3bd6" />
-      <stop offset="0.55" stop-color="#c2379b" />
-      <stop offset="1" stop-color="#eda13f" />
-    </linearGradient>
-    <g id="flixitMark" fill="none" stroke="url(#flixitGrad)" stroke-width="12" stroke-linecap="round" stroke-linejoin="round">
+    <g id="flixitMark" fill="none" stroke="currentColor" stroke-width="12" stroke-linecap="round" stroke-linejoin="round">
       <path d="M52 42 V32 A10 10 0 1 0 32 32" />
       <path d="M52 42 V98" />
       <path d="M52 42 H90" />
