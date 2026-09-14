@@ -70,10 +70,11 @@ be updated to name the specific partners.
 - **Delete individual items.** Remove any wardrobe item from the Wardrobe tab.
   Deleting an item deletes its photo too, unless another item still uses that
   same photo (items added by one closet scan share a source image).
-- **Delete your account.** Email us and we'll delete your account and
-  everything attached to it. *(Both stores now require in-app account deletion
-  for apps with accounts — this needs to be built into the app before
-  submission.)*
+- **Delete your account.** Profile tab → **Delete account**. You'll be asked to
+  type DELETE to confirm, then everything goes: your profile, every wardrobe
+  item, the photos behind them, and your swipe history. It's immediate and it
+  can't be undone. If you'd rather not do it in the app, email us and we'll do
+  it for you.
 
 ## Children
 

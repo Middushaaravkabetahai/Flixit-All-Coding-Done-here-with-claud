@@ -135,6 +135,17 @@ docs.expo.dev must be checked before writing code.
   location (asking for location permission for a feature that returns
   nothing is an App Store review risk — add `expo-location` together with a
   real provider).
+- **Account deletion — built (store requirement cleared).** Profile tab has a
+  "Delete account" link behind a type-DELETE-to-confirm modal. It calls the
+  `delete-account` Edge Function, which identifies the caller from their JWT
+  (never from the request body), clears `wardrobe-photos/<userId>/` in Storage,
+  then deletes the `auth.users` row — which cascades to `profiles`,
+  `wardrobe_items` and `swipes`. Storage goes first on purpose: if it fails the
+  account is still intact and the user can retry, rather than being left with
+  orphaned files nobody can reach. **Needs the same one-time deploy step as the
+  scan function**: `supabase functions deploy delete-account` (no secrets to
+  set — `SUPABASE_URL` and `SUPABASE_SERVICE_ROLE_KEY` are injected
+  automatically).
 - **BLOCKS APP STORE SUBMISSION — placeholder content.** `src/data/mockDeals.ts`
   is 5 invented products with real brand names (Nike/Zara/ASOS/H&M) and made-up
   prices, and it fills two of the five tabs (FYP + Flixnder). Apple rejects

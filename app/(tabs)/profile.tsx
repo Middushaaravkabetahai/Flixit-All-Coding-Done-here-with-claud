@@ -1,6 +1,15 @@
 import { useState } from 'react';
-import { ActivityIndicator, Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
+import {
+  ActivityIndicator,
+  Modal,
+  Pressable,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+} from 'react-native';
 import { useAuth } from '../../src/contexts/AuthContext';
+import { deleteAccount } from '../../src/lib/account';
 import { supabase } from '../../src/lib/supabase';
 
 const STYLE_OPTIONS = ['Streetwear', 'Minimalist', 'Preppy', 'Vintage', 'Athleisure', 'Formal'];
@@ -12,6 +21,24 @@ export default function Profile() {
   const [selectedStyles, setSelectedStyles] = useState<string[]>(profile?.style_tags ?? []);
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [deleting, setDeleting] = useState(false);
+  const [confirmText, setConfirmText] = useState('');
+  const [working, setWorking] = useState(false);
+
+  const handleDelete = async () => {
+    setWorking(true);
+    setError(null);
+    try {
+      await deleteAccount();
+      // signOut inside deleteAccount clears the session; the root layout's
+      // auth guard sends us to sign-in from here.
+      setDeleting(false);
+    } catch (e) {
+      setError(e instanceof Error ? e.message : 'Could not delete your account.');
+    } finally {
+      setWorking(false);
+    }
+  };
 
   const startEditing = () => {
     setDisplayName(profile?.display_name ?? '');
@@ -120,6 +147,60 @@ export default function Profile() {
       <Pressable style={styles.button} onPress={signOut}>
         <Text style={styles.buttonText}>Sign out</Text>
       </Pressable>
+
+      <Pressable onPress={() => { setConfirmText(''); setError(null); setDeleting(true); }}>
+        <Text style={styles.deleteLink}>Delete account</Text>
+      </Pressable>
+
+      <Modal visible={deleting} animationType="fade" transparent>
+        <View style={styles.modalOverlay}>
+          <View style={styles.modalCard}>
+            <Text style={styles.modalTitle}>Delete your account?</Text>
+            <Text style={styles.modalBody}>
+              This permanently deletes your profile, every item in your closet, the photos behind
+              them, and your swipe history. It can't be undone.
+            </Text>
+
+            <Text style={styles.modalLabel}>Type DELETE to confirm</Text>
+            <TextInput
+              style={styles.input}
+              value={confirmText}
+              onChangeText={setConfirmText}
+              autoCapitalize="characters"
+              autoCorrect={false}
+              placeholder="DELETE"
+            />
+
+            {error && <Text style={styles.error}>{error}</Text>}
+
+            <View style={styles.modalActions}>
+              <Pressable
+                style={[styles.button, styles.cancelButton, { flex: 1, marginTop: 0 }]}
+                onPress={() => setDeleting(false)}
+                disabled={working}
+              >
+                <Text style={styles.cancelButtonText}>Cancel</Text>
+              </Pressable>
+              <Pressable
+                style={[
+                  styles.button,
+                  styles.destructiveButton,
+                  { flex: 1, marginTop: 0 },
+                  confirmText !== 'DELETE' && styles.buttonDisabled,
+                ]}
+                onPress={handleDelete}
+                disabled={working || confirmText !== 'DELETE'}
+              >
+                {working ? (
+                  <ActivityIndicator color="#fff" />
+                ) : (
+                  <Text style={styles.buttonText}>Delete forever</Text>
+                )}
+              </Pressable>
+            </View>
+          </View>
+        </View>
+      </Modal>
     </View>
   );
 }
@@ -157,6 +238,26 @@ const styles = StyleSheet.create({
   buttonText: { color: '#fff', fontWeight: '600' },
   editButton: { backgroundColor: '#eee', marginTop: 'auto', marginBottom: 0 },
   editButtonText: { color: '#111', fontWeight: '600' },
+  deleteLink: {
+    color: '#d33',
+    fontSize: 14,
+    fontWeight: '600',
+    textAlign: 'center',
+    paddingVertical: 12,
+  },
+  modalOverlay: {
+    flex: 1,
+    backgroundColor: 'rgba(0,0,0,0.5)',
+    justifyContent: 'center',
+    padding: 24,
+  },
+  modalCard: { backgroundColor: '#fff', borderRadius: 16, padding: 22, gap: 10 },
+  modalTitle: { fontSize: 19, fontWeight: '700' },
+  modalBody: { color: '#666', fontSize: 14.5, lineHeight: 20 },
+  modalLabel: { fontWeight: '600', fontSize: 13, marginTop: 6 },
+  modalActions: { flexDirection: 'row', gap: 12, marginTop: 10 },
+  destructiveButton: { backgroundColor: '#d33' },
+  buttonDisabled: { opacity: 0.4 },
   editActions: { flexDirection: 'row', gap: 12, marginTop: 8 },
   cancelButton: { backgroundColor: '#eee', flex: 1 },
   cancelButtonText: { color: '#111', fontWeight: '600' },
