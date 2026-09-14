@@ -10,6 +10,7 @@ import {
   Text,
   View,
 } from 'react-native';
+import { SHOW_DEAL_FEEDS } from '../../src/config/features';
 import { getMockOnlinePrices } from '../../src/data/mockPriceMatch';
 import { isLocalPricingAvailable } from '../../src/lib/localPricing';
 import { type DetectedItem, identifySingleItem } from '../../src/lib/scan';
@@ -80,7 +81,21 @@ export default function ScanPriceMatch() {
     );
   }
 
-  const online = item ? getMockOnlinePrices(item.description) : [];
+  // Until affiliate listings are live we don't invent prices or retailer names.
+  // A real shopping search for what the scan actually identified is honest and
+  // still useful — see src/config/features.ts.
+  const online = item && SHOW_DEAL_FEEDS ? getMockOnlinePrices(item.description) : [];
+
+  // The description usually already names the colour and garment, so only the
+  // brand is worth adding — and only when it isn't in there already.
+  const searchQuery = (() => {
+    if (!item) return '';
+    const brand = item.brand?.trim();
+    if (!brand || item.description.toLowerCase().includes(brand.toLowerCase())) {
+      return item.description;
+    }
+    return `${brand} ${item.description}`;
+  })();
 
   return (
     <ScrollView style={styles.container} contentContainerStyle={styles.content}>
@@ -102,10 +117,25 @@ export default function ScanPriceMatch() {
             {[item.category, item.color, item.brand].filter(Boolean).join(' · ')}
           </Text>
 
-          <Text style={styles.sectionLabel}>Online — lowest first</Text>
-          <Text style={styles.placeholderNote}>
-            Sample pricing — live retailer listings arrive with the affiliate integration.
-          </Text>
+          <Text style={styles.sectionLabel}>Online</Text>
+          {!SHOW_DEAL_FEEDS && (
+            <>
+              <Text style={styles.helper}>
+                Search the web for this item and compare what it's going for. Side-by-side
+                retailer pricing lands inside Flixit once our retailer integration is live.
+              </Text>
+              <Pressable
+                style={styles.photoButton}
+                onPress={() =>
+                  Linking.openURL(
+                    `https://www.google.com/search?tbm=shop&q=${encodeURIComponent(searchQuery)}`
+                  )
+                }
+              >
+                <Text style={styles.photoButtonText}>Search prices for this</Text>
+              </Pressable>
+            </>
+          )}
           {online.map((option) => (
             <Pressable
               key={option.retailer}

@@ -1,5 +1,5 @@
 import { useCallback, useState } from 'react';
-import { useFocusEffect } from 'expo-router';
+import { Redirect, useFocusEffect } from 'expo-router';
 import {
   ActivityIndicator,
   FlatList,
@@ -8,11 +8,21 @@ import {
   Text,
   View,
 } from 'react-native';
+import { SHOW_DEAL_FEEDS } from '../../src/config/features';
 import { useAuth } from '../../src/contexts/AuthContext';
 import { MOCK_DEALS, type Deal } from '../../src/data/mockDeals';
 import { getCategoryPreferences } from '../../src/lib/swipes';
 
-export default function FYP() {
+export default function FypRoute() {
+  // Hidden for v1 (see src/config/features.ts). The tab is out of the bar, but
+  // this is still the default route inside (tabs) — so anything that lands here
+  // (the router's initial resolve, a deep link, an old shortcut) gets sent to
+  // the Closet rather than a screen full of placeholder deals.
+  if (!SHOW_DEAL_FEEDS) return <Redirect href="/wardrobe" />;
+  return <Fyp />;
+}
+
+function Fyp() {
   const { session } = useAuth();
   const [deals, setDeals] = useState<Deal[]>(MOCK_DEALS);
   const [loading, setLoading] = useState(true);

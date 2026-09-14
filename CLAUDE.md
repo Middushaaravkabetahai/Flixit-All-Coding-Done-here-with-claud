@@ -146,13 +146,21 @@ docs.expo.dev must be checked before writing code.
   scan function**: `supabase functions deploy delete-account` (no secrets to
   set — `SUPABASE_URL` and `SUPABASE_SERVICE_ROLE_KEY` are injected
   automatically).
-- **BLOCKS APP STORE SUBMISSION — placeholder content.** `src/data/mockDeals.ts`
-  is 5 invented products with real brand names (Nike/Zara/ASOS/H&M) and made-up
-  prices, and it fills two of the five tabs (FYP + Flixnder). Apple rejects
-  placeholder/demo content under guideline 2.1, and attributing invented
-  prices to real retailers is its own problem. The affiliate API keys
-  (ShopStyle/Rakuten/Amazon Associates) must land before submitting — this
-  is a Phase 2 leftover, not a Phase 5 one.
+- **Placeholder content — WAS the submission blocker, now flagged off.**
+  `src/data/mockDeals.ts` is 5 invented products with real brand names
+  (Nike/Zara/ASOS/H&M) and made-up prices. Apple rejects placeholder content
+  under guideline 2.1, and attributing invented prices to real retailers is its
+  own problem. Since that can only be fixed by affiliate approval we don't
+  control, **v1 ships without it**: `src/config/features.ts` exports
+  `SHOW_DEAL_FEEDS = false`, which
+  - drops the FYP and Flixnder tabs from the tab bar (`href: null`, routes stay
+    registered) and redirects both routes to the Closet, and
+  - replaces the Scan tab's fake online prices with a real Google Shopping
+    search for whatever the scan identified — honest, and actually useful.
+  Nothing is deleted; both screens still work. **To restore: put live listings
+  in `mockDeals.ts`, flip `SHOW_DEAL_FEEDS` to `true`.** That's the whole change.
+  So v1 = Closet, Planner, Scan, Profile — four tabs, every one backed by real
+  data.
 - **Cleanup pending:** GoDaddy auto-created a WebsiteBuilder "Launching Soon"
   site on this domain. It's been overridden by the DNS change but still exists
   under GoDaddy > Website. Delete it, or GoDaddy may re-add its own `A` record

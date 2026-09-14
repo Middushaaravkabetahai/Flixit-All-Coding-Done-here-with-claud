@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Redirect } from 'expo-router';
 import {
   Linking,
   Pressable,
@@ -8,11 +9,18 @@ import {
   View,
 } from 'react-native';
 import { SwipeCard } from '../../src/components/SwipeCard';
+import { SHOW_DEAL_FEEDS } from '../../src/config/features';
 import { useAuth } from '../../src/contexts/AuthContext';
 import { MOCK_DEALS, type Deal } from '../../src/data/mockDeals';
 import { recordSwipe } from '../../src/lib/swipes';
 
-export default function Flixnder() {
+export default function FlixnderRoute() {
+  // Hidden for v1 alongside the FYP — see src/config/features.ts.
+  if (!SHOW_DEAL_FEEDS) return <Redirect href="/wardrobe" />;
+  return <Flixnder />;
+}
+
+function Flixnder() {
   const { session } = useAuth();
   const [index, setIndex] = useState(0);
   const [liked, setLiked] = useState<Deal[]>([]);
