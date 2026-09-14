@@ -5,8 +5,24 @@ self-contained file: no build step, no dependencies, no framework. Fonts load
 from Google Fonts; everything else (styles, logo, icons, countdown) is inline.
 Screenshots live in `screenshots/`.
 
-**Domain: `flixit.info`** — registered, not yet connected to a host. Follow the
-two steps below to put the site on it.
+## Live at https://flixit.info
+
+Already set up — you don't need to redo any of this. Recorded here so the
+configuration isn't lost:
+
+- **Host:** Netlify, project `magenta-paletas-d3adc9`
+- **Deploys from:** `main` branch, build command **empty**, publish directory
+  **`website`**
+- **DNS (at GoDaddy):** `A @ 75.2.60.5` and
+  `CNAME www -> magenta-paletas-d3adc9.netlify.app`
+- **HTTPS:** free auto-renewing Let's Encrypt cert from Netlify
+
+**To change the site: edit `index.html`, commit, push to `main`.** Netlify
+redeploys on its own within a couple of minutes. No uploading, no dashboards.
+
+If the site ever shows GoDaddy's "Launching Soon" page again, GoDaddy's
+WebsiteBuilder has re-added its own `A` record — delete it and restore the two
+records above.
 
 ## Editing it
 
@@ -27,7 +43,12 @@ Things that will need updating over time:
   clothing images inside them are empty grey tiles. Replace them with real
   captures from a phone (same filenames) and the site picks them up.
 
-## Step 1 — put it online
+## Setting this up again from scratch
+
+<details>
+<summary>Only needed if you move hosts or start over</summary>
+
+### Step 1 — put it online
 
 **Netlify** is the path of least resistance, and it publishes the `website/`
 folder directly.
@@ -52,7 +73,7 @@ empty, output directory `website`.
 have to rename this folder to `docs/` first.
 </details>
 
-## Step 2 — connect flixit.info
+### Step 2 — connect the domain
 
 In Netlify: **Domain settings → Add custom domain** → enter `flixit.info`.
 Netlify then shows the exact DNS records to create.
@@ -65,6 +86,8 @@ added, or it will fight yours.
 Propagation is usually minutes, occasionally a few hours. **HTTPS is issued
 automatically and free** once DNS resolves — don't buy an SSL certificate from
 a registrar upsell, you don't need one.
+
+</details>
 
 ## Notes on `.info`
 

@@ -52,18 +52,25 @@ docs.expo.dev must be checked before writing code.
 - Clothing recognition (Phase 4): Claude API (vision) or Google Cloud Vision
 - Outfit planner (Phase 3): rule-based first, then Claude API
 
-**Marketing website**
+**Marketing website — LIVE at https://flixit.info**
 - Lives in `website/` — a single self-contained `index.html` (no build step,
-  no framework). Domain: `flixit.info`. See `website/README.md` for
-  the buy-domain → host → DNS steps.
+  no framework).
+- Hosted on **Netlify**, project `magenta-paletas-d3adc9`, deploying from
+  `main` with build command EMPTY and publish directory `website`. Every push
+  to `main` redeploys the live site automatically — no manual upload.
+- DNS at GoDaddy: `A @ 75.2.60.5` and `CNAME www -> magenta-paletas-d3adc9.netlify.app`.
+  HTTPS is a free auto-renewing Let's Encrypt cert from Netlify — never buy one.
+- Netlify's build installs the mobile app's npm packages (root `package.json`)
+  even though the site needs none. Harmless, just adds ~2 min to deploys.
 - Was originally planned as Next.js on Vercel; a static page covers the
   pre-launch site fine, so that's deferred until it needs real signups or
   more than one page.
 
 ## Branding
 
-- Domain: **`flixit.info` is registered** and is the marketing/info site's
-  home. `flixit.com` was already taken (since 2003, unrelated business).
+- Domain: **`flixit.info` is registered and live.** Bought at GoDaddy,
+  renews **Sep 13 2027 at $41.99/yr** (year one was ~$6) — decide before then
+  whether to keep it, turn off auto-renew, or transfer somewhere cheaper. `flixit.com` was already taken (since 2003, unrelated business).
   `flixit.app` was the earlier plan for the app itself and is still free, but
   is not bought — don't assume it exists.
   Note on `.info`: the TLD carries some spam association, so if the brand ever
@@ -135,11 +142,17 @@ docs.expo.dev must be checked before writing code.
   prices to real retailers is its own problem. The affiliate API keys
   (ShopStyle/Rakuten/Amazon Associates) must land before submitting — this
   is a Phase 2 leftover, not a Phase 5 one.
-- `git push` over the direct git proxy in this environment returns `403`
-  (GitHub App installed but without write access). Workaround in use: a
-  short-lived personal access token supplied by the user, added as a
-  second git remote (`token-origin`) — push there instead of `origin`
-  until the underlying GitHub App permission issue is fixed properly.
+- **Cleanup pending:** GoDaddy auto-created a WebsiteBuilder "Launching Soon"
+  site on this domain. It's been overridden by the DNS change but still exists
+  under GoDaddy > Website. Delete it, or GoDaddy may re-add its own `A` record
+  later and knock the site offline.
+- The website screenshots in `website/screenshots/` were captured in a sandbox
+  where the image host was unreachable, so the clothing tiles are empty grey
+  boxes. Retake them on a real device with real clothes — they're also needed
+  for the App Store listing.
+- Git push: earlier sessions hit `403` on the git proxy and worked around it
+  with a personal access token remote. That has since resolved — pushing to
+  `origin` works normally now.
 
 ## Workflow
 
