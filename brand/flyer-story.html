@@ -1,0 +1,185 @@
+<meta charset="utf-8">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;900&family=Work+Sans:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap">
+<style>
+  /* 1080x1920 story version of the flyer.
+     Instagram's own UI sits on top of this: roughly the top 220px (close +
+     Aa buttons), the bottom 300px (caption bar and the send row), and a
+     column about 200px wide down the right for the first ~650px. Nothing
+     important goes in any of those. */
+  :root {
+    --paper: #f3ede3;
+    --ink: #18181b;
+    --dim: #6b6459;
+    --indigo: #3346e0;
+    --line: rgba(24, 24, 27, 0.16);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 1080px; height: 1920px; overflow: hidden; }
+  body {
+    position: relative;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "Work Sans", sans-serif;
+    padding: 258px 88px 0;
+  }
+
+  .eyebrow {
+    font-family: "Space Mono", monospace;
+    font-size: 21px;
+    letter-spacing: 0.19em;
+    color: var(--indigo);
+    margin-bottom: 30px;
+  }
+  .mark { width: 78px; height: auto; display: block; margin-bottom: 26px; }
+  h1 {
+    font-family: "Archivo", "Arial Black", sans-serif;
+    font-weight: 900;
+    font-size: 172px;
+    line-height: 0.82;
+    letter-spacing: -0.038em;
+    margin-bottom: 28px;
+  }
+  .tagline {
+    font-size: 41px;
+    font-weight: 500;
+    line-height: 1.16;
+    letter-spacing: -0.015em;
+    margin-bottom: 26px;
+  }
+  .blurb {
+    font-size: 20px;
+    line-height: 1.52;
+    color: var(--dim);
+    max-width: 44ch;
+    margin-bottom: 42px;
+  }
+
+  .row {
+    display: grid;
+    grid-template-columns: 62px 1fr;
+    gap: 0 16px;
+    padding: 25px 0;
+    border-bottom: 1px solid var(--line);
+    align-items: baseline;
+  }
+  .row:first-of-type { border-top: 1px solid var(--line); }
+  .num {
+    font-family: "Space Mono", monospace;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--indigo);
+    letter-spacing: 0.08em;
+  }
+  .row h2 { font-size: 22px; font-weight: 600; margin-bottom: 4px; }
+  .row p { font-size: 18px; line-height: 1.44; color: var(--dim); }
+
+  .foot {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--ink);
+    color: var(--paper);
+    padding: 34px 88px 250px;
+  }
+  .meta {
+    font-family: "Space Mono", monospace;
+    font-size: 15px;
+    letter-spacing: 0.16em;
+    color: rgba(243, 237, 227, 0.5);
+    padding-bottom: 20px;
+    margin-bottom: 22px;
+    border-bottom: 1px solid rgba(243, 237, 227, 0.16);
+  }
+  .credits { display: flex; justify-content: space-between; align-items: flex-end; gap: 22px; }
+  .people { display: flex; gap: 52px; }
+  .who .role {
+    font-family: "Space Mono", monospace;
+    font-size: 13px;
+    letter-spacing: 0.17em;
+    color: rgba(243, 237, 227, 0.5);
+    margin-bottom: 6px;
+  }
+  .who .name { font-size: 21px; font-weight: 600; }
+  .who .mail { font-size: 16px; color: rgba(243, 237, 227, 0.66); margin-top: 3px; }
+  .url {
+    font-family: "Archivo", sans-serif;
+    font-weight: 700;
+    font-size: 33px;
+    letter-spacing: -0.015em;
+    white-space: nowrap;
+  }
+</style>
+
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <g id="m" fill="none" stroke="currentColor" stroke-width="12" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M52 42 V32 A10 10 0 1 0 32 32" /><path d="M52 42 V98" />
+      <path d="M52 42 H90" /><path d="M52 70 H78" />
+    </g>
+  </defs>
+</svg>
+
+<p class="eyebrow">LAUNCHING 20.10.2026</p>
+<svg class="mark" viewBox="14 16 84 94"><use href="#m" /></svg>
+<h1>FLIXIT</h1>
+<p class="tagline">Your closet. Your style.<br>Your next move.</p>
+<p class="blurb">
+  Flixit turns the clothes you already own into daily outfits, and helps you find
+  better prices on everything else &mdash; one scan of your closet at a time.
+</p>
+
+<div class="row">
+  <div class="num">01</div>
+  <div>
+    <h2>Scan your closet</h2>
+    <p>Photograph your closet once and Flixit picks out each item.</p>
+  </div>
+</div>
+<div class="row">
+  <div class="num">02</div>
+  <div>
+    <h2>Plan your outfits</h2>
+    <p>Daily outfits built from your wardrobe, the occasion and color. Don't like it? Switch it up.</p>
+  </div>
+</div>
+<div class="row">
+  <div class="num">03</div>
+  <div>
+    <h2>Find the best price</h2>
+    <p>Scan something in a store and compare it against prices online.</p>
+  </div>
+</div>
+<div class="row">
+  <div class="num">04</div>
+  <div>
+    <h2>Swipe on Flixnder</h2>
+    <p>Every swipe teaches Flixit what your style actually is.</p>
+  </div>
+</div>
+<div class="row">
+  <div class="num">05</div>
+  <div>
+    <h2>Your Style FYP</h2>
+    <p>A feed that reorders itself around what you scan, swipe and save.</p>
+  </div>
+</div>
+
+<div class="foot">
+  <p class="meta">FREMONT, CALIFORNIA &nbsp;&middot;&nbsp; IOS &amp; ANDROID</p>
+  <div class="credits">
+    <div class="people">
+      <div class="who">
+        <p class="role">FOUNDER</p>
+        <p class="name">Shaarav Jain</p>
+        <p class="mail">shaaravj@gmail.com</p>
+      </div>
+      <div class="who">
+        <p class="role">CO-FOUNDER</p>
+        <p class="name">Maahit Anand</p>
+        <p class="mail">maahit.anand@gmail.com</p>
+      </div>
+    </div>
+    <p class="url">flixit.info</p>
+  </div>
+</div>
