@@ -278,6 +278,14 @@
     animation: rise 0.5s ease-out forwards;
   }
 
+  /* Staggered so they hang themselves onto the rail left to right, after the
+     hero copy has finished arriving, instead of all five appearing at once. */
+  .rail-item:nth-child(1) { animation-delay: 0.52s; }
+  .rail-item:nth-child(2) { animation-delay: 0.60s; }
+  .rail-item:nth-child(3) { animation-delay: 0.68s; }
+  .rail-item:nth-child(4) { animation-delay: 0.76s; }
+  .rail-item:nth-child(5) { animation-delay: 0.84s; }
+
   .rail-item:nth-child(1) { animation-delay: 0.55s; }
   .rail-item:nth-child(2) { animation-delay: 0.62s; }
   .rail-item:nth-child(3) { animation-delay: 0.69s; }
@@ -632,14 +640,21 @@
       </div>
     </div>
 
+    <!--
+      The rail hangs the Flixit mark itself rather than a generic hanger icon.
+      The mark was drawn as a hanger — the hook curls off the top the way a real
+      one hooks over a rail — so it hangs with no modification, and the closet
+      rail becomes ours instead of stock. The viewBox is trimmed to the mark's
+      optical bounds so the top of the hook sits on the rail line.
+    -->
     <div class="rail" aria-hidden="true">
       <div class="rail-line"></div>
       <div class="rail-items">
-        <svg class="rail-item" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M24 6a4 4 0 1 0 0.1 0"/><path d="M24 10 8 28h32z"/></svg>
-        <svg class="rail-item" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M24 6a4 4 0 1 0 0.1 0"/><path d="M24 10 8 28h32z"/></svg>
-        <svg class="rail-item" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M24 6a4 4 0 1 0 0.1 0"/><path d="M24 10 8 28h32z"/></svg>
-        <svg class="rail-item" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M24 6a4 4 0 1 0 0.1 0"/><path d="M24 10 8 28h32z"/></svg>
-        <svg class="rail-item" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M24 6a4 4 0 1 0 0.1 0"/><path d="M24 10 8 28h32z"/></svg>
+        <svg class="rail-item" viewBox="14 16 84 94"><use href="#flixitMark" /></svg>
+        <svg class="rail-item" viewBox="14 16 84 94"><use href="#flixitMark" /></svg>
+        <svg class="rail-item" viewBox="14 16 84 94"><use href="#flixitMark" /></svg>
+        <svg class="rail-item" viewBox="14 16 84 94"><use href="#flixitMark" /></svg>
+        <svg class="rail-item" viewBox="14 16 84 94"><use href="#flixitMark" /></svg>
       </div>
     </div>
   </div>
