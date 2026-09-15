@@ -1,38 +1,44 @@
 <!--
-  FLIXIT — primary mark ("Hook F")
+  FLIXIT - primary mark ("Flowing F")
 
-  An F with a garment-hanger hook curling off its top-left corner. Reads as a
-  monogram first and a hanger second, which is the right order: the hanger is
-  the wink, not the whole joke.
+  An F with a garment-hanger hook curling off its top-left corner, drawn with
+  a cursive lean and curved strokes. Reads as a monogram first and a hanger
+  second, which is the right order: the hanger is the wink, not the whole joke.
 
-  CONSTRUCTION (120 x 120 grid, whole numbers only):
-    stroke weight    12
-    stem             x = 52, from y = 42 to y = 98
-    upper arm        y = 42, runs x 52 -> 90   (38 long, flush with stem top)
-    lower arm        y = 70, runs x 52 -> 78   (26 long — ~two-thirds of upper)
-    hook             semicircle, centre (42, 32), radius 10, opening down-left
-    optical bbox     x 26-96, y 20-104
+  CONSTRUCTION (120 x 120 grid):
+    stroke weight    10.5, round caps and joins
+    hook             semicircle, centre (48, 34), radius 10, opening down-left
+    stem             from (58, 44) curving left and down to (46, 96)
+    upper arm        from (58, 44) rising right to (96, 36)
+    lower arm        from (52, 70) rising right to (80, 64)
+    optical bbox     x 32.75-101.25, y 18.75-101.25, centre (67, 60)
 
-  Two relationships hold this together — keep them if you redraw it:
+  Three relationships hold this together. Keep them if you redraw it:
     1. the hook curls AWAY from the arms (left), so nothing collides and the
        counters stay open at small sizes
-    2. hook radius (10) is slightly less than the stroke weight (12), so the
-       curl reads as a hook and not as a loop
+    2. both arms lift slightly to the right, matching the stem's lean; parallel
+       horizontal arms make it read as the old geometric mark instead
+    3. stroke weight stays at or below 11. At 12 the hook closes into a blob
+       and the mark stops reading at favicon size.
+
+  A true calligraphic F was tried and rejected: compressed to icon size a
+  script capital loses its looped ascender and descender and reads as a
+  lowercase t. See brand/script-f-study.html for that exploration.
 
   Edit in Figma / Illustrator / Inkscape. Outline the strokes before you scale
-  if your tool doesn't scale stroke weight proportionally.
+  if your tool does not scale stroke weight proportionally.
 -->
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120" role="img" aria-label="Flixit">
   <title>Flixit</title>
   <g id="flixit-mark"
      fill="none"
      stroke="#18181b"
-     stroke-width="12"
+     stroke-width="10.5"
      stroke-linecap="round"
      stroke-linejoin="round">
-    <path id="hook" d="M52 42 V32 A10 10 0 1 0 32 32" />
-    <path id="stem" d="M52 42 V98" />
-    <path id="arm-upper" d="M52 42 H90" />
-    <path id="arm-lower" d="M52 70 H78" />
+    <path id="hook" d="M58 44 V34 A10 10 0 1 0 38 34" />
+    <path id="stem" d="M58 44 C56 62 50 80 46 96" />
+    <path id="arm-upper" d="M58 44 C70 42 84 40 96 36" />
+    <path id="arm-lower" d="M52 70 C61 69 71 67 80 64" />
   </g>
 </svg>

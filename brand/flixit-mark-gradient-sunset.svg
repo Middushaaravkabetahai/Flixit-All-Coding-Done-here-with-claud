@@ -13,16 +13,16 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120" role="img" aria-label="Flixit">
   <title>Flixit</title>
   <defs>
-    <linearGradient id="flixit-sunset" gradientUnits="userSpaceOnUse" x1="26" y1="20" x2="96" y2="104">
+    <linearGradient id="flixit-sunset" gradientUnits="userSpaceOnUse" x1="36" y1="20" x2="64" y2="100">
       <stop offset="0" stop-color="#2d3bd6" />
       <stop offset="0.55" stop-color="#c2379b" />
       <stop offset="1" stop-color="#eda13f" />
     </linearGradient>
   </defs>
-  <g id="flixit-mark" fill="none" stroke="url(#flixit-sunset)" stroke-width="12" stroke-linecap="round" stroke-linejoin="round">
-    <path id="hook" d="M52 42 V32 A10 10 0 1 0 32 32" />
-    <path id="stem" d="M52 42 V98" />
-    <path id="arm-upper" d="M52 42 H90" />
-    <path id="arm-lower" d="M52 70 H78" />
+  <g id="flixit-mark" fill="none" stroke="url(#flixit-sunset)" stroke-width="10.5" stroke-linecap="round" stroke-linejoin="round">
+    <path id="hook" d="M58 44 V34 A10 10 0 1 0 38 34" />
+    <path id="stem" d="M58 44 C56 62 50 80 46 96" />
+    <path id="arm-upper" d="M58 44 C70 42 84 40 96 36" />
+    <path id="arm-lower" d="M52 70 C61 69 71 67 80 64" />
   </g>
 </svg>

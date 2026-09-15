@@ -13,11 +13,11 @@
 -->
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 458.4 120" width="458" height="120" role="img" aria-label="Flixit">
   <title>Flixit</title>
-  <g id="mark" fill="none" stroke="#18181b" stroke-width="12" stroke-linecap="round" stroke-linejoin="round">
-    <path id="hook" d="M52 42 V32 A10 10 0 1 0 32 32" />
-    <path id="stem" d="M52 42 V98" />
-    <path id="arm-upper" d="M52 42 H90" />
-    <path id="arm-lower" d="M52 70 H78" />
+  <g id="mark" fill="none" stroke="#18181b" stroke-width="10.5" stroke-linecap="round" stroke-linejoin="round">
+    <path id="hook" d="M58 44 V34 A10 10 0 1 0 38 34" />
+    <path id="stem" d="M58 44 C56 62 50 80 46 96" />
+    <path id="arm-upper" d="M58 44 C70 42 84 40 96 36" />
+    <path id="arm-lower" d="M52 70 C61 69 71 67 80 64" />
   </g>
   <g id="wordmark" fill="#18181b" transform="translate(150 29.0) scale(0.09012) translate(0 688.0) scale(1 -1)">
 <path id="letter-f-0" transform="translate(0.0 0)" d="M74 0V688H630V523H295V405H583V247H295V0Z" />
