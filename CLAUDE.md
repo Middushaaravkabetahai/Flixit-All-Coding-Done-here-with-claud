@@ -86,6 +86,24 @@ docs.expo.dev must be checked before writing code.
   the name commercially.
 - Social handles: `flixit` itself is likely squatted — try `getflixit`,
   `useflixit`, or `flixitapp` on Instagram/TikTok instead.
+- **Logo (current).** The primary mark is the **Flowing F**: an F with a
+  garment-hanger hook curling off the top-left, drawn with a cursive lean and
+  curved arms, single stroke weight 10 on a 120 grid. Construction notes and
+  the reasons behind each constraint are in `brand/flixit-mark.svg`. A true
+  calligraphic F was tried and rejected because at icon size a script capital
+  loses its ascender and descender loops and reads as a lowercase t
+  (`brand/script-f-study.html`).
+- **No colour on the mark.** Ink on light, cream on dark, nothing else. The
+  Sunset gradient files remain in `brand/` but are unused: the site has exactly
+  one saturated element, the indigo call-to-action, and a coloured logo competes
+  with it. White-ground variants exist for anywhere cream is wrong
+  (`flixit-avatar-white.svg`, `flixit-mark-black-on-white.png`).
+- **Wordmark: Bodoni Moda 600.** The brand name is set in the display serif;
+  section headings stay Archivo. High-contrast serif needs near-zero tracking,
+  not the negative tracking the grotesque wanted.
+- **Sub-marks still need redrawing.** The five feature icons in
+  `src/components/icons.tsx` and on the site are still geometric, from the old
+  mark's era. Next to the flowing parent they no longer read as one family.
 - **Sub-branding (future, not started)**: eventually each major feature —
   Planner, Scan & Price Match ("Scanner"), Flixnder, FYP, Wardrobe Scan —
   should get its own small logo/icon, the way big apps give sub-features
