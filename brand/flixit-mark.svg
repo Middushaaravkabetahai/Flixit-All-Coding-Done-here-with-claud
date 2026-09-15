@@ -33,7 +33,7 @@
   <g id="flixit-mark"
      fill="none"
      stroke="#18181b"
-     stroke-width="10.5"
+     stroke-width="10"
      stroke-linecap="round"
      stroke-linejoin="round">
     <path id="hook" d="M58 44 V34 A10 10 0 1 0 38 34" />

@@ -18,7 +18,7 @@
      transform="translate(512 512) scale(7.2) translate(-67 -60)"
      fill="none"
      stroke="#f3ede3"
-     stroke-width="11"
+     stroke-width="10"
      stroke-linecap="round"
      stroke-linejoin="round">
     <path id="hook" d="M58 44 V34 A10 10 0 1 0 38 34" />

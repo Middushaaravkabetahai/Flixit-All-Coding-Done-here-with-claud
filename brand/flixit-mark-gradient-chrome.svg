@@ -23,7 +23,7 @@
       <stop offset="1" stop-color="#5a6b8f" />
     </linearGradient>
   </defs>
-  <g id="flixit-mark" fill="none" stroke="url(#flixit-chrome)" stroke-width="10.5" stroke-linecap="round" stroke-linejoin="round">
+  <g id="flixit-mark" fill="none" stroke="url(#flixit-chrome)" stroke-width="10" stroke-linecap="round" stroke-linejoin="round">
     <path id="hook" d="M58 44 V34 A10 10 0 1 0 38 34" />
     <path id="stem" d="M58 44 C56 62 50 80 46 96" />
     <path id="arm-upper" d="M58 44 C70 42 84 40 96 36" />
