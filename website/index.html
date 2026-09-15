@@ -296,6 +296,12 @@
   .band-ink-soft { background: var(--ink-soft); color: var(--on-ink); }
   .band-ink-soft .section-head .kicker { color: var(--on-ink-dim); }
 
+  .section-head .kicker a {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-thickness: 1px;
+  }
+
   .section-head {
     display: flex;
     justify-content: space-between;
@@ -428,36 +434,6 @@
     max-width: 60ch;
   }
 
-  /* Build status. Stage names rather than numbers in the left column: the
-     stage is the information, and the order is already obvious from it. */
-  .progress { list-style: none; margin: 0; padding: 0; }
-  .progress li {
-    display: grid;
-    grid-template-columns: 140px 1fr;
-    gap: 0 24px;
-    padding: 18px 0;
-    border-top: 1px solid var(--line-on-ink);
-    align-items: baseline;
-  }
-  .progress li:last-child { border-bottom: 1px solid var(--line-on-ink); }
-  .progress .stage {
-    font-size: 11px;
-    letter-spacing: 0.15em;
-    color: var(--on-ink-dim);
-    margin: 0;
-  }
-  .progress h3 { font-size: 17px; font-weight: 700; margin: 0 0 5px; }
-  .progress li p:last-child {
-    margin: 0;
-    font-size: 14.5px;
-    line-height: 1.5;
-    color: var(--on-ink-dim);
-    max-width: 58ch;
-  }
-
-  @media (max-width: 620px) {
-    .progress li { grid-template-columns: 1fr; gap: 7px; }
-  }
 
   /* ---------- launch band ---------- */
 
@@ -781,43 +757,12 @@
     </div>
 
     <p class="screens-lead">
-      Flixit is built and running end to end. What is left before launch is finishing work rather
-      than new features: photographing the screens, a final round of testing, and the small
-      adjustments that come out of it.
+      Flixit is built and running end to end. Everything left before launch is finishing work
+      rather than new features: the final screenshots still need to go in, then a full round of
+      testing on both phones and the small touch-ups that come out of it.
     </p>
 
-    <ol class="progress">
-      <li>
-        <p class="stage mono">BUILD</p>
-        <div>
-          <h3>Complete</h3>
-          <p>Your closet, the daily outfit planner and the in-store scanner all work end to end.</p>
-        </div>
-      </li>
-      <li>
-        <p class="stage mono">SCREENSHOTS</p>
-        <div>
-          <h3>In progress</h3>
-          <p>Being photographed on a real phone with real clothes, rather than mocked up. They go up here as soon as they are shot.</p>
-        </div>
-      </li>
-      <li>
-        <p class="stage mono">TESTING</p>
-        <div>
-          <h3>Next</h3>
-          <p>A full pass on both iPhone and Android, then the touch-ups that come out of it.</p>
-        </div>
-      </li>
-      <li>
-        <p class="stage mono">LAUNCH</p>
-        <div>
-          <h3>October 20, 2026</h3>
-          <p>On the App Store and Google Play, both on the same day.</p>
-        </div>
-      </li>
-    </ol>
-
-    <div class="screens-scroll" hidden>
+    <div class="screens-scroll">
       <figure class="screen">
         <img src="screenshots/wardrobe.png" alt="The Wardrobe tab, showing a grid of tagged clothing items" width="780" height="1600" loading="lazy" />
         <figcaption class="cap"><b>Wardrobe</b><span>Every piece you own, tagged by type, color and brand.</span></figcaption>
@@ -841,8 +786,9 @@
     </div>
 
     <p class="screens-note">
-      Prices and listings inside the app are sample data until the retailer integrations go live.
-      Everything else is the finished thing.
+      These screens are placeholders until we photograph the real app on a phone, which is the
+      next thing on the list. Prices and listings inside the app are sample data until the
+      retailer integrations go live.
     </p>
   </div>
 </section>
@@ -893,7 +839,7 @@
   <div class="wrap">
     <div class="section-head">
       <h2>Questions, answered.</h2>
-      <p class="kicker mono">STILL CURIOUS? EMAIL US</p>
+      <p class="kicker mono">STILL CURIOUS? <a href="mailto:flixttean@gmail.com">FLIXTTEAN@GMAIL.COM</a></p>
     </div>
 
     <div class="faq">
@@ -942,7 +888,7 @@
       </div>
       <div>
         <dt class="mono">CONTACT</dt>
-        <dd><a href="mailto:shaaravj@gmail.com">shaaravj@gmail.com</a><br /><a href="mailto:maahit.anand@gmail.com">maahit.anand@gmail.com</a></dd>
+        <dd><a href="mailto:flixttean@gmail.com">flixttean@gmail.com</a><br /><a href="mailto:shaaravj@gmail.com">shaaravj@gmail.com</a><br /><a href="mailto:maahit.anand@gmail.com">maahit.anand@gmail.com</a></dd>
       </div>
     </dl>
 
