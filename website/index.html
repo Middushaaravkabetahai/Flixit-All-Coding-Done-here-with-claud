@@ -205,7 +205,7 @@
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .hero .eyebrow, .hero h1, .hero .tagline, .hero .sub, .rail-item {
+    .hero .eyebrow, .hero h1, .hero .tagline, .hero .sub, .rail-meta {
       animation: none !important;
       opacity: 1 !important;
       transform: none !important;
@@ -263,34 +263,23 @@
 
   .count-note { font-size: 11px; letter-spacing: 0.12em; color: var(--indigo-dim); margin: 0 0 12px; }
 
-  /* closet rail */
+  /* hero rule + spec line */
 
   .rail { margin-top: clamp(40px, 6vw, 68px); }
   .rail-line { height: 2px; background: var(--line-on-ink); }
-  .rail-items { display: flex; justify-content: space-between; padding-inline: 4%; }
 
-  .rail-item {
-    width: 32px;
-    height: 32px;
-    margin-top: -1px;
-    color: var(--indigo-dim);
+  .rail-meta {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px 28px;
+    padding-top: 16px;
+    font-size: 12px;
+    letter-spacing: 0.16em;
+    color: var(--on-ink-dim);
     opacity: 0;
-    animation: rise 0.5s ease-out forwards;
+    animation: rise 0.5s ease-out 0.52s forwards;
   }
-
-  /* Staggered so they hang themselves onto the rail left to right, after the
-     hero copy has finished arriving, instead of all five appearing at once. */
-  .rail-item:nth-child(1) { animation-delay: 0.52s; }
-  .rail-item:nth-child(2) { animation-delay: 0.60s; }
-  .rail-item:nth-child(3) { animation-delay: 0.68s; }
-  .rail-item:nth-child(4) { animation-delay: 0.76s; }
-  .rail-item:nth-child(5) { animation-delay: 0.84s; }
-
-  .rail-item:nth-child(1) { animation-delay: 0.55s; }
-  .rail-item:nth-child(2) { animation-delay: 0.62s; }
-  .rail-item:nth-child(3) { animation-delay: 0.69s; }
-  .rail-item:nth-child(4) { animation-delay: 0.76s; }
-  .rail-item:nth-child(5) { animation-delay: 0.83s; }
 
   /* ---------- section shell ---------- */
 
@@ -641,20 +630,16 @@
     </div>
 
     <!--
-      The rail hangs the Flixit mark itself rather than a generic hanger icon.
-      The mark was drawn as a hanger — the hook curls off the top the way a real
-      one hooks over a rail — so it hangs with no modification, and the closet
-      rail becomes ours instead of stock. The viewBox is trimmed to the mark's
-      optical bounds so the top of the hook sits on the rail line.
+      A rule with real information on it, rather than a row of icons. Repeating
+      the mark five times diluted it and read as decoration; two pieces of true
+      metadata at either end of a hairline read as a spec line. The mark stays
+      singular, which is where its strength is.
     -->
-    <div class="rail" aria-hidden="true">
+    <div class="rail">
       <div class="rail-line"></div>
-      <div class="rail-items">
-        <svg class="rail-item" viewBox="14 16 84 94"><use href="#flixitMark" /></svg>
-        <svg class="rail-item" viewBox="14 16 84 94"><use href="#flixitMark" /></svg>
-        <svg class="rail-item" viewBox="14 16 84 94"><use href="#flixitMark" /></svg>
-        <svg class="rail-item" viewBox="14 16 84 94"><use href="#flixitMark" /></svg>
-        <svg class="rail-item" viewBox="14 16 84 94"><use href="#flixitMark" /></svg>
+      <div class="rail-meta mono">
+        <span>BUILT IN FREMONT, CALIFORNIA</span>
+        <span>IOS &amp; ANDROID</span>
       </div>
     </div>
   </div>
