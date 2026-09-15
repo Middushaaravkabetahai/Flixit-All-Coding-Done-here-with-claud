@@ -12,13 +12,13 @@
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://flixit.info/" />
 <meta property="og:site_name" content="Flixit" />
-<meta property="og:title" content="Flixit — Your closet. Your style. Your next move." />
+<meta property="og:title" content="Flixit | Your closet. Your style. Your next move." />
 <meta property="og:description" content="Scan your closet, get daily outfits from what you already own, and find the best price on what you buy next. Launching October 20, 2026." />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Flixit — Your closet. Your style. Your next move." />
+<meta name="twitter:title" content="Flixit | Your closet. Your style. Your next move." />
 <meta name="twitter:description" content="Scan your closet, get daily outfits from what you already own, and find the best price on what you buy next. Launching October 20, 2026." />
 
-<title>Flixit — Your closet. Your style. Your next move.</title>
+<title>Flixit | Your closet. Your style. Your next move.</title>
 <style>
   :root {
     --ink: #18181b;
@@ -38,6 +38,11 @@
   }
 
   * { box-sizing: border-box; }
+
+  /* A class selector beats the UA stylesheet's [hidden], so make it explicit.
+     The screenshot strip below is marked hidden until the real screens are
+     photographed; drop the attribute to bring it back. */
+  [hidden] { display: none !important; }
 
   html {
     -webkit-text-size-adjust: 100%;
@@ -423,6 +428,37 @@
     max-width: 60ch;
   }
 
+  /* Build status. Stage names rather than numbers in the left column: the
+     stage is the information, and the order is already obvious from it. */
+  .progress { list-style: none; margin: 0; padding: 0; }
+  .progress li {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 0 24px;
+    padding: 18px 0;
+    border-top: 1px solid var(--line-on-ink);
+    align-items: baseline;
+  }
+  .progress li:last-child { border-bottom: 1px solid var(--line-on-ink); }
+  .progress .stage {
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    color: var(--on-ink-dim);
+    margin: 0;
+  }
+  .progress h3 { font-size: 17px; font-weight: 700; margin: 0 0 5px; }
+  .progress li p:last-child {
+    margin: 0;
+    font-size: 14.5px;
+    line-height: 1.5;
+    color: var(--on-ink-dim);
+    max-width: 58ch;
+  }
+
+  @media (max-width: 620px) {
+    .progress li { grid-template-columns: 1fr; gap: 7px; }
+  }
+
   /* ---------- launch band ---------- */
 
   .launch-inner {
@@ -551,8 +587,8 @@
 <!--
   The Flixit mark, defined once and reused via <use> wherever it appears.
 
-  Single flat colour, no gradient — `currentColor` means the mark inherits the
-  text colour of whatever section it sits in, so it is cream on the ink nav and
+  Single flat color, no gradient. `currentColor` means the mark inherits the
+  text color of whatever section it sits in, so it is cream on the ink nav and
   hero, and would come out ink on a cream section without any change here. One
   definition, correct on either ground. The gradient version still exists for
   the app icon (brand/flixit-app-icon.svg); it just isn't used on the site.
@@ -594,7 +630,7 @@
     <p class="tagline">Your closet. Your style. Your next move.</p>
     <p class="sub">
       Flixit turns the clothes you already own into daily outfits, and helps you find better
-      prices on everything else — one scan of your closet at a time.
+      prices on everything else, one scan of your closet at a time.
     </p>
 
     <div class="hero-actions">
@@ -622,9 +658,9 @@
       <div>
         <p class="count-note mono">UNTIL LAUNCH</p>
         <div class="countdown" id="countdown">
-          <div class="count-unit"><div class="n" id="cd-d">—</div><div class="u mono">DAYS</div></div>
-          <div class="count-unit"><div class="n" id="cd-h">—</div><div class="u mono">HRS</div></div>
-          <div class="count-unit"><div class="n" id="cd-m">—</div><div class="u mono">MIN</div></div>
+          <div class="count-unit"><div class="n" id="cd-d">00</div><div class="u mono">DAYS</div></div>
+          <div class="count-unit"><div class="n" id="cd-h">00</div><div class="u mono">HRS</div></div>
+          <div class="count-unit"><div class="n" id="cd-m">00</div><div class="u mono">MIN</div></div>
         </div>
       </div>
     </div>
@@ -695,7 +731,7 @@
           <rect x="6" y="6" width="15" height="20" rx="3.5" /><rect x="27" y="6" width="15" height="12" rx="3.5" /><rect x="6" y="32" width="15" height="10" rx="3.5" /><rect x="27" y="24" width="15" height="18" rx="3.5" />
         </svg>
         <h3>Your Style FYP</h3>
-        <p>A feed that reorders itself around what you scan, swipe, and save — not what someone paid to put in front of you.</p>
+        <p>A feed that reorders itself around what you scan, swipe, and save. Not what someone paid to put in front of you.</p>
       </article>
 
       <article class="tag">
@@ -719,17 +755,17 @@
 
     <div class="steps">
       <div class="step">
-        <p class="n">STEP 01 — WHAT YOU OWN</p>
+        <p class="n">STEP 01 · WHAT YOU OWN</p>
         <h3>Your wardrobe becomes your personal fashion database.</h3>
         <p>Scan your closet or add pieces one by one. Every item gets tagged by type, color, and brand.</p>
       </div>
       <div class="step">
-        <p class="n">STEP 02 — WHAT YOU WEAR</p>
+        <p class="n">STEP 02 · WHAT YOU WEAR</p>
         <h3>Flixit generates personalized daily outfits.</h3>
         <p>Built from your own closet first, matched to the occasion and to colors that actually work together.</p>
       </div>
       <div class="step">
-        <p class="n">STEP 03 — WHAT YOU WANT</p>
+        <p class="n">STEP 03 · WHAT YOU WANT</p>
         <h3>Flixit helps you discover and price-match new pieces.</h3>
         <p>See what fits your style next, then find where it costs the least before you buy it.</p>
       </div>
@@ -740,19 +776,51 @@
 <section class="band band-ink-soft" id="screens">
   <div class="wrap">
     <div class="section-head">
-      <h2>This is the app, running today.</h2>
-      <p class="kicker mono">SWIPE THROUGH — REAL SCREENS, NOT MOCKUPS</p>
+      <h2>The app is nearly finished.</h2>
+      <p class="kicker mono">WHERE THE BUILD STANDS</p>
     </div>
 
     <p class="screens-lead">
-      The build is feature-complete and running end to end. What's left between now and launch is
-      refinement — polish, small adjustments, and testing — rather than anything still to be built.
+      Flixit is built and running end to end. What is left before launch is finishing work rather
+      than new features: photographing the screens, a final round of testing, and the small
+      adjustments that come out of it.
     </p>
 
-    <div class="screens-scroll">
+    <ol class="progress">
+      <li>
+        <p class="stage mono">BUILD</p>
+        <div>
+          <h3>Complete</h3>
+          <p>Your closet, the daily outfit planner and the in-store scanner all work end to end.</p>
+        </div>
+      </li>
+      <li>
+        <p class="stage mono">SCREENSHOTS</p>
+        <div>
+          <h3>In progress</h3>
+          <p>Being photographed on a real phone with real clothes, rather than mocked up. They go up here as soon as they are shot.</p>
+        </div>
+      </li>
+      <li>
+        <p class="stage mono">TESTING</p>
+        <div>
+          <h3>Next</h3>
+          <p>A full pass on both iPhone and Android, then the touch-ups that come out of it.</p>
+        </div>
+      </li>
+      <li>
+        <p class="stage mono">LAUNCH</p>
+        <div>
+          <h3>October 20, 2026</h3>
+          <p>On the App Store and Google Play, both on the same day.</p>
+        </div>
+      </li>
+    </ol>
+
+    <div class="screens-scroll" hidden>
       <figure class="screen">
         <img src="screenshots/wardrobe.png" alt="The Wardrobe tab, showing a grid of tagged clothing items" width="780" height="1600" loading="lazy" />
-        <figcaption class="cap"><b>Wardrobe</b><span>Every piece you own, tagged by type, colour and brand.</span></figcaption>
+        <figcaption class="cap"><b>Wardrobe</b><span>Every piece you own, tagged by type, color and brand.</span></figcaption>
       </figure>
       <figure class="screen">
         <img src="screenshots/planner.png" alt="The Planner tab, showing a full outfit assembled from the wardrobe" width="780" height="1600" loading="lazy" />
@@ -773,8 +841,8 @@
     </div>
 
     <p class="screens-note">
-      Captured from the real app. The catalogue and pricing shown are sample data until the
-      retailer integrations go live — everything else is exactly what you'll get.
+      Prices and listings inside the app are sample data until the retailer integrations go live.
+      Everything else is the finished thing.
     </p>
   </div>
 </section>
@@ -835,7 +903,7 @@
       </details>
       <details>
         <summary>How does the closet scan work?</summary>
-        <p>You take one photo of your closet or a rack of clothes, and Flixit identifies the individual items in it. You review what it found — fixing the category, color, or brand on anything it got wrong — before it saves to your wardrobe.</p>
+        <p>You take one photo of your closet or a rack of clothes, and Flixit identifies the individual items in it. You review what it found and fix the category, color, or brand on anything it got wrong before it saves to your wardrobe.</p>
       </details>
       <details>
         <summary>Do I have to add every item by hand?</summary>
