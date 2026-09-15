@@ -1,0 +1,198 @@
+<meta charset="utf-8">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;900&family=Work+Sans:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap">
+<style>
+  @page { size: 8.5in 11in; margin: 0; }
+  /* US Letter portrait, 850x1100 CSS px. Rendered at 3x for 2550x3300 —
+     true 300dpi, so it prints properly as well as reading on screen. */
+  :root {
+    --paper: #f3ede3;
+    --ink: #18181b;
+    --dim: #6b6459;
+    --indigo: #3346e0;
+    --line: rgba(24, 24, 27, 0.16);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 850px; height: 1100px; overflow: hidden; }
+  body {
+    position: relative;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "Work Sans", sans-serif;
+  }
+  .mono { font-family: "Space Mono", monospace; }
+
+  /* ---- masthead spec bar, same device as the website ---- */
+  .spec {
+    display: flex;
+    justify-content: space-between;
+    font-family: "Space Mono", monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.17em;
+    color: var(--dim);
+    padding: 34px 58px 12px;
+  }
+  .rule { height: 1px; background: var(--line); margin-inline: 58px; }
+  .rule.heavy { height: 2.5px; background: var(--ink); }
+
+  /* ---- hero ---- */
+  .top { padding: 32px 58px 0; }
+  .mark { width: 56px; height: auto; display: block; margin-bottom: 22px; }
+  h1 {
+    font-family: "Archivo", "Arial Black", sans-serif;
+    font-weight: 900;
+    font-size: 126px;
+    line-height: 0.80;
+    letter-spacing: -0.038em;
+    margin-bottom: 26px;
+  }
+  .tagline {
+    font-size: 30px;
+    font-weight: 500;
+    line-height: 1.16;
+    letter-spacing: -0.015em;
+    margin-bottom: 20px;
+  }
+  .blurb {
+    font-size: 15px;
+    line-height: 1.55;
+    color: var(--dim);
+    max-width: 52ch;
+  }
+
+  /* ---- the five, as a contents list rather than an icon grid ---- */
+  .list { padding: 22px 58px 0; display: flex; flex-direction: column; }
+  .row {
+    display: grid;
+    grid-template-columns: 52px 1fr;
+    gap: 0 14px;
+    padding: 11.5px 0;
+    border-bottom: 1px solid var(--line);
+    align-items: baseline;
+  }
+  .row:first-child { border-top: 1px solid var(--line); }
+  .num {
+    font-family: "Space Mono", monospace;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--indigo);
+    letter-spacing: 0.08em;
+  }
+  .row h2 {
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: -0.005em;
+    margin-bottom: 3px;
+  }
+  .row p { font-size: 13.2px; line-height: 1.45; color: var(--dim); max-width: 62ch; }
+
+  /* ---- footer ---- */
+  .foot {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--ink);
+    color: var(--paper);
+    padding: 26px 58px 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 24px;
+  }
+  .people { display: flex; gap: 46px; }
+  .who .role {
+    font-family: "Space Mono", monospace;
+    font-size: 9.5px;
+    letter-spacing: 0.17em;
+    color: rgba(243, 237, 227, 0.55);
+    margin-bottom: 5px;
+  }
+  .who .name { font-size: 15px; font-weight: 600; letter-spacing: -0.005em; }
+  .who .mail { font-size: 12px; color: rgba(243, 237, 227, 0.68); margin-top: 2px; }
+  .url {
+    font-family: "Archivo", sans-serif;
+    font-weight: 700;
+    font-size: 25px;
+    letter-spacing: -0.015em;
+    white-space: nowrap;
+  }
+</style>
+
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <g id="m" fill="none" stroke="currentColor" stroke-width="12" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M52 42 V32 A10 10 0 1 0 32 32" /><path d="M52 42 V98" />
+      <path d="M52 42 H90" /><path d="M52 70 H78" />
+    </g>
+  </defs>
+</svg>
+
+<div class="spec">
+  <span>FLIXIT &mdash; FREMONT, CALIFORNIA</span>
+  <span>LAUNCHING 20.10.2026 &middot; IOS &amp; ANDROID</span>
+</div>
+<div class="rule heavy"></div>
+
+<div class="top">
+  <svg class="mark" viewBox="14 16 84 94"><use href="#m" /></svg>
+  <h1>FLIXIT</h1>
+  <p class="tagline">Your closet. Your style.<br>Your next move.</p>
+  <p class="blurb">
+    Flixit turns the clothes you already own into daily outfits, and helps you find
+    better prices on everything else &mdash; one scan of your closet at a time.
+  </p>
+</div>
+
+<div class="list">
+  <div class="row">
+    <div class="num">01</div>
+    <div>
+      <h2>Scan your closet</h2>
+      <p>Photograph your closet once and Flixit picks out each item, so you're not adding clothes one at a time.</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="num">02</div>
+    <div>
+      <h2>Plan your outfits</h2>
+      <p>Daily outfit recommendations built from your wardrobe, the occasion, and color coordination. Don't like it? Switch it up.</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="num">03</div>
+    <div>
+      <h2>Find the best price</h2>
+      <p>Scan something in a store and compare it against prices online before you pay full price for it.</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="num">04</div>
+    <div>
+      <h2>Swipe on Flixnder</h2>
+      <p>Swipe right on the pieces you like. Every swipe teaches Flixit what your style actually is.</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="num">05</div>
+    <div>
+      <h2>Your Style FYP</h2>
+      <p>A feed that reorders itself around what you scan, swipe and save &mdash; not what someone paid to put in front of you.</p>
+    </div>
+  </div>
+</div>
+
+<div class="foot">
+  <div class="people">
+    <div class="who">
+      <p class="role">FOUNDER</p>
+      <p class="name">Shaarav Jain</p>
+      <p class="mail">shaaravj@gmail.com</p>
+    </div>
+    <div class="who">
+      <p class="role">CO-FOUNDER</p>
+      <p class="name">Maahit Anand</p>
+      <p class="mail">maahit.anand@gmail.com</p>
+    </div>
+  </div>
+  <p class="url">flixit.info</p>
+</div>
