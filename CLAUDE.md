@@ -111,6 +111,44 @@ docs.expo.dev must be checked before writing code.
   main Flixit logo/identity is locked in — sub-marks should clearly read
   as "part of Flixit," not standalone brands.
 
+## How to describe Flixit
+
+Do not open with "it's a fashion app". It makes people picture shopping or
+influencers, and the next minute goes on correcting them. Lead with the
+problem, which everyone recognises instantly.
+
+**One-liner (memorise this one):**
+> You know how you have a closet full of clothes and still feel like you have
+> nothing to wear? Flixit fixes that.
+
+**The follow-up, when they ask how:**
+> You photograph your closet once and it works out what you own. Then every
+> day it puts an outfit together from things already in there. And when you
+> are out shopping you can scan something and it tells you whether it is
+> cheaper online.
+
+**The line that settles the "is it fashion or not" confusion:**
+> It's a closet app, not a shopping app. Most fashion apps exist to sell you
+> more clothes. Flixit is the opposite: it's about getting more out of the
+> ones you already bought.
+
+**Thirty seconds, for a judge, an investor or the agency:**
+> The average person wears about twenty percent of what they own. The rest
+> sits there because getting dressed is a decision you make in three minutes
+> while half asleep, and it is easier to reach for the same thing again.
+> Flixit scans your closet, learns what is in it, and hands you a finished
+> outfit every morning from clothes you already paid for. When you do buy
+> something new, you scan it in the shop and we check the price online first.
+> Two founders, built it ourselves, launching on iOS and Android in October.
+
+**Instagram bio length:**
+> Your closet, sorted. Daily outfits from clothes you already own.
+
+Never say "AI-powered wardrobe intelligence" or "personalised fashion
+discovery". Those are four buzzwords doing the job of one sentence, and they
+make a real product sound generated. Say what it does in the words a person
+would use.
+
 ## Status / Known Issues
 
 - **Phase 1 (Foundation) — built**: email/password auth, profile setup
