@@ -165,14 +165,19 @@ export default function Wardrobe() {
               >
                 <Text style={styles.deleteButtonText}>×</Text>
               </Pressable>
-              {imageUrls[item.id] && (
+              {/* Boolean() rather than a bare `string &&`: an empty string is
+                  falsy but still renders, and React Native throws on a text
+                  node inside a View. Blank colour and brand are stored as null
+                  today, so this is insurance against a future insert path that
+                  stores '' instead. */}
+              {Boolean(imageUrls[item.id]) && (
                 <Image
                   source={{ uri: imageUrls[item.id] }}
                   style={styles.cardImage}
                 />
               )}
               <Text style={styles.cardCategory}>{item.category}</Text>
-              {(item.brand || item.color) && (
+              {Boolean(item.brand || item.color) && (
                 <Text style={styles.cardMeta}>
                   {[item.brand, item.color].filter(Boolean).join(' · ')}
                 </Text>

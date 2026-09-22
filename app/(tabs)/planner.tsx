@@ -95,7 +95,10 @@ export default function Planner() {
               if (!item) return null;
               return (
                 <View key={slot} style={styles.slotCard}>
-                  {imageUrls[item.id] && (
+                  {/* Boolean() for the same reason as in the Closet tab: an
+                      empty string is falsy but still renders, and a text node
+                      inside a View throws on native. */}
+                  {Boolean(imageUrls[item.id]) && (
                     <Image
                       source={{ uri: imageUrls[item.id] }}
                       style={styles.slotImage}
@@ -103,7 +106,7 @@ export default function Planner() {
                   )}
                   <View>
                     <Text style={styles.slotLabel}>{slot}</Text>
-                    {(item.brand || item.color) && (
+                    {Boolean(item.brand || item.color) && (
                       <Text style={styles.slotMeta}>
                         {[item.brand, item.color].filter(Boolean).join(' · ')}
                       </Text>
