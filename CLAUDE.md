@@ -48,7 +48,26 @@ docs.expo.dev must be checked before writing code.
 - Supabase Storage for wardrobe photos
 
 **Data & AI**
-- Affiliate APIs: ShopStyle Collective, Rakuten, Amazon Associates
+- Affiliate APIs: **the original three are no longer a viable plan.** Checked
+  Sep 2026:
+  - **ShopStyle Collective (Collective Voice) is shut down.** Links deactivated
+    31 Mar 2026, final payouts 19 Jul 2026. Both dates have passed. Gone.
+  - **Amazon PA-API was deprecated 15 May 2026** and stopped accepting new
+    customers. Its replacement, the **Creators API, requires 10 qualified sales
+    in the trailing 30 days before it grants access** — circular for us, since
+    we need products to make sales. Amazon cannot be the first integration.
+    Plain Associates links (no API) do work and are how the first sales get
+    earned. Also: Associates requires the account holder to be **18+**, so a
+    parent must register and own it.
+  - **Rakuten is still open** but approves per advertiser and expects real
+    traffic, which we do not have pre-launch.
+  - **Realistic first source: Awin** (accepts a website or social handle, $1
+    refundable deposit) or an aggregator like **Skimlinks / Sovrn Commerce**,
+    which reach many networks through one integration and impose no sales
+    threshold.
+  - Seam is built: `src/lib/deals.ts` defines `DealsProvider` and exports
+    `provider = null`, mirroring `localPricing.ts`. Implement it against
+    whichever network approves first; nothing downstream changes.
 - Clothing recognition (Phase 4): Claude API (vision) or Google Cloud Vision
 - Outfit planner (Phase 3): rule-based first, then Claude API
 
