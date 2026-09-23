@@ -63,6 +63,10 @@ export default function SignIn() {
         )}
       </Pressable>
 
+      <Link href="/(auth)/forgot-password" style={styles.link}>
+        Forgot your password?
+      </Link>
+
       <Link href="/(auth)/sign-up" style={styles.link}>
         Don't have an account? Sign up
       </Link>
@@ -95,5 +99,5 @@ const styles = StyleSheet.create({
   },
   buttonText: { color: '#fff', fontSize: 16, fontWeight: '600' },
   error: { color: '#d33', textAlign: 'center' },
-  link: { textAlign: 'center', marginTop: 16, color: '#111' },
+  link: { textAlign: 'center', marginTop: 14, color: '#111' },
 });

@@ -236,6 +236,19 @@ would use.
   in `mockDeals.ts`, flip `SHOW_DEAL_FEEDS` to `true`.** That's the whole change.
   So v1 = Closet, Planner, Scan, Profile — four tabs, every one backed by real
   data.
+- **Privacy policy — now hosted, which unblocks submission.** Both stores
+  require a publicly reachable privacy policy URL before you can submit, and it
+  previously existed only as `legal/privacy-policy.md` in the repo. It is now
+  published at **https://flixit.info/privacy/** (`website/privacy/index.html`),
+  linked from the site footer and from the Profile tab in the app. When the
+  policy changes, edit the markdown and regenerate the page; the two must not
+  drift, and the store data-safety forms have to match both.
+- **Password reset — built.** `app/(auth)/forgot-password.tsx` sends a Supabase
+  recovery email; `app/(auth)/reset-password.tsx` is where the deep link lands
+  (`flixit://reset-password`, via the `scheme` in app.json). Without it a
+  forgotten password locked someone out of their closet permanently. The
+  confirmation wording is identical whether or not the address exists, so the
+  screen cannot be used to discover which emails are registered.
 - **Cleanup pending:** GoDaddy auto-created a WebsiteBuilder "Launching Soon"
   site on this domain. It's been overridden by the DNS change but still exists
   under GoDaddy > Website. Delete it, or GoDaddy may re-add its own `A` record

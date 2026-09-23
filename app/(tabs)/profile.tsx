@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import {
   ActivityIndicator,
+  Linking,
   Modal,
   Pressable,
   StyleSheet,
@@ -148,6 +149,12 @@ export default function Profile() {
         <Text style={styles.buttonText}>Sign out</Text>
       </Pressable>
 
+      {/* Both stores expect the privacy policy to be reachable from inside an
+          app that holds accounts, not only from the store listing. */}
+      <Pressable onPress={() => Linking.openURL('https://flixit.info/privacy/')}>
+        <Text style={styles.policyLink}>Privacy policy</Text>
+      </Pressable>
+
       <Pressable onPress={() => { setConfirmText(''); setError(null); setDeleting(true); }}>
         <Text style={styles.deleteLink}>Delete account</Text>
       </Pressable>
@@ -238,6 +245,12 @@ const styles = StyleSheet.create({
   buttonText: { color: '#fff', fontWeight: '600' },
   editButton: { backgroundColor: '#eee', marginTop: 'auto', marginBottom: 0 },
   editButtonText: { color: '#111', fontWeight: '600' },
+  policyLink: {
+    color: '#666',
+    fontSize: 14,
+    textAlign: 'center',
+    paddingTop: 14,
+  },
   deleteLink: {
     color: '#d33',
     fontSize: 14,
