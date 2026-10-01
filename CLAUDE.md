@@ -1,8 +1,9 @@
 # Flixit
 
-Fashion-tech app for everyday fashion lovers and aspiring designers. Scans your
-wardrobe, learns your style, and connects you to the best deals — online and
-in person.
+A closet app, not a shopping app. Photograph your wardrobe once, get a daily
+outfit built from clothes you already own, and check prices before you buy
+anything new. See "How to describe Flixit" below for the wording that works;
+do not open with "fashion app".
 
 Team: Shaarav + Maahit lead, Claude Code assists. Read this file at the start
 of every session — it's the durable plan so no context is lost between
@@ -14,23 +15,28 @@ docs.expo.dev must be checked before writing code.
 
 ## Features
 
-| # | Feature | Description |
-|---|---------|-------------|
-| 1 | Style FYP | Pinterest-style discovery feed showing curated deals matching personal style, based on wardrobe scan + activity. |
-| 2 | Flixnder | Tinder-style swipe on clothes. Swipe right on items you like; surfaces best prices and retailer options. |
-| 3 | Scan & Price Match | Scan an item in person to compare prices online and at nearby stores in real time. |
-| 4 | Unified Personalization | Everything scanned/swiped/saved feeds back into the FYP for continuous tailoring. |
-| 5 | Flixit Wardrobe Scan | Flagship feature. Photograph your closet, get a daily outfit planner from clothes you own. "Switch it up" button for alternatives. |
+**Shipping in v1 (Oct 2026): 3, 5 and the Profile tab. Features 1, 2 and 4
+are built but hidden behind `SHOW_DEAL_FEEDS=false` — see Status.**
+
+| # | Feature | v1? | Description |
+|---|---------|-----|-------------|
+| 1 | Style FYP | hidden | Pinterest-style discovery feed showing curated deals matching personal style, based on wardrobe scan + activity. |
+| 2 | Flixnder | hidden | Tinder-style swipe on clothes. Swipe right on items you like; surfaces best prices and retailer options. |
+| 3 | Scan & Price Match | YES | Scan an item in person to compare prices online and at nearby stores in real time. |
+| 4 | Unified Personalization | hidden | Everything scanned/swiped/saved feeds back into the FYP for continuous tailoring. |
+| 5 | Flixit Wardrobe Scan | YES | Flagship feature. Photograph your closet, get a daily outfit planner from clothes you own. "Switch it up" button for alternatives. |
 
 ## MVP Roadmap
 
 - **Phase 1 — Foundation**: user accounts, profile setup, manual wardrobe upload (photograph + tag items: type, color, brand). No AI scanning yet.
-- **Phase 2 — Flixnder + Deals Feed**: swipe interface pulling from affiliate APIs (Amazon Associates, ASOS, ShopStyle, Rakuten). Swipes train a preference profile. Simple FYP feed. Revenue starts here (affiliate links).
+- **Phase 2 — Flixnder + Deals Feed**: swipe interface pulling from an affiliate network. Swipes train a preference profile. Simple FYP feed. Revenue starts here (affiliate links). **The networks originally named here are obsolete — see Tech Stack. Hidden in v1.**
 - **Phase 3 — Outfit Planner**: daily outfit suggestions from uploaded closet, rule-based first (color/weather/occasion), "switch it up" button.
 - **Phase 4 — Smart Scanning**: computer vision for whole-closet scan and in-store item scan/price-match.
 - **Phase 5 — Local Price Matching**: in-mall/in-store comparison. Needs retailer data partnerships — stretch goal.
 
-**Current status: Phases 1–4 built and pushed. See Status below for what's real vs. placeholder.**
+**Current status (1 Oct 2026): Phases 1-4 built and pushed; Phase 5 is a seam
+only. v1 ships four tabs (Closet, Planner, Scan, Profile), each backed by real
+data. The build window is NOW: Oct 5-10, launch Oct 20.**
 
 ## Tech Stack
 
@@ -68,6 +74,17 @@ docs.expo.dev must be checked before writing code.
   - Seam is built: `src/lib/deals.ts` defines `DealsProvider` and exports
     `provider = null`, mirroring `localPricing.ts`. Implement it against
     whichever network approves first; nothing downstream changes.
+  - **Awin signup, when a parent does it:** awin.com > Publishers > Sign up.
+    Requires 18+, a card for the small refundable deposit (identity check, not
+    a fee; refunded at first payout), and tax plus bank details. Promotional
+    URLs are flixit.info and the Instagram handle. Approval usually inside 24
+    hours on a weekday. The application asks how you promote products; vague
+    answers get rejected. Say that Flixit is a mobile app launching Oct 2026,
+    users build a digital closet and get daily outfits, products are surfaced
+    in-app with affiliate links clearly disclosed, traffic comes from the app
+    and flixit.info, and explicitly that **we are not a coupon or cashback site
+    and do not bid on advertiser brand terms** — those two are the most common
+    rejection reasons.
 - Clothing recognition (Phase 4): Claude API (vision) or Google Cloud Vision
 - Outfit planner (Phase 3): rule-based first, then Claude API
 
@@ -177,9 +194,10 @@ would use.
 - **Phase 2 (Flixnder + Deals Feed) — partially built**: swipe UI, swipe
   persistence (`swipes` table), and FYP re-ranking by category preference
   all work end to end. What's still placeholder: the deal catalog itself
-  (`src/data/mockDeals.ts`) is 5 hardcoded items, not live listings — needs
-  real affiliate API keys (ShopStyle/Rakuten/Amazon Associates) from
-  Shaarav/Maahit before it can be swapped in.
+  (`src/data/mockDeals.ts`) is 5 hardcoded items, not live listings. Needs an
+  approved affiliate network account, which only a parent can open (18+). See
+  Tech Stack for why the three originally planned networks no longer work, and
+  `src/lib/deals.ts` for the seam that is already in place.
 - **Phase 3 (Outfit Planner) — built**: rule-based daily outfit planner
   (`app/(tabs)/planner.tsx`) groups your wardrobe by category and picks one
   item per slot, with a "switch it up" re-roll. No AI yet, per plan.
@@ -189,10 +207,11 @@ would use.
     category/color/brand per item, then bulk-save. All detected items from
     one photo share that source image (no per-item cropping yet).
   - Scan & Price Match tab (`app/(tabs)/scan.tsx`): photograph a single item,
-    Claude vision identifies it, shows mock online prices (placeholder, same
-    affiliate-API dependency as Phase 2) and mock nearby-store prices
-    (placeholder — real in-store pricing is the Phase 5 stretch goal, no data
-    source exists for it yet at all).
+    Claude vision identifies it, then offers a real Google Shopping search for
+    what it found. The invented prices that used to sit here are gone, replaced
+    under `SHOW_DEAL_FEEDS=false`. Nearby-store pricing shows an honest "coming
+    soon" block: that is the Phase 5 stretch goal and no data source exists for
+    it yet.
   - Both scan flows call a Supabase Edge Function
     (`supabase/functions/identify-clothing-items`) that does the actual
     Claude vision call server-side, so the API key never ships in the app.
@@ -249,6 +268,31 @@ would use.
   forgotten password locked someone out of their closet permanently. The
   confirmation wording is identical whether or not the address exists, so the
   screen cannot be used to discover which emails are registered.
+- **App icons — replaced (was a guaranteed rejection).** `assets/icon.png` was
+  still the Expo scaffold artwork: a blue chevron on pale blue with the
+  construction guides visible, and the Android adaptive background was Expo's
+  `#E6F4FE`. All six assets are now generated from the Flowing F. Three traps
+  worth remembering if they are ever regenerated:
+  - **iOS rejects icons with an alpha channel.** `icon.png` must be flattened
+    to RGB or the build fails with an unhelpful error.
+  - **Android crops adaptive icons.** The launcher applies its own mask and
+    only the centre ~66% is guaranteed visible, so the mark sits at 50% of the
+    canvas. Verified by compositing a circular mask, not by assuming.
+  - **A monochrome layer is required** for Android themed icons, or Android
+    generates a poor one from the foreground.
+- **Bundle identifiers set:** `info.flixit.app` for both iOS `bundleIdentifier`
+  and Android `package`, with scheme `flixit`. Both stores need these before a
+  build can be submitted, and **the bundle ID is permanently tied to the App
+  Store listing once used** — changing it later means a new listing.
+- **Conventions worth keeping:**
+  - **Never write `{someString && <Element/>}` in a React Native screen.** An
+    empty string is falsy but still renders, and a text node inside a `View`
+    throws on native. Use `Boolean(...)`. Fixed in the Closet and Planner after
+    it surfaced while running the app locally.
+  - **Blank form fields are stored as `null`, never `''`.** The add-item form
+    converts with `|| undefined`. Anything that inserts wardrobe rows must do
+    the same or the Closet tab breaks.
+
 - **Cleanup pending:** GoDaddy auto-created a WebsiteBuilder "Launching Soon"
   site on this domain. It's been overridden by the DNS change but still exists
   under GoDaddy > Website. Delete it, or GoDaddy may re-add its own `A` record
@@ -296,11 +340,60 @@ would use.
   - Launching first raises the price: pre-launch with zero users is the weakest
     possible negotiating position, so the Oct 20 date serves this too.
 
+## Gotchas when working in this sandbox
+
+Each of these cost time once. None is obvious from the code.
+
+- **Google Fonts do not render in headless Chrome here.** The CSS and the woff2
+  files fetch fine with curl, but Chrome silently ignores the `<link>`, so
+  everything falls back to DejaVu. Several brand exports were rendered in the
+  wrong typefaces before this was caught. **Verify by measuring**, not by eye:
+  render the same string in the intended family and in a deliberately
+  nonexistent one and compare widths. If they match, the font did not load. The
+  fix is to base64-inline the latin subsets as `@font-face` rules; the flyer and
+  story sources already do.
+- **`--window-size` includes window chrome.** A screenshot at `--window-size=
+  850,1100` captures a 1013px-tall viewport and silently crops the bottom 87px.
+  This looked exactly like a broken CSS layout and was chased as one for three
+  rounds. Probe `window.innerHeight` before concluding anything about layout.
+- **The live site is unaffected by both of the above.** Real browsers load fonts
+  normally. Only locally rendered assets were ever wrong.
+- **`currentColor` inherits link colour.** The mark uses `currentColor` so it
+  flips ink/cream automatically, but inside an `<a>` it picks up the link
+  colour and turned indigo on the privacy page. Any nav wrapping the mark in a
+  link needs an explicit colour.
+- **Running the app locally needs Supabase stubs.** There are no credentials in
+  the sandbox, so the app shows its "Almost there" setup gate. Stub
+  `isSupabaseConfigured`, and for populated screens also `AuthContext` and
+  `listWardrobeItems`. **Back the files up first and restore from the backup,
+  and verify with a search that no stub survived** — `git checkout --` discards
+  any real edit made in the same file since.
+
 ## Workflow
 
-- Branch: `claude/flixit-features-overview-mxin9i` (or whatever the active
+- Branch: `claude/flixit-features-overview-5q0oah` (or whatever the active
   session's designated branch is) — all work happens there, PR into `main`.
 - Shaarav and Maahit each run Claude Code (desktop or web) pointed at this
   same GitHub repo. Work on different features, merge via GitHub as normal.
-- This file is the single source of truth for scope — update it when the
-  plan changes so every session (and teammate) stays in sync.
+- This file is the single source of truth for scope. Update it when the plan
+  changes so every session, and every teammate, stays in sync.
+
+## Left before launch
+
+**Needs Shaarav or Maahit (cannot be done from here):**
+- Retake app screenshots on a real phone with real clothes. Needed for the
+  store listings and for `website/screenshots/`, which are still grey boxes.
+- `supabase functions deploy identify-clothing-items` and
+  `supabase functions deploy delete-account`, plus
+  `supabase secrets set ANTHROPIC_API_KEY=...`. Until then scanning and account
+  deletion show an error instead of working.
+- Open the Awin account (a parent, 18+). Starts a clock that cannot be shortened.
+- Delete the GoDaddy WebsiteBuilder site.
+- Apple Developer and Google Play accounts. **Google Play requires 12 testers
+  for 14 days** for new personal developer accounts, so this has to start well
+  before Oct 20.
+
+**Still to do in the repo:**
+- App Store and Play Store listing copy: name, subtitle, description, keywords.
+- Redraw the five feature sub-marks to match the Flowing F. They are still
+  geometric and no longer read as the same family.
