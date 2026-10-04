@@ -1,8 +1,42 @@
-import { Slot, useRouter, useSegments } from 'expo-router';
+import { Slot, useRouter, useSegments, type ErrorBoundaryProps } from 'expo-router';
 import { useEffect } from 'react';
-import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
+import { ActivityIndicator, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { AuthProvider, useAuth } from '../src/contexts/AuthContext';
 import { isSupabaseConfigured } from '../src/lib/supabase';
+
+/**
+ * Catches any error thrown anywhere below this layout, which is the whole app.
+ *
+ * Without it, one unhandled error drops the user on a blank screen in a release
+ * build with no way out but force-quitting. Expo Router picks this up purely
+ * from the export name; `retry` re-renders the route that threw, so a transient
+ * failure (a dropped request mid-load) recovers without restarting the app.
+ *
+ * The raw message is shown deliberately. It looks unpolished, but it is the
+ * difference between a user saying "it broke" and them sending a screenshot we
+ * can actually act on, which matters a lot in the first weeks after launch.
+ */
+export function ErrorBoundary({ error, retry }: ErrorBoundaryProps) {
+  return (
+    <View style={styles.errorContainer}>
+      <Text style={styles.errorTitle}>Something went wrong.</Text>
+      <Text style={styles.errorBody}>
+        That is our fault, not yours. Your closet is safe. Try again, and if it keeps
+        happening send us the message below.
+      </Text>
+
+      <ScrollView style={styles.errorDetail} contentContainerStyle={{ padding: 14 }}>
+        <Text style={styles.errorDetailText}>{error.message}</Text>
+      </ScrollView>
+
+      <Pressable style={styles.errorButton} onPress={retry}>
+        <Text style={styles.errorButtonText}>Try again</Text>
+      </Pressable>
+
+      <Text style={styles.errorContact}>flixitteam@gmail.com</Text>
+    </View>
+  );
+}
 
 function SetupRequired() {
   return (
@@ -77,4 +111,28 @@ const styles = StyleSheet.create({
   setupSteps: { gap: 12, backgroundColor: '#f5f5f5', borderRadius: 12, padding: 16 },
   setupStep: { fontSize: 14, lineHeight: 20 },
   setupNote: { color: '#999', fontSize: 12, textAlign: 'center', marginTop: 16 },
+
+  errorContainer: { flex: 1, justifyContent: 'center', padding: 28, gap: 10 },
+  errorTitle: { fontSize: 24, fontWeight: '700', textAlign: 'center' },
+  errorBody: {
+    color: '#666',
+    textAlign: 'center',
+    lineHeight: 21,
+    marginBottom: 8,
+  },
+  errorDetail: {
+    maxHeight: 140,
+    backgroundColor: '#f5f5f5',
+    borderRadius: 10,
+  },
+  errorDetailText: { fontSize: 12.5, color: '#444', lineHeight: 18 },
+  errorButton: {
+    backgroundColor: '#111',
+    borderRadius: 8,
+    padding: 14,
+    alignItems: 'center',
+    marginTop: 8,
+  },
+  errorButtonText: { color: '#fff', fontSize: 16, fontWeight: '600' },
+  errorContact: { color: '#999', fontSize: 12, textAlign: 'center', marginTop: 4 },
 });

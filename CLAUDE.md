@@ -284,6 +284,20 @@ would use.
   and Android `package`, with scheme `flixit`. Both stores need these before a
   build can be submitted, and **the bundle ID is permanently tied to the App
   Store listing once used** — changing it later means a new listing.
+- **Error boundary — added.** `app/_layout.tsx` exports `ErrorBoundary`, which
+  Expo Router picks up by name; being on the root layout it catches anything
+  thrown anywhere in the app. Without it one unhandled error leaves a release
+  build on a blank screen with no way out but force-quitting. `retry` re-renders
+  the route that threw, so a dropped request recovers without a restart. The raw
+  error message is shown on purpose: it turns "it broke" into a screenshot that
+  can be acted on.
+- **Store listing copy — written, see `store-listing.md`.** App name, subtitle,
+  short and full descriptions, keywords, category, age rating, the data-safety
+  table and reviewer notes, all inside the character caps (verified by counting,
+  not estimating). Two things still have to be filled in by hand before
+  submitting: **a real demo account with items already in it**, and the four
+  screenshots. An account-gated app the reviewer cannot sign into is one of the
+  most common rejections.
 - **Conventions worth keeping:**
   - **Never write `{someString && <Element/>}` in a React Native screen.** An
     empty string is falsy but still renders, and a text node inside a `View`
@@ -394,6 +408,5 @@ Each of these cost time once. None is obvious from the code.
   before Oct 20.
 
 **Still to do in the repo:**
-- App Store and Play Store listing copy: name, subtitle, description, keywords.
 - Redraw the five feature sub-marks to match the Flowing F. They are still
   geometric and no longer read as the same family.
