@@ -8,6 +8,10 @@ See `CLAUDE.md` for the full plan and current status.
 **To get it running on a phone for a demo, see `DEMO.md`** — that is the fast
 path and does not involve the app stores at all.
 
+**To see what it looks like without running it, open
+[`preview/flixit-screens.png`](preview/flixit-screens.png)** — every screen on
+one sheet, captured from the running app.
+
 ## Setup
 
 1. Install dependencies:
