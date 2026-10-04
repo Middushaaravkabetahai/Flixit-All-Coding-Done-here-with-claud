@@ -5,6 +5,11 @@ outfit built from clothes you already own, and check prices before you buy
 anything new. See "How to describe Flixit" below for the wording that works;
 do not open with "fashion app".
 
+**Demoing before launch: see `DEMO.md`.** Running on a real phone via Expo Go
+needs no store submission at all, so a family or buyer demo is available weeks
+before the stores are. The two tracks are independent; do not let store review
+hold up a pitch.
+
 Team: Shaarav + Maahit lead, Claude Code assists. Read this file at the start
 of every session — it's the durable plan so no context is lost between
 sessions/environments.
