@@ -34,7 +34,8 @@
     "web": "expo start --web",
     "typecheck": "tsc --noEmit",
     "test": "node --test \"src/**/*.test.ts\"",
-    "check": "npm run typecheck && npm test"
+    "check": "npm run typecheck && npm test && npm run icons:check",
+    "icons:check": "node scripts/check-icons.mjs"
   },
   "private": true
 }

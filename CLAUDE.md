@@ -142,9 +142,24 @@ data. The build window is NOW: Oct 5-10, launch Oct 20.**
 - **Wordmark: Bodoni Moda 600.** The brand name is set in the display serif;
   section headings stay Archivo. High-contrast serif needs near-zero tracking,
   not the negative tracking the grotesque wanted.
-- **Sub-marks still need redrawing.** The five feature icons in
-  `src/components/icons.tsx` and on the site are still geometric, from the old
-  mark's era. Next to the flowing parent they no longer read as one family.
+- **Sub-marks — redrawn to match the Flowing F (Oct 2026).** The five feature
+  icons were geometric, from the old mark's era. They now borrow the parent's
+  traits: scan-bracket corners turn on a radius-4 arc instead of folding at a
+  right angle, the FYP tiles carry the same forward `skewX(-6)` as the parent's
+  stem, the Planner's rail and tick lift to the right the way both arms do, and
+  the Wardrobe hanger uses the parent's own hook. Verified legible at 26px and
+  18px, and on dark.
+  Two things were tried and rejected, recorded in `brand/icons/_family-rules.md`
+  so they are not re-opened: a hook on the price tag (it collided with the tag
+  body and blobbed at 26px, breaking the parent's own rule that the hook must
+  curl away), and redrawing the set as single flowing strokes to match the
+  parent literally — wrong goal, since these are pictograms read at 26px next
+  to a word, not a monogram seen large and alone. They are siblings of the F,
+  not copies of it.
+  **The same geometry lives in three files and drifts silently**
+  (`brand/icons/*.svg`, `src/components/icons.tsx`, `website/index.html`).
+  `npm run icons:check` compares all three and fails if they disagree; it is
+  part of `npm run check`.
 - **Sub-branding (future, not started)**: eventually each major feature —
   Planner, Scan & Price Match ("Scanner"), Flixnder, FYP, Wardrobe Scan —
   should get its own small logo/icon, the way big apps give sub-features
@@ -450,5 +465,5 @@ Each of these cost time once. None is obvious from the code.
   before Oct 20.
 
 **Still to do in the repo:**
-- Redraw the five feature sub-marks to match the Flowing F. They are still
-  geometric and no longer read as the same family.
+- Nothing blocking. The sub-marks are redrawn, the planner bugs are fixed, and
+  `npm run check` (typecheck + tests + icon drift) passes clean.
