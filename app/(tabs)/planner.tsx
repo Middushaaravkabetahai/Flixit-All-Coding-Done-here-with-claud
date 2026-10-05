@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useRef, useState } from 'react';
 import { useFocusEffect } from 'expo-router';
 import {
   ActivityIndicator,
@@ -11,8 +11,10 @@ import {
 import { useAuth } from '../../src/contexts/AuthContext';
 import {
   buildOutfit,
+  dailySeed,
   hasEnoughForOutfit,
   OUTFIT_SLOTS,
+  reRollableSlots,
   type Outfit,
 } from '../../src/lib/outfitPlanner';
 import {
@@ -29,21 +31,40 @@ export default function Planner() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
+  // What the closet looked like when the outfit on screen was built. Leaving
+  // the tab and coming back should NOT silently deal a new outfit — it is
+  // "Today's Fit", so it only changes when the day changes, when the closet
+  // changes, or when you ask for a new one.
+  const builtFrom = useRef<string | null>(null);
+
+  const loadImages = async (target: Outfit) => {
+    const urls = await Promise.all(
+      Object.values(target).map(
+        async (item) => [item.id, await getWardrobeImageUrl(item.image_path)] as const
+      )
+    );
+    setImageUrls((prev) => ({ ...prev, ...Object.fromEntries(urls) }));
+  };
+
   const load = useCallback(async () => {
     if (!session) return;
-    setLoading(true);
     setError(null);
     try {
       const data = await listWardrobeItems(session.user.id);
       setItems(data);
-      const nextOutfit = buildOutfit(data);
+
+      // Seeded on the user and today's local date, so the same outfit comes
+      // back on every open until tomorrow.
+      const signature = `${dailySeed(session.user.id)}:${data
+        .map((item) => item.id)
+        .sort()
+        .join(',')}`;
+      if (builtFrom.current === signature) return;
+      builtFrom.current = signature;
+
+      const nextOutfit = buildOutfit(data, { seed: dailySeed(session.user.id) });
       setOutfit(nextOutfit);
-      const urls = await Promise.all(
-        Object.values(nextOutfit).map(
-          async (item) => [item.id, await getWardrobeImageUrl(item.image_path)] as const
-        )
-      );
-      setImageUrls(Object.fromEntries(urls));
+      await loadImages(nextOutfit);
     } catch (e) {
       setError(e instanceof Error ? e.message : 'Failed to load your closet');
     } finally {
@@ -58,14 +79,11 @@ export default function Planner() {
   );
 
   const switchItUp = async () => {
-    const nextOutfit = buildOutfit(items);
+    // `avoid` is what stops a re-roll dealing the identical outfit back. Every
+    // slot with more than one item in it is guaranteed to change.
+    const nextOutfit = buildOutfit(items, { avoid: outfit });
     setOutfit(nextOutfit);
-    const urls = await Promise.all(
-      Object.values(nextOutfit).map(
-        async (item) => [item.id, await getWardrobeImageUrl(item.image_path)] as const
-      )
-    );
-    setImageUrls((prev) => ({ ...prev, ...Object.fromEntries(urls) }));
+    await loadImages(nextOutfit);
   };
 
   if (loading) {
@@ -117,9 +135,18 @@ export default function Planner() {
             })}
           </View>
 
-          <Pressable style={styles.switchButton} onPress={switchItUp}>
-            <Text style={styles.switchButtonText}>Switch it up</Text>
-          </Pressable>
+          {/* With one item per category there is nothing to swap to, so the
+              button is replaced rather than left there doing nothing. */}
+          {reRollableSlots(items) > 0 ? (
+            <Pressable style={styles.switchButton} onPress={switchItUp}>
+              <Text style={styles.switchButtonText}>Switch it up</Text>
+            </Pressable>
+          ) : (
+            <Text style={styles.hint}>
+              Add a second top, bottom or pair of shoes and you can switch this
+              outfit up.
+            </Text>
+          )}
         </>
       )}
     </View>
@@ -156,4 +183,11 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   switchButtonText: { color: '#fff', fontWeight: '600' },
+  hint: {
+    color: '#666',
+    textAlign: 'center',
+    marginTop: 20,
+    paddingHorizontal: 24,
+    lineHeight: 20,
+  },
 });

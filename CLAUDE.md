@@ -206,6 +206,24 @@ would use.
 - **Phase 3 (Outfit Planner) — built**: rule-based daily outfit planner
   (`app/(tabs)/planner.tsx`) groups your wardrobe by category and picks one
   item per slot, with a "switch it up" re-roll. No AI yet, per plan.
+  Two bugs here were found and fixed by running it, and both would have shown
+  up in a demo:
+  - **"Switch it up" used to deal the same outfit back.** Each slot was picked
+    with `Math.random()` and no memory of the last pick, so on an 8-item closet
+    12.7% of taps changed nothing at all and any individual slot stuck half the
+    time. `buildOutfit(items, { avoid })` now excludes the current item from
+    every slot that owns more than one, so a tap always visibly changes
+    something. Where no slot can change, the button is replaced with a line
+    telling you to add a second top or bottom, rather than sitting there doing
+    nothing.
+  - **"Today's Fit" was not daily.** It rebuilt at random on every tab focus,
+    so the outfit changed each time you looked away. It is now seeded from
+    `dailySeed(userId)` — the user id plus the **local** date, since a UTC day
+    boundary falls mid-evening in California — so it is stable all day and
+    rolls over at local midnight. A re-roll survives navigating away;
+    `builtFrom` tracks the closet contents so it only rebuilds when the day or
+    the closet actually changes.
+  - Both are covered by `src/lib/outfitPlanner.test.ts`.
 - **Phase 4 (Smart Scanning) — built, needs one manual setup step**:
   - Whole-closet scan: "Scan Closet" button in Wardrobe (`app/scan-closet.tsx`)
     takes one photo, Claude vision identifies each item, you review/edit
@@ -311,6 +329,25 @@ would use.
   - **Blank form fields are stored as `null`, never `''`.** The add-item form
     converts with `|| undefined`. Anything that inserts wardrobe rows must do
     the same or the Closet tab breaks.
+  - **Never call `Linking.openURL` directly — use `openExternal`
+    (`src/lib/openExternal.ts`).** `openURL` returns a promise that rejects
+    when nothing can handle the URL, so called bare the tap does nothing at all
+    and the rejection goes unhandled. `openExternal` catches it and tells the
+    user. It matters most on the privacy policy link, which App Review taps,
+    and on the Scan tab's price search, which is that tab's whole payoff.
+    `Alert.alert` is a no-op on react-native-web, so the helper falls back to
+    `window.alert` there.
+
+- **Tests — `npm test`, no framework and no build step.** Node runs the
+  TypeScript directly (`node --test "src/**/*.test.ts"`), and `import type` is
+  erased, so a test can use the `WardrobeItem` type without dragging Supabase
+  into the test process. `npm run check` is typecheck plus tests, and is what to
+  run before pushing. This needs `allowImportingTsExtensions` and
+  `types: ["node", "react"]` in tsconfig: Expo's base config sets
+  `customConditions: ["react-native"]`, under which TypeScript silently skips
+  `node:`-prefixed imports and reports the unhelpful "looks like an absolute
+  URI". Adding the explicit `types` array was verified not to weaken the app's
+  own typechecking — a deliberate type error still fails `tsc`.
 
 - **Cleanup pending:** GoDaddy auto-created a WebsiteBuilder "Launching Soon"
   site on this domain. It's been overridden by the DNS change but still exists
