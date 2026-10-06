@@ -4,10 +4,6 @@ A closet app, not a shopping app. Photograph your wardrobe once, get a daily
 outfit built from clothes you already own, and check prices before you buy
 anything new.
 
-See `CLAUDE.md` for the full plan and current status.
-**To get it running on a phone for a demo, see `DEMO.md`** — that is the fast
-path and does not involve the app stores at all.
-
 **To see what it looks like without running it, open
 [`preview/flixit-screens.png`](preview/flixit-screens.png)** — every screen on
 one sheet, captured from the running app.
@@ -61,5 +57,4 @@ swipes) both work end to end, but the catalog behind them is placeholder data.
 They are switched off by `SHOW_DEAL_FEEDS = false` in `src/config/features.ts`
 until a real affiliate feed exists. Flip that one constant to bring them back.
 
-See `CLAUDE.md` for why the originally planned affiliate networks no longer
-work and what replaces them, and `store-listing.md` for the store copy.
+`store-listing.md` has the App Store and Play Store copy.
