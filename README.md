@@ -58,3 +58,4 @@ They are switched off by `SHOW_DEAL_FEEDS = false` in `src/config/features.ts`
 until a real affiliate feed exists. Flip that one constant to bring them back.
 
 `store-listing.md` has the App Store and Play Store copy.
+`LAUNCH.md` is the ordered checklist for getting it onto both stores.
