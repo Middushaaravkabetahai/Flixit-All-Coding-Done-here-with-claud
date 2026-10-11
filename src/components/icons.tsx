@@ -8,7 +8,7 @@
 // focused/unfocused state, matching the `stroke="currentColor"` the SVG
 // originals use.
 import type { ColorValue } from 'react-native';
-import Svg, { Circle, Path, Rect } from 'react-native-svg';
+import Svg, { Circle, G, Path, Rect } from 'react-native-svg';
 
 export type IconProps = {
   /** ColorValue rather than string: this is what expo-router's tabBarIcon hands us. */
@@ -39,10 +39,12 @@ function Frame({ color, size = 26, children }: IconProps & { children: React.Rea
 export function FypIcon(props: IconProps) {
   return (
     <Frame {...props}>
-      <Rect x="6" y="6" width="15" height="20" rx="3.5" />
-      <Rect x="27" y="6" width="15" height="12" rx="3.5" />
-      <Rect x="6" y="32" width="15" height="10" rx="3.5" />
-      <Rect x="27" y="24" width="15" height="18" rx="3.5" />
+      <G transform="skewX(-6) translate(2.6 0)">
+        <Rect x="7" y="7" width="14" height="19" rx="4" />
+        <Rect x="27" y="7" width="14" height="11" rx="4" />
+        <Rect x="7" y="32" width="14" height="9" rx="4" />
+        <Rect x="27" y="24" width="14" height="17" rx="4" />
+      </G>
     </Frame>
   );
 }
@@ -51,9 +53,9 @@ export function FypIcon(props: IconProps) {
 export function FlixnderIcon(props: IconProps) {
   return (
     <Frame {...props}>
-      <Path d="M11 15v18" />
-      <Path d="M17 12v24" />
-      <Rect x="23" y="9" width="19" height="30" rx="4" transform="rotate(7 32.5 24)" />
+      <Path d="M11 16c-.6 6-.6 11 0 16" />
+      <Path d="M17.5 12c-.8 8-.8 16 0 24" />
+      <Rect x="23" y="9" width="19" height="30" rx="5" transform="rotate(10 32.5 24)" />
     </Frame>
   );
 }
@@ -62,12 +64,12 @@ export function FlixnderIcon(props: IconProps) {
 export function WardrobeIcon(props: IconProps) {
   return (
     <Frame {...props}>
-      <Path d="M5 15V5h10" />
-      <Path d="M33 5h10v10" />
-      <Path d="M5 33v10h10" />
-      <Path d="M43 33v10H33" />
-      <Path d="M24 22v-4a3.5 3.5 0 1 0-3.5 3.5" />
-      <Path d="M24 22 13 33h22z" />
+      <Path d="M5 15V9a4 4 0 0 1 4-4h6" />
+      <Path d="M33 5h6a4 4 0 0 1 4 4v6" />
+      <Path d="M5 33v6a4 4 0 0 0 4 4h6" />
+      <Path d="M43 33v6a4 4 0 0 1-4 4h-6" />
+      <Path d="M24.5 23.5v-5a4 4 0 1 0-4 4" />
+      <Path d="M24.5 23.5 13 34h23z" />
     </Frame>
   );
 }
@@ -76,11 +78,11 @@ export function WardrobeIcon(props: IconProps) {
 export function PlannerIcon(props: IconProps) {
   return (
     <Frame {...props}>
-      <Rect x="6" y="11" width="36" height="32" rx="5" />
-      <Path d="M6 21h36" />
-      <Path d="M16 6v8" />
-      <Path d="M32 6v8" />
-      <Path d="M18 31.5l4.5 4.5 8-8" />
+      <Rect x="6.5" y="11" width="35" height="32" rx="6" />
+      <Path d="M6.5 21.5c12 .8 23 .6 35-.6" />
+      <Path d="M15 14V8.5a2.5 2.5 0 0 1 5 0" />
+      <Path d="M28 14V8.5a2.5 2.5 0 0 1 5 0" />
+      <Path d="M17.5 31.5c1.9 1.3 3.5 2.9 4.8 4.7 2.2-3.3 5-6.1 8.2-8.4" />
     </Frame>
   );
 }
@@ -89,10 +91,10 @@ export function PlannerIcon(props: IconProps) {
 export function PriceMatchIcon(props: IconProps) {
   return (
     <Frame {...props}>
-      <Path d="M5 12V5h7" />
-      <Path d="M36 5h7v7" />
-      <Path d="M5 36v7h7" />
-      <Path d="M43 36v7h-7" />
+      <Path d="M5 12V9a4 4 0 0 1 4-4h3" />
+      <Path d="M36 5h3a4 4 0 0 1 4 4v3" />
+      <Path d="M5 36v3a4 4 0 0 0 4 4h3" />
+      <Path d="M43 36v3a4 4 0 0 1-4 4h-3" />
       <Path d="M26 13h6a3 3 0 0 1 3 3v6L22 35a2.5 2.5 0 0 1-3.5 0l-5.5-5.5a2.5 2.5 0 0 1 0-3.5z" />
       <Circle cx="28.5" cy="19.5" r="1.75" />
     </Frame>
@@ -107,8 +109,8 @@ export function PriceMatchIcon(props: IconProps) {
 export function ProfileIcon(props: IconProps) {
   return (
     <Frame {...props}>
-      <Circle cx="24" cy="17" r="7.5" />
-      <Path d="M9 42a15 15 0 0 1 30 0" />
+      <Circle cx="24.5" cy="17" r="7.5" />
+      <Path d="M9.5 42.5c.6-8 7-14.5 15-14.5s14.4 6.5 15 14.5" />
     </Frame>
   );
 }

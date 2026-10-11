@@ -3,7 +3,6 @@ import { useState } from 'react';
 import {
   ActivityIndicator,
   Image,
-  Linking,
   Pressable,
   ScrollView,
   StyleSheet,
@@ -13,6 +12,7 @@ import {
 import { SHOW_DEAL_FEEDS } from '../../src/config/features';
 import { getMockOnlinePrices } from '../../src/data/mockPriceMatch';
 import { isLocalPricingAvailable } from '../../src/lib/localPricing';
+import { openExternal, shoppingSearchUrl } from '../../src/lib/openExternal';
 import { type DetectedItem, identifySingleItem } from '../../src/lib/scan';
 
 export default function ScanPriceMatch() {
@@ -126,11 +126,7 @@ export default function ScanPriceMatch() {
               </Text>
               <Pressable
                 style={styles.photoButton}
-                onPress={() =>
-                  Linking.openURL(
-                    `https://www.google.com/search?tbm=shop&q=${encodeURIComponent(searchQuery)}`
-                  )
-                }
+                onPress={() => openExternal(shoppingSearchUrl(searchQuery))}
               >
                 <Text style={styles.photoButtonText}>Search prices for this</Text>
               </Pressable>
@@ -141,10 +137,8 @@ export default function ScanPriceMatch() {
               key={option.retailer}
               style={styles.priceRow}
               onPress={() =>
-                Linking.openURL(
-                  `https://www.google.com/search?q=${encodeURIComponent(
-                    option.retailer + ' ' + item.description
-                  )}`
+                openExternal(
+                  shoppingSearchUrl(`${option.retailer} ${item.description}`)
                 )
               }
             >
