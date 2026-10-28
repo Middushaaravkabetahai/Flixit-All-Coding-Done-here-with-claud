@@ -5,8 +5,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48" role="img" aria-label="Flixnder">
   <title>Flixnder</title>
   <g fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
-    <path id="deck-back" d="M11 15v18" />
-    <path id="deck-mid" d="M17 12v24" />
-    <rect id="card-front" x="23" y="9" width="19" height="30" rx="4" transform="rotate(7 32.5 24)" />
+    <path id="deck-back" d="M11 16c-.6 6-.6 11 0 16" />
+    <path id="deck-mid" d="M17.5 12c-.8 8-.8 16 0 24" />
+    <rect id="card-front" x="23" y="9" width="19" height="30" rx="5" transform="rotate(10 32.5 24)" />
   </g>
 </svg>

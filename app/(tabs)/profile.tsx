@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import {
   ActivityIndicator,
-  Linking,
   Modal,
   Pressable,
   StyleSheet,
@@ -11,6 +10,7 @@ import {
 } from 'react-native';
 import { useAuth } from '../../src/contexts/AuthContext';
 import { deleteAccount } from '../../src/lib/account';
+import { openExternal } from '../../src/lib/openExternal';
 import { supabase } from '../../src/lib/supabase';
 
 const STYLE_OPTIONS = ['Streetwear', 'Minimalist', 'Preppy', 'Vintage', 'Athleisure', 'Formal'];
@@ -151,7 +151,7 @@ export default function Profile() {
 
       {/* Both stores expect the privacy policy to be reachable from inside an
           app that holds accounts, not only from the store listing. */}
-      <Pressable onPress={() => Linking.openURL('https://flixit.info/privacy/')}>
+      <Pressable onPress={() => openExternal('https://flixit.info/privacy/')}>
         <Text style={styles.policyLink}>Privacy policy</Text>
       </Pressable>
 

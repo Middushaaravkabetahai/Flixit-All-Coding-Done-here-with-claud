@@ -57,7 +57,8 @@ export default function ProfileSetup() {
     <View style={styles.container}>
       <Text style={styles.title}>Tell us about your style</Text>
       <Text style={styles.subtitle}>
-        This tunes your FYP. You can change it later.
+        This shapes the outfits we put together for you. You can change it
+        later.
       </Text>
 
       <TextInput

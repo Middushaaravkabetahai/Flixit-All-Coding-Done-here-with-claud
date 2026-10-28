@@ -1,9 +1,25 @@
 <!doctype html>
+<!--
+  LAUNCH DATE: 10 November 2026. It appears in EIGHT places in this file and
+  they must all agree, so search the file for "November 10" and "11.10.2026"
+  before changing it, rather than editing the one you happen to spot:
+
+    1-3. the three social meta tags below (description, og:, twitter:)
+    4.   the "Coming to iPhone and Android" paragraph
+    5.   the LAUNCH DATE row in the stats list
+    6.   the "When does Flixit launch?" FAQ answer
+    7.   the mono 11.10.2026 date in the footer stats
+    8.   var LAUNCH at the bottom, which drives the countdown
+
+  The countdown pins itself to 00:00:00 and the label flips to "LAUNCH DAY"
+  once the date passes, so a stale date silently tells visitors the app is
+  already out.
+-->
 <html lang="en">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta name="description" content="Flixit turns the clothes you already own into daily outfits and finds you better prices on everything else. Launching October 20, 2026 on iOS and Android." />
+<meta name="description" content="Flixit turns the clothes you already own into daily outfits and finds you better prices on everything else. Launching November 10, 2026 on iOS and Android." />
 <meta name="theme-color" content="#18181b" />
 <link rel="canonical" href="https://flixit.info/" />
 <!-- Favicon: the real Hook F mark, not a letter set in Arial Black. -->
@@ -13,10 +29,10 @@
 <meta property="og:url" content="https://flixit.info/" />
 <meta property="og:site_name" content="Flixit" />
 <meta property="og:title" content="Flixit | Your closet. Your style. Your next move." />
-<meta property="og:description" content="Scan your closet, get daily outfits from what you already own, and find the best price on what you buy next. Launching October 20, 2026." />
+<meta property="og:description" content="Scan your closet, get daily outfits from what you already own, and find the best price on what you buy next. Launching November 10, 2026." />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="Flixit | Your closet. Your style. Your next move." />
-<meta name="twitter:description" content="Scan your closet, get daily outfits from what you already own, and find the best price on what you buy next. Launching October 20, 2026." />
+<meta name="twitter:description" content="Scan your closet, get daily outfits from what you already own, and find the best price on what you buy next. Launching November 10, 2026." />
 
 <title>Flixit | Your closet. Your style. Your next move.</title>
 <style>
@@ -672,7 +688,7 @@
       <article class="tag">
         <p class="code mono">01 / WARDROBE SCAN</p>
         <svg width="32" height="32" viewBox="0 0 48 48" fill="none" stroke="#3346e0" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M5 15V5h10" /><path d="M33 5h10v10" /><path d="M5 33v10h10" /><path d="M43 33v10H33" /><path d="M24 22v-4a3.5 3.5 0 1 0-3.5 3.5" /><path d="M24 22 13 33h22z" />
+          <path d="M5 15V9a4 4 0 0 1 4-4h6"/><path d="M33 5h6a4 4 0 0 1 4 4v6"/><path d="M5 33v6a4 4 0 0 0 4 4h6"/><path d="M43 33v6a4 4 0 0 1-4 4h-6"/><path d="M24.5 23.5v-5a4 4 0 1 0-4 4"/><path d="M24.5 23.5 13 34h23z"/>
         </svg>
         <h3>Scan your closet</h3>
         <p>Photograph your closet once and Flixit picks out each item, so you're not adding clothes one at a time.</p>
@@ -681,7 +697,7 @@
       <article class="tag">
         <p class="code mono">02 / OUTFIT PLANNER</p>
         <svg width="32" height="32" viewBox="0 0 48 48" fill="none" stroke="#3346e0" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
-          <rect x="6" y="11" width="36" height="32" rx="5" /><path d="M6 21h36" /><path d="M16 6v8" /><path d="M32 6v8" /><path d="M18 31.5l4.5 4.5 8-8" />
+          <rect x="6.5" y="11" width="35" height="32" rx="6"/><path d="M6.5 21.5c12 .8 23 .6 35-.6"/><path d="M15 14V8.5a2.5 2.5 0 0 1 5 0"/><path d="M28 14V8.5a2.5 2.5 0 0 1 5 0"/><path d="M17.5 31.5c1.9 1.3 3.5 2.9 4.8 4.7 2.2-3.3 5-6.1 8.2-8.4"/>
         </svg>
         <h3>Plan your outfits</h3>
         <p>Daily outfit recommendations built from your wardrobe, occasion, and color coordination. Don't like it? Switch it up.</p>
@@ -690,7 +706,7 @@
       <article class="tag">
         <p class="code mono">03 / PRICE MATCH</p>
         <svg width="32" height="32" viewBox="0 0 48 48" fill="none" stroke="#3346e0" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M5 12V5h7" /><path d="M36 5h7v7" /><path d="M5 36v7h7" /><path d="M43 36v7h-7" /><path d="M26 13h6a3 3 0 0 1 3 3v6L22 35a2.5 2.5 0 0 1-3.5 0l-5.5-5.5a2.5 2.5 0 0 1 0-3.5z" /><circle cx="28.5" cy="19.5" r="1.75" />
+          <path d="M5 12V9a4 4 0 0 1 4-4h3"/><path d="M36 5h3a4 4 0 0 1 4 4v3"/><path d="M5 36v3a4 4 0 0 0 4 4h3"/><path d="M43 36v3a4 4 0 0 1-4 4h-3"/><path d="M26 13h6a3 3 0 0 1 3 3v6L22 35a2.5 2.5 0 0 1-3.5 0l-5.5-5.5a2.5 2.5 0 0 1 0-3.5z"/><circle cx="28.5" cy="19.5" r="1.75"/>
         </svg>
         <h3>Find the best price</h3>
         <p>Scan something in a store and compare it against prices online before you pay full price for it.</p>
@@ -699,7 +715,7 @@
       <article class="tag">
         <p class="code mono">04 / FLIXNDER</p>
         <svg width="32" height="32" viewBox="0 0 48 48" fill="none" stroke="#3346e0" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M11 15v18" /><path d="M17 12v24" /><rect x="23" y="9" width="19" height="30" rx="4" transform="rotate(7 32.5 24)" />
+          <path d="M11 16c-.6 6-.6 11 0 16"/><path d="M17.5 12c-.8 8-.8 16 0 24"/><rect x="23" y="9" width="19" height="30" rx="5" transform="rotate(10 32.5 24)"/>
         </svg>
         <h3>Swipe on Flixnder</h3>
         <p>Swipe right on the pieces you like. Every swipe teaches Flixit what your style actually is.</p>
@@ -708,7 +724,7 @@
       <article class="tag">
         <p class="code mono">05 / STYLE FYP</p>
         <svg width="32" height="32" viewBox="0 0 48 48" fill="none" stroke="#3346e0" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
-          <rect x="6" y="6" width="15" height="20" rx="3.5" /><rect x="27" y="6" width="15" height="12" rx="3.5" /><rect x="6" y="32" width="15" height="10" rx="3.5" /><rect x="27" y="24" width="15" height="18" rx="3.5" />
+          <g transform="skewX(-6) translate(2.6 0)"><rect x="7" y="7" width="14" height="19" rx="4"/><rect x="27" y="7" width="14" height="11" rx="4"/><rect x="7" y="32" width="14" height="9" rx="4"/><rect x="27" y="24" width="14" height="17" rx="4"/></g>
         </svg>
         <h3>Your Style FYP</h3>
         <p>A feed that reorders itself around what you scan, swipe, and save. Not what someone paid to put in front of you.</p>
@@ -803,13 +819,14 @@
       <div>
         <h2>Coming to iPhone and Android.</h2>
         <p>
-          Flixit launches on the App Store and Google Play on October 20, 2026.
+          Flixit launches on the App Store on November 10, 2026, with Google Play
+          following shortly after.
         </p>
       </div>
 
       <dl class="launch-dates">
         <div><dt class="mono">FOUNDED</dt><dd class="mono">June 2, 2026</dd></div>
-        <div><dt class="mono">LAUNCH DATE</dt><dd class="mono">October 20, 2026</dd></div>
+        <div><dt class="mono">LAUNCH DATE</dt><dd class="mono">November 10, 2026</dd></div>
         <div><dt class="mono">PLATFORMS</dt><dd>iOS · Android</dd></div>
         <div><dt class="mono">WEB</dt><dd class="mono">flixit.info</dd></div>
       </dl>
@@ -849,7 +866,8 @@
     <div class="faq">
       <details open>
         <summary>When does Flixit launch?</summary>
-        <p>October 20, 2026, on the App Store and Google Play, at the same time.</p>
+        <p>November 10, 2026 on the App Store. Google Play follows shortly after —
+           Google requires a two-week testing period before a new app can go live.</p>
       </details>
       <details>
         <summary>How does the closet scan work?</summary>
@@ -884,7 +902,7 @@
       </div>
       <div>
         <dt class="mono">LAUNCHING</dt>
-        <dd class="mono">10.20.2026</dd>
+        <dd class="mono">11.10.2026</dd>
       </div>
       <div>
         <dt class="mono">FOUNDERS</dt>
@@ -905,7 +923,7 @@
 
 <script>
   (function () {
-    var LAUNCH = new Date("2026-10-20T00:00:00");
+    var LAUNCH = new Date("2026-11-10T00:00:00");
     var d = document.getElementById("cd-d");
     var h = document.getElementById("cd-h");
     var m = document.getElementById("cd-m");

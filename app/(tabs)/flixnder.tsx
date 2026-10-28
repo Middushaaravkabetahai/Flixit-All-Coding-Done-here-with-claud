@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { Redirect } from 'expo-router';
 import {
-  Linking,
   Pressable,
   ScrollView,
   StyleSheet,
@@ -13,6 +12,7 @@ import { SHOW_DEAL_FEEDS } from '../../src/config/features';
 import { useAuth } from '../../src/contexts/AuthContext';
 import { MOCK_DEALS, type Deal } from '../../src/data/mockDeals';
 import { recordSwipe } from '../../src/lib/swipes';
+import { openExternal, shoppingSearchUrl } from '../../src/lib/openExternal';
 
 export default function FlixnderRoute() {
   // Hidden for v1 alongside the FYP — see src/config/features.ts.
@@ -53,10 +53,8 @@ function Flixnder() {
                 key={retailer.name}
                 style={styles.retailerRow}
                 onPress={() =>
-                  Linking.openURL(
-                    `https://www.google.com/search?q=${encodeURIComponent(
-                      retailer.name + ' ' + viewingRetailers.title
-                    )}`
+                  openExternal(
+                    shoppingSearchUrl(`${retailer.name} ${viewingRetailers.title}`)
                   )
                 }
               >
