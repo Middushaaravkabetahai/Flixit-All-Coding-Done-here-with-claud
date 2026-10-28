@@ -68,6 +68,10 @@ follow rather than slipping both.
 
 ## 3. Build
 
+- [ ] **S/M** — `npm run bundle:check` first. It bundles the app for both
+      platforms locally and is the fastest way to catch a build break, because
+      an EAS build that fails for the same reason costs a queue wait to find
+      out. Run it after any dependency change.
 - [ ] **S/M** — `npm install -g eas-cli` then `eas login`
 - [ ] **S/M** — `eas build --platform ios --profile production`
 - [ ] **S/M** — `eas build --platform android --profile production`

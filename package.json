@@ -5,6 +5,7 @@
   "dependencies": {
     "@react-native-async-storage/async-storage": "^3.1.1",
     "@supabase/supabase-js": "^2.110.7",
+    "buffer": "^6.0.3",
     "expo": "~57.0.7",
     "expo-constants": "^57.0.6",
     "expo-file-system": "^57.0.1",
@@ -35,7 +36,8 @@
     "typecheck": "tsc --noEmit",
     "test": "node --test \"src/**/*.test.ts\"",
     "check": "npm run typecheck && npm test && npm run icons:check",
-    "icons:check": "node scripts/check-icons.mjs"
+    "icons:check": "node scripts/check-icons.mjs",
+    "bundle:check": "expo export --platform ios --output-dir /tmp/flixit-bundle-check && expo export --platform android --output-dir /tmp/flixit-bundle-check-android"
   },
   "private": true
 }
