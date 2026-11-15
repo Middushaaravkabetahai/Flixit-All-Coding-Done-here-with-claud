@@ -1,6 +1,7 @@
 # Getting Flixit onto the App Store and Google Play
 
-Written 11 Oct 2026. Work top to bottom — later steps are blocked by earlier
+Written 11 Oct 2026, revised 15 Nov. Launch date is **24 December 2026**,
+Christmas Eve. Work top to bottom — later steps are blocked by earlier
 ones. **S/M** = Shaarav or Maahit can do it. **Parent** = legally cannot be
 done by a 16-year-old.
 
@@ -20,20 +21,21 @@ a guideline, and there is no way around it:
 So a parent registers, owns and is legally responsible for both accounts, the
 same as with Awin. Nothing below starts until that is done.
 
-**Android cannot launch on 20 Oct.** A personal Play account created after
+**Android needs a long run-up.** A personal Play account created after
 13 Nov 2023 cannot publish to production until a closed test has run with
 **12 testers opted in for 14 continuous days**. The 14 days only begin once the
-closed-test build has cleared Google's review. Starting today that lands in
-early November at the earliest.
+closed-test build has cleared Google's review. With a 24 Dec target there is
+room for this, but only if the Play account and the closed test are started by
+**early December** — the 14-day clock plus review does not compress.
 
 There is one way out: **organization accounts with a D-U-N-S number are exempt
 from the 12-tester rule.** A D-U-N-S number is free from Dun & Bradstreet but
 takes days to weeks to issue. Decide this in the next day or two — it is the
-difference between Android in October and Android in November.
+difference between Android on launch day and Android in January.
 
 **iOS has no equivalent rule.** App Review is usually 24–48 hours, so iOS can
-still make 20 Oct. The recommendation is to ship iOS on time and let Android
-follow rather than slipping both.
+comfortably make 24 Dec. The plan is iOS on Christmas Eve, with Android
+following as soon as its testing period clears.
 
 ---
 
@@ -127,9 +129,9 @@ It needs the parent's Apple ID at that point.
 
 | | |
 |---|---|
-| iOS submitted | 20 Oct is achievable if the Apple account is opened now |
+| iOS submitted | mid-December, to leave room for a rejection and a resubmit before 24 Dec |
 | Android closed test live | a few days after the Play account exists |
-| Android production | early-to-mid November on a personal account |
+| Android production | on or shortly after 24 Dec, if the closed test starts by early December |
 
 The thing most likely to cost you the iOS date is the Apple account, because
 it is the one step with a queue you do not control. Open it first.
