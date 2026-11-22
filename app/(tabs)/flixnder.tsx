@@ -16,7 +16,7 @@ import { openExternal, shoppingSearchUrl } from '../../src/lib/openExternal';
 
 export default function FlixnderRoute() {
   // Hidden for v1 alongside the FYP — see src/config/features.ts.
-  if (!SHOW_DEAL_FEEDS) return <Redirect href="/wardrobe" />;
+  if (!SHOW_DEAL_FEEDS) return <Redirect href="/" />;
   return <Flixnder />;
 }
 

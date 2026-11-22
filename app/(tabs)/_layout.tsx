@@ -2,6 +2,7 @@ import { Tabs } from 'expo-router';
 import {
   FlixnderIcon,
   FypIcon,
+  TodayIcon,
   PlannerIcon,
   PriceMatchIcon,
   ProfileIcon,
@@ -29,8 +30,18 @@ export default function TabsLayout() {
           2.1. `href: null` keeps the routes registered and drops them from the
           tab bar, so flipping SHOW_DEAL_FEEDS back on needs no other change.
           See src/config/features.ts. */}
+      {/* The landing screen: today's outfits as album covers. First in the
+          bar and the default route inside (tabs), so this is what opening the
+          app shows. */}
       <Tabs.Screen
         name="index"
+        options={{
+          title: 'Today',
+          tabBarIcon: ({ color }) => <TodayIcon color={color} />,
+        }}
+      />
+      <Tabs.Screen
+        name="fyp"
         options={{
           title: 'FYP',
           tabBarIcon: ({ color }) => <FypIcon color={color} />,

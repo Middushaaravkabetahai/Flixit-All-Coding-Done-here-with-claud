@@ -2,8 +2,11 @@ import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import {
   buildOutfit,
+  buildOutfitDeck,
   dailySeed,
+  distinctOutfitCount,
   hasEnoughForOutfit,
+  outfitItems,
   reRollableSlots,
   sameOutfit,
 } from './outfitPlanner.ts';
@@ -102,4 +105,64 @@ test('an outfit needs a top and a bottom', () => {
   assert.ok(!hasEnoughForOutfit([mk('1', 'Shoes'), mk('2', 'Accessory')]));
   assert.ok(!hasEnoughForOutfit([]));
   assert.equal(reRollableSlots(CLOSET), 3);
+});
+
+// --- the home screen's album covers -------------------------------------
+
+test('the cover deck never shows the same outfit twice in a row', () => {
+  for (let seed = 0; seed < 500; seed++) {
+    const deck = buildOutfitDeck(CLOSET, 8, seed);
+    for (let i = 1; i < deck.length; i++) {
+      assert.ok(!sameOutfit(deck[i - 1], deck[i]), `cards ${i - 1} and ${i} match`);
+    }
+  }
+});
+
+test('the deck is stable for the day, like the Planner', () => {
+  const seed = dailySeed('user-abc', new Date(2026, 11, 24, 7, 0));
+  const morning = buildOutfitDeck(CLOSET, 8, seed);
+  const evening = buildOutfitDeck(CLOSET, 8, seed);
+  assert.equal(morning.length, evening.length);
+  morning.forEach((outfit, i) => assert.ok(sameOutfit(outfit, evening[i])));
+});
+
+test('a small closet gets a short deck rather than a deck of repeats', () => {
+  // One top, one bottom: exactly one outfit exists, so asking for eight
+  // must not hand back the same cover eight times.
+  const two = [mk('1', 'Top'), mk('2', 'Bottom')];
+  assert.equal(distinctOutfitCount(two), 1);
+  assert.equal(buildOutfitDeck(two, 8, 1).length, 1);
+
+  // Two tops, one bottom: two real outfits.
+  const three = [mk('1', 'Top'), mk('2', 'Top'), mk('3', 'Bottom')];
+  assert.equal(distinctOutfitCount(three), 2);
+  assert.equal(buildOutfitDeck(three, 8, 1).length, 2);
+});
+
+test('the deck is capped so it cannot run away on a big closet', () => {
+  const big = [];
+  for (let i = 0; i < 6; i++) {
+    for (const c of ['Top', 'Bottom', 'Outerwear', 'Shoes', 'Accessory']) {
+      big.push(mk(`${c}-${i}`, c));
+    }
+  }
+  // 6^5 = 7776 combinations exist; the deck must stay at what was asked for.
+  assert.equal(distinctOutfitCount(big, 12), 12);
+  assert.equal(buildOutfitDeck(big, 8, 1).length, 8);
+});
+
+test('outfitItems returns the pieces in slot order, skipping empty slots', () => {
+  const outfit = buildOutfit(CLOSET, { seed: 42 });
+  const pieces = outfitItems(outfit);
+  assert.equal(pieces.length, 5);
+  assert.ok(pieces.every((p) => p && p.id));
+
+  const sparse = buildOutfit([mk('1', 'Top'), mk('2', 'Bottom')], { seed: 1 });
+  assert.equal(outfitItems(sparse).length, 2);
+});
+
+test('an empty closet yields an empty deck rather than throwing', () => {
+  assert.equal(distinctOutfitCount([]), 1);
+  assert.doesNotThrow(() => buildOutfitDeck([], 8, 1));
+  assert.deepEqual(outfitItems(buildOutfit([], { seed: 1 })), []);
 });
