@@ -102,7 +102,30 @@ export function PriceMatchIcon(props: IconProps) {
 }
 
 /**
- * Profile — the sixth mark, drawn to the same rules as the other five
+ * Today — the home screen's covers, drawn as a sleeve with the next one
+ * showing behind it. The front panel carries the same forward lean as the
+ * parent mark's stem, so it sits in the family rather than reading as a
+ * generic "home" house.
+ */
+export function TodayIcon(props: IconProps) {
+  return (
+    <Frame {...props}>
+      <Path d="M40 13c.8 7 .8 15 0 22" />
+      <Rect
+        x="8"
+        y="10"
+        width="26"
+        height="28"
+        rx="5"
+        transform="skewX(-5) translate(2 0)"
+      />
+      <Path d="M17.5 31c2-4.5 4.8-8.6 8.2-12" transform="skewX(-5) translate(2 0)" />
+    </Frame>
+  );
+}
+
+/**
+ * Profile — the seventh mark, drawn to the same rules as the others
  * (48 grid, 3.5 stroke, one idea). Not a "feature" mark, so it stays the
  * plainest shape in the set rather than competing with them.
  */
